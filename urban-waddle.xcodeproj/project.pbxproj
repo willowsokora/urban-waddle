@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162B1AAD2050AF9700779003 /* MapViewController.swift */; };
 		16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A26204F185E00931D42 /* AppDelegate.swift */; };
-		16A59A29204F185E00931D42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A28204F185E00931D42 /* ViewController.swift */; };
 		16A59A2C204F185E00931D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A2A204F185E00931D42 /* Main.storyboard */; };
 		16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */; };
 		16A59A31204F185F00931D42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A30204F185F00931D42 /* Assets.xcassets */; };
@@ -35,9 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		162B1AAD2050AF9700779003 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		16A59A23204F185E00931D42 /* urban-waddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "urban-waddle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A26204F185E00931D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		16A59A28204F185E00931D42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		16A59A2B204F185E00931D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		16A59A2E204F185E00931D42 /* urban_waddle.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = urban_waddle.xcdatamodel; sourceTree = "<group>"; };
 		16A59A30204F185F00931D42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				16A59A26204F185E00931D42 /* AppDelegate.swift */,
-				16A59A28204F185E00931D42 /* ViewController.swift */,
 				16A59A2A204F185E00931D42 /* Main.storyboard */,
+				162B1AAD2050AF9700779003 /* MapViewController.swift */,
 				16A59A30204F185F00931D42 /* Assets.xcassets */,
 				16A59A32204F185F00931D42 /* LaunchScreen.storyboard */,
 				16A59A35204F185F00931D42 /* Info.plist */,
@@ -260,7 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */,
-				16A59A29204F185E00931D42 /* ViewController.swift in Sources */,
+				162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */,
 				16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
