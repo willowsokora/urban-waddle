@@ -15,6 +15,7 @@
 		16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A32204F185F00931D42 /* LaunchScreen.storyboard */; };
 		16A59A3F204F185F00931D42 /* urban_waddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A3E204F185F00931D42 /* urban_waddleTests.swift */; };
 		16A59A4A204F185F00931D42 /* urban_waddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A49204F185F00931D42 /* urban_waddleUITests.swift */; };
+		83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		16A59A45204F185F00931D42 /* urban-waddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "urban-waddleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A49204F185F00931D42 /* urban_waddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urban_waddleUITests.swift; sourceTree = "<group>"; };
 		16A59A4B204F185F00931D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				16A59A26204F185E00931D42 /* AppDelegate.swift */,
 				16A59A2A204F185E00931D42 /* Main.storyboard */,
+				83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */,
 				162B1AAD2050AF9700779003 /* MapViewController.swift */,
 				16A59A30204F185F00931D42 /* Assets.xcassets */,
 				16A59A32204F185F00931D42 /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 				16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */,
 				162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */,
 				16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */,
+				83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,7 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
+				DEVELOPMENT_TEAM = 89YGS6UCLW;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -453,7 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
+				DEVELOPMENT_TEAM = 89YGS6UCLW;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
