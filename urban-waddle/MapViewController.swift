@@ -50,7 +50,7 @@ class MapViewController: UIViewController {
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
-        //resultSearchController?.delegate = self
+        
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -152,16 +152,4 @@ extension MapViewController : MKMapViewDelegate {
     }
 }
 
-//extension MapViewController: UISearchControllerDelegate {
-//    func didDismissSearchController(_ searchController: UISearchController) {
-//        searchController.searchBar.isHidden = true
-//
-//    }
-//    func willPresentSearchController(_ searchController: UISearchController) {
-//        resultSearchController?.searchBar.setShowsCancelButton(false, animated: false)
-//    }
-//
-//    func didPresentSearchController(_ searchController: UISearchController) {
-//        resultSearchController?.searchBar.setShowsCancelButton(false, animated: false)
-//    }
-//}
+
