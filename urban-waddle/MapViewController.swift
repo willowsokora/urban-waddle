@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    
     var resultSearchController:UISearchController? = nil
     var selectedPin:MKPlacemark? = nil
     
@@ -44,14 +45,23 @@ class MapViewController: UIViewController {
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search Places"
+    
         navigationItem.titleView = resultSearchController?.searchBar
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
+        //resultSearchController?.delegate = self
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
+        
+        
     }
+    
     
     
 
@@ -72,7 +82,7 @@ class MapViewController: UIViewController {
     */
     
     
-    func getDirections(){
+    @objc func getDirections(){
         if let selectedPin = selectedPin {
             let mapItem = MKMapItem(placemark: selectedPin)
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
@@ -136,8 +146,22 @@ extension MapViewController : MKMapViewDelegate {
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
         button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
-        button.addTarget(self, action: Selector("getDirections"), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.getDirections), for: .touchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }
 }
+
+//extension MapViewController: UISearchControllerDelegate {
+//    func didDismissSearchController(_ searchController: UISearchController) {
+//        searchController.searchBar.isHidden = true
+//
+//    }
+//    func willPresentSearchController(_ searchController: UISearchController) {
+//        resultSearchController?.searchBar.setShowsCancelButton(false, animated: false)
+//    }
+//
+//    func didPresentSearchController(_ searchController: UISearchController) {
+//        resultSearchController?.searchBar.setShowsCancelButton(false, animated: false)
+//    }
+//}
