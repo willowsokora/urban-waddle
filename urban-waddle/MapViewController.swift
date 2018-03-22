@@ -95,12 +95,14 @@ class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.count != 0 {
+            if currentLocation == nil {
+                if let location = locations.first {
+                    let span = MKCoordinateSpanMake(0.05, 0.05)
+                    let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                    mapView.setRegion(region, animated: true)
+                }
+            }
             currentLocation = locations[locations.count - 1]
-        }
-        if let location = locations.first {
-            let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: location.coordinate, span: span)
-            mapView.setRegion(region, animated: true)
         }
     }
 }
