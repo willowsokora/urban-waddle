@@ -25,8 +25,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lKE-8n-a4a" secondAttribute="trailing" id="Lcg-Sm-k5a"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lKE-8n-a4a" secondAttribute="bottom" id="dNz-iq-2NN"/>
-                            <constraint firstItem="lKE-8n-a4a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fvf-Rr-wum"/>
+                            <constraint firstAttribute="bottom" secondItem="lKE-8n-a4a" secondAttribute="bottom" id="dNz-iq-2NN"/>
+                            <constraint firstItem="lKE-8n-a4a" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fvf-Rr-wum"/>
                             <constraint firstItem="lKE-8n-a4a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yEQ-1e-Yoa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
