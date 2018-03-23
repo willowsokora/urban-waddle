@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162B1AAD2050AF9700779003 /* MapViewController.swift */; };
+		162C6B4420644FA30067D986 /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4220644FA30067D986 /* DiscoverCell.swift */; };
+		162C6B4520644FA30067D986 /* DiscoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 162C6B4320644FA30067D986 /* DiscoverCell.xib */; };
+		162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4620644FBB0067D986 /* RestaurantCell.swift */; };
+		162C6B4920644FBB0067D986 /* RestaurantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 162C6B4720644FBB0067D986 /* RestaurantCell.xib */; };
+		162C6B4D2064AC450067D986 /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4C2064AC450067D986 /* YelpAPI.swift */; };
 		16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A26204F185E00931D42 /* AppDelegate.swift */; };
 		16A59A2C204F185E00931D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A2A204F185E00931D42 /* Main.storyboard */; };
 		16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */; };
@@ -39,6 +44,11 @@
 
 /* Begin PBXFileReference section */
 		162B1AAD2050AF9700779003 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		162C6B4220644FA30067D986 /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
+		162C6B4320644FA30067D986 /* DiscoverCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverCell.xib; sourceTree = "<group>"; };
+		162C6B4620644FBB0067D986 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		162C6B4720644FBB0067D986 /* RestaurantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantCell.xib; sourceTree = "<group>"; };
+		162C6B4C2064AC450067D986 /* YelpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
 		16A59A23204F185E00931D42 /* urban-waddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "urban-waddle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A26204F185E00931D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16A59A2B204F185E00931D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,6 +92,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		166F5E86206535ED0015A171 /* DeckSwiper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DeckSwiper;
+			sourceTree = "<group>";
+		};
 		16A59A1A204F185E00931D42 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +122,8 @@
 		16A59A25204F185E00931D42 /* urban-waddle */ = {
 			isa = PBXGroup;
 			children = (
+				166F5E86206535ED0015A171 /* DeckSwiper */,
+				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
 				16E3679420643517009E6153 /* SavedViewController.swift */,
 				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
 				16A59A26204F185E00931D42 /* AppDelegate.swift */,
@@ -115,6 +134,10 @@
 				16A59A32204F185F00931D42 /* LaunchScreen.storyboard */,
 				16A59A35204F185F00931D42 /* Info.plist */,
 				16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */,
+				162C6B4220644FA30067D986 /* DiscoverCell.swift */,
+				162C6B4320644FA30067D986 /* DiscoverCell.xib */,
+				162C6B4620644FBB0067D986 /* RestaurantCell.swift */,
+				162C6B4720644FBB0067D986 /* RestaurantCell.xib */,
 			);
 			path = "urban-waddle";
 			sourceTree = "<group>";
@@ -241,8 +264,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				162C6B4520644FA30067D986 /* DiscoverCell.xib in Resources */,
 				16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */,
 				16A59A31204F185F00931D42 /* Assets.xcassets in Resources */,
+				162C6B4920644FBB0067D986 /* RestaurantCell.xib in Resources */,
 				16A59A2C204F185E00931D42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,10 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */,
 				16E3679520643517009E6153 /* SavedViewController.swift in Sources */,
 				16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */,
+				162C6B4D2064AC450067D986 /* YelpAPI.swift in Sources */,
 				162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */,
 				16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */,
+				162C6B4420644FA30067D986 /* DiscoverCell.swift in Sources */,
 				83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */,
 				16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */,
 			);

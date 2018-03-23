@@ -18,6 +18,12 @@ class SavedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        savedTable.dataSource = self
+        savedTable.delegate = self
+        
+        let nib = UINib.init(nibName: "RestaurantCell", bundle: nil)
+        savedTable.register(nib, forCellReuseIdentifier: "restaurantCell")
+        
         // Do any additional setup after loading the view.
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
         request.returnsObjectsAsFaults = false
@@ -61,9 +67,10 @@ extension SavedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath) as! RestaurantCell
         let restaurant = savedRestaurants[indexPath.row]
-        cell.textLabel?.text = restaurant.name
+        cell.nameLabel.text = restaurant.name
+        cell.nameLabel.textColor = restaurant.liked ? .green : .red
         return cell
     }
 }
