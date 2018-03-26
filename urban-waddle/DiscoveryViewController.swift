@@ -10,93 +10,116 @@ import UIKit
 import CoreLocation
 import CoreData
 
-class DiscoveryViewController: UIViewController {
+import UIKit
+import CoreLocation
+import CoreData
 
-    @IBOutlet weak var discoveryTable: UITableView!
-    var yelpRestaurants = [YelpRestaurant]()
+class DiscoveryViewController: UIViewController {
     
     let locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
     
+    var yelpRestaurants = [YelpRestaurant]()
+    
+    @IBOutlet weak var swipeableView: ZLSwipeableView!
+    
+    var cardIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        discoveryTable.dataSource = self
-        discoveryTable.delegate = self
         
-        let nib = UINib.init(nibName: "DiscoverCell", bundle: nil)
-        discoveryTable.register(nib, forCellReuseIdentifier: "discoverCell")
+        // Do any additional setup after loading the view.
+        view.clipsToBounds = true
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         currentLocation = nil
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-extension DiscoveryViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        
+        swipeableView.nextView = {
+            return self.nextCardView()
+        }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return yelpRestaurants.count
+    @IBAction func reloadDeck(_ sender: UIButton) {
+        YelpAPI.page = 0
+        reloadRestaurants()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "discoverCell", for: indexPath) as! DiscoverCell
-        let restaurant = yelpRestaurants[indexPath.row]
-        cell.nameLabel.text = restaurant.name
-        cell.noteLabel.text = restaurant.location.address1
-        cell.ratingLabel.text = "\(restaurant.rating)"
-        cell.priceLabel.text = restaurant.price
-        return cell
-    }
-}
-
-extension DiscoveryViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension DiscoveryViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if currentLocation == nil {
-            currentLocation = locations.first
-            getRestaurants(near: (currentLocation?.coordinate)!) { (results) in
+    func reloadRestaurants() {
+        yelpRestaurants.removeAll()
+        if let currentLocation = currentLocation {
+            YelpAPI.getRestaurants(near: currentLocation) { (results) in
                 switch results {
                 case .success(let searchResults):
                     self.yelpRestaurants = searchResults.businesses
                     DispatchQueue.global().async {
                         DispatchQueue.main.sync {
                             print("Retrieved data from yelp, reloading table")
-                            self.discoveryTable.reloadData()
+                            self.swipeableView.discardViews()
+                            self.swipeableView.loadViews()
                         }
                     }
                 case .failure(let error):
                     fatalError("error: \(error.localizedDescription)")
                 }
             }
+        }
+    }
+    
+    func nextCardView() -> UIView? {
+        if cardIndex >= yelpRestaurants.count {
+            return nil
+        }
+        let cardView = UIView(frame: swipeableView.bounds)
+        let contentView = Bundle.main.loadNibNamed("DiscoveryCardView", owner: self, options: nil)?.first! as! DiscoveryCardView
+        contentView.restaurant = yelpRestaurants[cardIndex]
+        contentView.awakeFromNib()
+        contentView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+        contentView.layer.cornerRadius = 12
+        cardView.addSubview(contentView)
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        let leftConstraint = contentView.leftAnchor.constraint(equalTo: cardView.leftAnchor)
+        let topConstraint = contentView.topAnchor.constraint(equalTo: cardView.topAnchor)
+        let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: cardView.bounds.width)
+        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: cardView.bounds.height)
+        //contentView.center = CGPoint(x: cardView.bounds.midX, y: cardView.bounds.midY)
+        //contentView.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
+        //        let leftConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.minX)
+        //        let topConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.minY)
+        //        let widthConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.width)
+        //        let heightConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.height)
+        cardView.addConstraints([leftConstraint, topConstraint, widthConstraint, heightConstraint])
+        cardIndex += 1
+        return cardView
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    @IBAction func swipeRight(_ sender: UIButton) {
+        swipeableView.swipeTopView(inDirection: .Right)
+    }
+    
+    @IBAction func swipeLeft(_ sender: UIButton) {
+        swipeableView.swipeTopView(inDirection: .Left)
+    }
+    
+}
+
+extension DiscoveryViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if currentLocation == nil {
+            currentLocation = locations.first
+            reloadRestaurants()
         }
     }
 }
