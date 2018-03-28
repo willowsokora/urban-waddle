@@ -21,9 +21,6 @@ class SavedViewController: UIViewController {
         savedTable.dataSource = self
         savedTable.delegate = self
         
-        let nib = UINib.init(nibName: "RestaurantCell", bundle: nil)
-        savedTable.register(nib, forCellReuseIdentifier: "restaurantCell")
-        
         // Do any additional setup after loading the view.
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
         request.returnsObjectsAsFaults = false
@@ -32,6 +29,9 @@ class SavedViewController: UIViewController {
             let context = appDelegate.persistentContainer.viewContext
             let results = try context.fetch(request)
             for restaurant in results as! [Restaurant] {
+                if restaurant.status == .uninterested {
+                    continue
+                }
                 savedRestaurants.append(restaurant)
             }
         } catch {
@@ -67,10 +67,21 @@ extension SavedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath) as! RestaurantCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath)
         let restaurant = savedRestaurants[indexPath.row]
-        cell.nameLabel.text = restaurant.name
-        cell.nameLabel.textColor = restaurant.liked ? .green : .red
+        cell.textLabel?.text = restaurant.name
+        var color: UIColor = .black
+        switch restaurant.status {
+        case .interested:
+            color = .blue
+        case .uninterested:
+            color = .yellow
+        case .disliked:
+            color = .red
+        case .liked:
+            color = .green
+        }
+        cell.textLabel?.textColor = color
         return cell
     }
 }

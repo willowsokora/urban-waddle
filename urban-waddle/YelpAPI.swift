@@ -41,10 +41,12 @@ struct YelpAPI {
         let latitudeItem = URLQueryItem(name: "latitude", value: "\(location.coordinate.latitude)")
         let categoriesItem = URLQueryItem(name: "categories", value: "restaurants")
         let offsetItem = URLQueryItem(name: "offset", value: "\(page)")
-        urlComponents.queryItems = [longitudeItem, latitudeItem, categoriesItem, offsetItem]
+        let radiusItem = URLQueryItem(name: "radius", value: "\(40000)")
+        urlComponents.queryItems = [longitudeItem, latitudeItem, categoriesItem, offsetItem, radiusItem]
         guard let url = urlComponents.url else {
             fatalError("Could not create url from components")
         }
+        print("\(url)")
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -103,31 +105,6 @@ struct YelpRestaurant: Codable {
         case reviewCount = "review_count"
         case imageUrl = "image_url"
     }
-    
-    //    init(from decoder: Decoder) throws {
-    //        let values = try decoder.container(keyedBy: CodingKeys.self)
-    //        rating = try values.decode(Int.self, forKey: .rating)
-    //        price = try values.decode(String.self, forKey: .price)
-    //        phone = try values.decode(String.self, forKey: .phone)
-    //        id = try values.decode(String.self, forKey: .id)
-    //        isClosed = try values.decode(Bool.self, forKey: .isClosed)
-    //        categories = try values.decode([YelpCategory].self, forKey: .categories)
-    //        reviewCount = try values.decode(Int.self, forKey: .reviewCount)
-    //        name = try values.decode(String.self, forKey: .name)
-    //        url = try values.decode(String.self, forKey: .url)
-    //        coordinates = try values.decode(YelpCoordinates.self, forKey: .coordinates)
-    //        imageUrl = try values.decode(String.self, forKey: .imageUrl)
-    //        location = try values.decode(YelpLocation.self, forKey: .location)
-    //        distance = try values.decode(Double.self, forKey: .distance)
-    //        transactions = try values.decode([String].self, forKey: .transactions)
-    //    }
-    //
-    //    func encode(to encoder: Encoder) throws {
-    //        var container = encoder.container(keyedBy: CodingKeys.self)
-    //        try container.encode(isClosed, forKey: .isClosed)
-    //        try container.encode(reviewCount, forKey: .reviewCount)
-    //        try container.encode(imageUrl, forKey: .imageUrl)
-    //    }
 }
 
 struct YelpCategory: Codable {

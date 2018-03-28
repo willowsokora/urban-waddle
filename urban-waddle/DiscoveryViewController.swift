@@ -24,40 +24,61 @@ class DiscoveryViewController: UIViewController {
     @IBOutlet weak var swipeableView: ZLSwipeableView!
     
     var cardIndex = 0
+    var topCard = 0
     
+    @IBOutlet weak var emptyLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        view.clipsToBounds = true
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         currentLocation = nil
         
+        swipeableView.numberOfActiveView = UInt(2)
         swipeableView.nextView = {
             return self.nextCardView()
+        }
+        swipeableView.didSwipe = { view, direction, vector in
+            self.handleSwipe(view as! DiscoveryCardView, direction)
+            self.topCard += 1
+            if self.topCard >= self.yelpRestaurants.count {
+                self.emptyLabel.isHidden = false
+            }
         }
     }
     
     @IBAction func reloadDeck(_ sender: UIButton) {
-        YelpAPI.page = 0
+        YelpAPI.page = -1
         reloadRestaurants()
     }
     
+    @IBAction func goToSettings(_ sender: UIButton) {
+        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl)
+        }
+    }
+    
     func reloadRestaurants() {
+        cardIndex = 0
+        topCard = 0
+        emptyLabel.isHidden = true
         yelpRestaurants.removeAll()
         if let currentLocation = currentLocation {
             YelpAPI.getRestaurants(near: currentLocation) { (results) in
                 switch results {
                 case .success(let searchResults):
-                    self.yelpRestaurants = searchResults.businesses
+                    for restaurant in searchResults.businesses {
+                        self.yelpRestaurants.append(restaurant)
+                    }
                     DispatchQueue.global().async {
                         DispatchQueue.main.sync {
                             print("Retrieved data from yelp, reloading table")
-                            self.swipeableView.discardViews()
                             self.swipeableView.loadViews()
                         }
                     }
@@ -72,28 +93,31 @@ class DiscoveryViewController: UIViewController {
         if cardIndex >= yelpRestaurants.count {
             return nil
         }
-        let cardView = UIView(frame: swipeableView.bounds)
         let contentView = Bundle.main.loadNibNamed("DiscoveryCardView", owner: self, options: nil)?.first! as! DiscoveryCardView
+        contentView.frame = swipeableView.bounds
+        contentView.layoutIfNeeded()
         contentView.restaurant = yelpRestaurants[cardIndex]
         contentView.awakeFromNib()
         contentView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         contentView.layer.cornerRadius = 12
-        cardView.addSubview(contentView)
         
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        let leftConstraint = contentView.leftAnchor.constraint(equalTo: cardView.leftAnchor)
-        let topConstraint = contentView.topAnchor.constraint(equalTo: cardView.topAnchor)
-        let widthConstraint = contentView.widthAnchor.constraint(equalToConstant: cardView.bounds.width)
-        let heightConstraint = contentView.heightAnchor.constraint(equalToConstant: cardView.bounds.height)
-        //contentView.center = CGPoint(x: cardView.bounds.midX, y: cardView.bounds.midY)
-        //contentView.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
-        //        let leftConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.minX)
-        //        let topConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.minY)
-        //        let widthConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.width)
-        //        let heightConstraint = NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: cardView.bounds.height)
-        cardView.addConstraints([leftConstraint, topConstraint, widthConstraint, heightConstraint])
         cardIndex += 1
-        return cardView
+        return contentView
+    }
+    
+    func handleSwipe(_ view: DiscoveryCardView, _ direction: Direction) {
+        let restaurant = view.restaurant!
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
+        let data = Restaurant(entity: entity!, insertInto: context)
+        data.loadData(from: restaurant, with: direction == .Right ? .interested : .uninterested)
+        print(data)
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save data")
+        }
     }
     
     /*
@@ -111,6 +135,11 @@ class DiscoveryViewController: UIViewController {
     
     @IBAction func swipeLeft(_ sender: UIButton) {
         swipeableView.swipeTopView(inDirection: .Left)
+    }
+    
+    @IBAction func undoSwipe(_ sender: UIButton) {
+        swipeableView.rewind()
+        topCard = max(topCard - 1, 0)
     }
     
 }

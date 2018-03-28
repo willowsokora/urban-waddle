@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162B1AAD2050AF9700779003 /* MapViewController.swift */; };
 		162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4620644FBB0067D986 /* RestaurantCell.swift */; };
-		162C6B4920644FBB0067D986 /* RestaurantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 162C6B4720644FBB0067D986 /* RestaurantCell.xib */; };
 		162C6B4D2064AC450067D986 /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4C2064AC450067D986 /* YelpAPI.swift */; };
 		169E6CEE206979E200DF07D3 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CED206979E200DF07D3 /* ViewManager.swift */; };
 		169E6CF0206979F100DF07D3 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */; };
@@ -24,6 +23,7 @@
 		16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A32204F185F00931D42 /* LaunchScreen.storyboard */; };
 		16A59A3F204F185F00931D42 /* urban_waddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A3E204F185F00931D42 /* urban_waddleTests.swift */; };
 		16A59A4A204F185F00931D42 /* urban_waddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A49204F185F00931D42 /* urban_waddleUITests.swift */; };
+		16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */; };
 		16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E36792206434DD009E6153 /* DiscoveryViewController.swift */; };
 		16E3679520643517009E6153 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E3679420643517009E6153 /* SavedViewController.swift */; };
 		83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */; };
@@ -49,7 +49,6 @@
 /* Begin PBXFileReference section */
 		162B1AAD2050AF9700779003 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		162C6B4620644FBB0067D986 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
-		162C6B4720644FBB0067D986 /* RestaurantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantCell.xib; sourceTree = "<group>"; };
 		162C6B4C2064AC450067D986 /* YelpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
 		169E6CED206979E200DF07D3 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		16A59A45204F185F00931D42 /* urban-waddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "urban-waddleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A49204F185F00931D42 /* urban_waddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urban_waddleUITests.swift; sourceTree = "<group>"; };
 		16A59A4B204F185F00931D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataClass.swift"; sourceTree = "<group>"; };
 		16E36792206434DD009E6153 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		16E3679420643517009E6153 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 		16A59A25204F185E00931D42 /* urban-waddle */ = {
 			isa = PBXGroup;
 			children = (
-				169E6CEC206979CB00DF07D3 /* ZLSwipeableView */,
 				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
 				16E3679420643517009E6153 /* SavedViewController.swift */,
 				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
@@ -147,9 +146,10 @@
 				16A59A35204F185F00931D42 /* Info.plist */,
 				16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */,
 				162C6B4620644FBB0067D986 /* RestaurantCell.swift */,
-				162C6B4720644FBB0067D986 /* RestaurantCell.xib */,
 				169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */,
 				169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */,
+				16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */,
+				169E6CEC206979CB00DF07D3 /* ZLSwipeableView */,
 			);
 			path = "urban-waddle";
 			sourceTree = "<group>";
@@ -279,7 +279,6 @@
 				169E6CF620697C0900DF07D3 /* DiscoveryCardView.xib in Resources */,
 				16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */,
 				16A59A31204F185F00931D42 /* Assets.xcassets in Resources */,
-				162C6B4920644FBB0067D986 /* RestaurantCell.xib in Resources */,
 				16A59A2C204F185E00931D42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +306,7 @@
 			files = (
 				162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */,
 				16E3679520643517009E6153 /* SavedViewController.swift in Sources */,
+				16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */,
 				169E6CF0206979F100DF07D3 /* ZLSwipeableView.swift in Sources */,
 				169E6CF420697A1A00DF07D3 /* Scheduler.swift in Sources */,
 				16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */,

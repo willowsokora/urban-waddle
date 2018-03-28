@@ -20,6 +20,10 @@ class DiscoveryCardView: UIView {
     var restaurant: YelpRestaurant?
     
     override func awakeFromNib() {
+        let gradient = CAGradientLayer()
+        gradient.frame = previewImage.bounds
+        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.3).cgColor]
+        previewImage.layer.addSublayer(gradient)
         if let restaurant = restaurant {
             let imageUrl = URL(string: restaurant.imageUrl)
             if let data = try? Data(contentsOf: imageUrl!) {

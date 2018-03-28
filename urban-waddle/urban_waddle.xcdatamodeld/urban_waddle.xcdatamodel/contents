@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14124.1" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Restaurant" representedClassName="Restaurant" syncable="YES" codeGenerationType="class">
-        <attribute name="liked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Restaurant" representedClassName=".Restaurant" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="yelpId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="yelpPrice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="yelpRating" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rawStatus" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="yelpId" attributeType="String" syncable="YES"/>
+        <attribute name="yelpPrice" attributeType="String" syncable="YES"/>
+        <attribute name="yelpRating" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="yelpId"/>
@@ -14,6 +16,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Restaurant" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="Restaurant" positionX="-54" positionY="-9" width="128" height="165"/>
     </elements>
 </model>
