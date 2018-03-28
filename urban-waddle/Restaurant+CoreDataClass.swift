@@ -10,6 +10,7 @@
 import Foundation
 import CoreData
 import CoreLocation
+import UIKit
 
 public class Restaurant: NSManagedObject {
     public enum Status: Int16 {
@@ -68,5 +69,94 @@ public class Restaurant: NSManagedObject {
     @nonobjc func distance(to: CLLocation) -> Double {
         let fromLocation = CLLocation(latitude: latitude, longitude: longitude)
         return to.distance(from: fromLocation)
+    }
+    
+    @nonobjc static func add(restaurant: YelpRestaurant, status: Restaurant.Status) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        context.mergePolicy = NSOverwriteMergePolicy
+        let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
+        let data = Restaurant(entity: entity!, insertInto: context)
+        data.loadData(from: restaurant, with: status)
+        do {
+            try context.save()
+        } catch {
+            print("Failed to add restaurant: \(error.localizedDescription)")
+        }
+    }
+    
+    @nonobjc static func remove(restaurant yelpRestaurant: YelpRestaurant) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
+        request.returnsObjectsAsFaults = false
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            context.mergePolicy = NSOverwriteMergePolicy
+            let results = try context.fetch(request)
+            for restaurant in results as! [Restaurant] {
+                if restaurant.yelpId == yelpRestaurant.id {
+                    context.delete(restaurant)
+                    try context.save()
+                    return
+                }
+            }
+        } catch {
+            print("Failed to delete restaurant: \(error.localizedDescription)")
+        }
+    }
+    
+    @nonobjc static func getAllInterestedRestaurants() -> [Restaurant] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
+        request.returnsObjectsAsFaults = false
+        var restaurants = [Restaurant]()
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let results = try context.fetch(request)
+            for restaurant in results as! [Restaurant] {
+                if restaurant.status != .uninterested {
+                    restaurants.append(restaurant)
+                }
+            }
+        } catch {
+            print("Failed to load data")
+        }
+        return restaurants
+    }
+    
+    @nonobjc static func getAllNonInterestedRestaurants() -> [Restaurant] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
+        request.returnsObjectsAsFaults = false
+        var restaurants = [Restaurant]()
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let results = try context.fetch(request)
+            for restaurant in results as! [Restaurant] {
+                if restaurant.status == .uninterested {
+                    restaurants.append(restaurant)
+                }
+            }
+        } catch {
+            print("Failed to load data")
+        }
+        return restaurants
+    }
+    
+    @nonobjc static func getAllSavedIds() -> [String] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
+        request.returnsObjectsAsFaults = false
+        var restaurantIds = [String]()
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let results = try context.fetch(request)
+            for restaurant in results as! [Restaurant] {
+                restaurantIds.append(restaurant.yelpId)
+            }
+        } catch {
+            print("Failed to load data")
+        }
+        return restaurantIds
     }
 }

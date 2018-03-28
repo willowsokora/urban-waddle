@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class SavedViewController: UIViewController {
 
@@ -22,21 +21,12 @@ class SavedViewController: UIViewController {
         savedTable.delegate = self
         
         // Do any additional setup after loading the view.
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
-        request.returnsObjectsAsFaults = false
-        do {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            let results = try context.fetch(request)
-            for restaurant in results as! [Restaurant] {
-                if restaurant.status == .uninterested {
-                    continue
-                }
-                savedRestaurants.append(restaurant)
-            }
-        } catch {
-            print("Failed to load data")
-        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        savedRestaurants = Restaurant.getAllInterestedRestaurants()
+        savedTable.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,5 +77,7 @@ extension SavedViewController: UITableViewDataSource {
 }
 
 extension SavedViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

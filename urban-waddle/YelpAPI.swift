@@ -23,7 +23,7 @@ struct YelpAPI {
     
     static func getRestaurants(near location: CLLocation, completion: ((Result<YelpSearch>) -> Void)?) {
         if let current = currentLocation {
-            if current.distance(from: location) > 10 {
+            if current.distance(from: location) > 2000 {
                 currentLocation = location
                 page = 0
             } else {

@@ -8,11 +8,6 @@
 
 import UIKit
 import CoreLocation
-import CoreData
-
-import UIKit
-import CoreLocation
-import CoreData
 
 class DiscoveryViewController: UIViewController {
     
@@ -22,9 +17,24 @@ class DiscoveryViewController: UIViewController {
     var yelpRestaurants = [YelpRestaurant]()
     
     @IBOutlet weak var swipeableView: ZLSwipeableView!
+    @IBOutlet weak var dislikeButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var undoButton: UIButton!
     
     var cardIndex = 0
-    var topCard = 0
+    var topCard = 0 {
+        didSet {
+            undoButton.isEnabled = topCard != 0
+            likeButton.isEnabled = topCard < yelpRestaurants.count
+            dislikeButton.isEnabled = topCard < yelpRestaurants.count
+            if topCard == yelpRestaurants.count - 1 {
+                getNextPageFromYelp()
+            } else if topCard >= yelpRestaurants.count {
+            } else {
+                emptyLabel.isHidden = true
+            }
+        }
+    }
     
     @IBOutlet weak var emptyLabel: UILabel!
     override func viewDidLoad() {
@@ -44,15 +54,7 @@ class DiscoveryViewController: UIViewController {
         swipeableView.didSwipe = { view, direction, vector in
             self.handleSwipe(view as! DiscoveryCardView, direction)
             self.topCard += 1
-            if self.topCard >= self.yelpRestaurants.count {
-                self.emptyLabel.isHidden = false
-            }
         }
-    }
-    
-    @IBAction func reloadDeck(_ sender: UIButton) {
-        YelpAPI.page = -1
-        reloadRestaurants()
     }
     
     @IBAction func goToSettings(_ sender: UIButton) {
@@ -66,20 +68,48 @@ class DiscoveryViewController: UIViewController {
     
     func reloadRestaurants() {
         cardIndex = 0
-        topCard = 0
         emptyLabel.isHidden = true
         yelpRestaurants.removeAll()
         if let currentLocation = currentLocation {
             YelpAPI.getRestaurants(near: currentLocation) { (results) in
                 switch results {
                 case .success(let searchResults):
+                    let savedIds = Restaurant.getAllSavedIds()
                     for restaurant in searchResults.businesses {
-                        self.yelpRestaurants.append(restaurant)
+                        if !savedIds.contains(restaurant.id) {
+                            self.yelpRestaurants.append(restaurant)
+                        }
                     }
                     DispatchQueue.global().async {
                         DispatchQueue.main.sync {
                             print("Retrieved data from yelp, reloading table")
                             self.swipeableView.loadViews()
+                            self.topCard = 0
+                        }
+                    }
+                case .failure(let error):
+                    fatalError("error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    func getNextPageFromYelp() {
+        if let currentLocation = currentLocation {
+            YelpAPI.getRestaurants(near: currentLocation) { (results) in
+                switch results {
+                case .success(let searchResults):
+                    let savedIds = Restaurant.getAllSavedIds()
+                    for restaurant in searchResults.businesses {
+                        if !savedIds.contains(restaurant.id) {
+                            self.yelpRestaurants.append(restaurant)
+                        }
+                    }
+                    DispatchQueue.global().async {
+                        DispatchQueue.main.sync {
+                            print("Retrieved data from yelp, reloading table")
+                            self.swipeableView.loadViews()
+                            self.topCard = self.yelpRestaurants.count - 1
                         }
                     }
                 case .failure(let error):
@@ -107,17 +137,7 @@ class DiscoveryViewController: UIViewController {
     
     func handleSwipe(_ view: DiscoveryCardView, _ direction: Direction) {
         let restaurant = view.restaurant!
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
-        let data = Restaurant(entity: entity!, insertInto: context)
-        data.loadData(from: restaurant, with: direction == .Right ? .interested : .uninterested)
-        print(data)
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save data")
-        }
+        Restaurant.add(restaurant: restaurant, status: direction == .Right ? .interested : .uninterested)
     }
     
     /*
@@ -139,7 +159,8 @@ class DiscoveryViewController: UIViewController {
     
     @IBAction func undoSwipe(_ sender: UIButton) {
         swipeableView.rewind()
-        topCard = max(topCard - 1, 0)
+        topCard -= 1
+        Restaurant.remove(restaurant: yelpRestaurants[topCard])
     }
     
 }
