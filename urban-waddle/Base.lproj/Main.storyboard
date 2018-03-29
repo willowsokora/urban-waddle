@@ -6,6 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -204,6 +207,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="eJG-N2-x2T" kind="showDetail" id="fJt-wH-yiy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -217,7 +223,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C11-1F-JWK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Saved Restaurants" id="Bxe-9X-j3B"/>
+                    <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" id="Bxe-9X-j3B">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="91C-rJ-13m"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="savedTable" destination="ON0-qR-ARQ" id="Llx-lr-m0a"/>
                     </connections>
@@ -225,6 +233,117 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x4a-aS-kwj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1244" y="889.20539730134942"/>
+        </scene>
+        <!--Review View Controller-->
+        <scene sceneID="2zG-Gs-ntj">
+            <objects>
+                <viewController id="eJG-N2-x2T" customClass="ReviewViewController" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PE1-Fb-56x" customClass="UIScrollView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qb7-0W-wwt">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Review" id="e7g-9s-6EX">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="LQc-uZ-lOr">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QHR-cd-pdS">
+                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelReview:" destination="eJG-N2-x2T" eventType="touchUpInside" id="8Fb-8X-2I7"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="8Rt-6b-QCV">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zA6-zA-YiO">
+                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="saveReview:" destination="eJG-N2-x2T" eventType="touchUpInside" id="Zk8-tW-dYs"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtA-56-DJA">
+                                <rect key="frame" x="16" y="80" width="52.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDE-1Y-MgN">
+                                <rect key="frame" x="317" y="80" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAe-G7-x45">
+                                <rect key="frame" x="317" y="104.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iyZ-Wp-bNE">
+                                <rect key="frame" x="16" y="330" width="343" height="321"/>
+                            </mapView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9bn-Xs-4Nt">
+                                <rect key="frame" x="16" y="147.5" width="343" height="171"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9bn-Xs-4Nt" secondAttribute="height" multiplier="2:1" constant="1" id="XFx-Ye-iwv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Win-32-N1e">
+                                <rect key="frame" x="16" y="107.5" width="125" height="29"/>
+                                <segments>
+                                    <segment title="Liked"/>
+                                    <segment title="Disliked"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WDE-1Y-MgN" firstAttribute="top" secondItem="KtA-56-DJA" secondAttribute="top" id="0jE-IF-c9C"/>
+                            <constraint firstItem="qb7-0W-wwt" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" id="1pR-DS-LVl"/>
+                            <constraint firstItem="WAe-G7-x45" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" id="4Gw-4Z-OFB"/>
+                            <constraint firstItem="WDE-1Y-MgN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KtA-56-DJA" secondAttribute="trailing" constant="8" id="4Ui-r2-HmO"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="firstBaseline" secondItem="Win-32-N1e" secondAttribute="baseline" constant="21" symbolType="layoutAnchor" id="6p7-6T-Ues"/>
+                            <constraint firstItem="KtA-56-DJA" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" constant="16" id="DaV-QQ-wCN"/>
+                            <constraint firstItem="Win-32-N1e" firstAttribute="firstBaseline" secondItem="KtA-56-DJA" secondAttribute="bottom" constant="20" symbolType="layoutAnchor" id="I2O-Tc-hjT"/>
+                            <constraint firstItem="qb7-0W-wwt" firstAttribute="top" secondItem="hCm-rM-pPj" secondAttribute="top" id="IW6-vb-C6F"/>
+                            <constraint firstItem="KtA-56-DJA" firstAttribute="top" secondItem="qb7-0W-wwt" secondAttribute="bottom" constant="16" id="J0u-es-qGD"/>
+                            <constraint firstItem="Win-32-N1e" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="K93-Zz-Drc"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="QyP-Nu-k4e"/>
+                            <constraint firstItem="iyZ-Wp-bNE" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" constant="16" id="TC5-7L-A5i"/>
+                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="qb7-0W-wwt" secondAttribute="trailing" id="caQ-AW-dHr"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="firstBaseline" secondItem="WAe-G7-x45" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="fDv-KL-DjS"/>
+                            <constraint firstItem="hCm-rM-pPj" firstAttribute="bottom" secondItem="iyZ-Wp-bNE" secondAttribute="bottom" constant="16" id="fbC-Pu-u2Y"/>
+                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" constant="16" id="gd6-5G-b80"/>
+                            <constraint firstItem="WAe-G7-x45" firstAttribute="firstBaseline" secondItem="WDE-1Y-MgN" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="iV1-IC-m3V"/>
+                            <constraint firstItem="iyZ-Wp-bNE" firstAttribute="firstBaseline" secondItem="9bn-Xs-4Nt" secondAttribute="baseline" constant="11" symbolType="layoutAnchor" id="rwf-yW-eBs"/>
+                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="iyZ-Wp-bNE" secondAttribute="trailing" constant="16" id="t68-IZ-ciJ"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="trailing" secondItem="WAe-G7-x45" secondAttribute="trailing" id="tj7-yM-8eo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hCm-rM-pPj"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="iyZ-Wp-bNE" id="SQU-Yp-cKv"/>
+                        <outlet property="nameLabel" destination="KtA-56-DJA" id="5Cw-gB-b5t"/>
+                        <outlet property="noteField" destination="9bn-Xs-4Nt" id="0x4-HV-xvx"/>
+                        <outlet property="priceLabel" destination="WAe-G7-x45" id="1EA-Oe-q1h"/>
+                        <outlet property="ratingLabel" destination="WDE-1Y-MgN" id="Yi6-Tn-IeD"/>
+                        <outlet property="statusSelector" destination="Win-32-N1e" id="EHX-BU-Siv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G8U-bE-AtW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2392.8000000000002" y="888.30584707646187"/>
         </scene>
         <!--Map-->
         <scene sceneID="ZaJ-45-eoU">

@@ -27,6 +27,7 @@ public class Restaurant: NSManagedObject {
     @NSManaged public var yelpRating: Double
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
+    @NSManaged public var phoneNumber: String?
     public var rawStatus: Int16 {
         get {
             willAccessValue(forKey: "rawStatus")
@@ -64,6 +65,7 @@ public class Restaurant: NSManagedObject {
         self.yelpRating = yelpRestaurant.rating
         self.latitude = yelpRestaurant.coordinates.latitude
         self.longitude = yelpRestaurant.coordinates.longitude
+        self.phoneNumber = yelpRestaurant.phone
     }
     
     @nonobjc func distance(to: CLLocation) -> Double {

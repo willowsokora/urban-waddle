@@ -42,7 +42,9 @@ struct YelpAPI {
         let categoriesItem = URLQueryItem(name: "categories", value: "restaurants")
         let offsetItem = URLQueryItem(name: "offset", value: "\(page)")
         let radiusItem = URLQueryItem(name: "radius", value: "\(40000)")
-        urlComponents.queryItems = [longitudeItem, latitudeItem, categoriesItem, offsetItem, radiusItem]
+        let limitItem = URLQueryItem(name: "limit", value: "\(50)")
+        let sortItem = URLQueryItem(name: "sort_by", value: "distance")
+        urlComponents.queryItems = [longitudeItem, latitudeItem, categoriesItem, offsetItem, radiusItem, limitItem]
         guard let url = urlComponents.url else {
             fatalError("Could not create url from components")
         }

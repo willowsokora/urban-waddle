@@ -27,9 +27,11 @@ class DiscoveryViewController: UIViewController {
             undoButton.isEnabled = topCard != 0
             likeButton.isEnabled = topCard < yelpRestaurants.count
             dislikeButton.isEnabled = topCard < yelpRestaurants.count
-            if topCard == yelpRestaurants.count - 1 {
+            if topCard == yelpRestaurants.count - 2 {
                 getNextPageFromYelp()
+                emptyLabel.isHidden = true
             } else if topCard >= yelpRestaurants.count {
+                emptyLabel.isHidden = false
             } else {
                 emptyLabel.isHidden = true
             }
@@ -75,10 +77,16 @@ class DiscoveryViewController: UIViewController {
                 switch results {
                 case .success(let searchResults):
                     let savedIds = Restaurant.getAllSavedIds()
+                    var newRestaurantsFound = false
                     for restaurant in searchResults.businesses {
                         if !savedIds.contains(restaurant.id) {
                             self.yelpRestaurants.append(restaurant)
+                            newRestaurantsFound = true
                         }
+                    }
+                    if !newRestaurantsFound {
+                        self.topCard = self.yelpRestaurants.count
+                        return
                     }
                     DispatchQueue.global().async {
                         DispatchQueue.main.sync {
@@ -109,7 +117,6 @@ class DiscoveryViewController: UIViewController {
                         DispatchQueue.main.sync {
                             print("Retrieved data from yelp, reloading table")
                             self.swipeableView.loadViews()
-                            self.topCard = self.yelpRestaurants.count - 1
                         }
                     }
                 case .failure(let error):
@@ -130,7 +137,6 @@ class DiscoveryViewController: UIViewController {
         contentView.awakeFromNib()
         contentView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
         contentView.layer.cornerRadius = 12
-        
         cardIndex += 1
         return contentView
     }

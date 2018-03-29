@@ -35,6 +35,7 @@ class MapViewController: UIViewController {
         locationManager.startUpdatingLocation()
         currentLocation = nil
         
+        mapView.delegate = self
         
         // Search Setup
         
@@ -63,7 +64,12 @@ class MapViewController: UIViewController {
     }
     
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        for restaurant in Restaurant.getAllInterestedRestaurants() {
+            mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -140,18 +146,39 @@ extension MapViewController : MKMapViewDelegate {
             //return nil so map view draws "blue dot" for standard user location
             return nil
         }
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-        pinView?.pinTintColor = UIColor.orange
-        pinView?.canShowCallout = true
-        let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
-        button.addTarget(self, action: #selector(self.getDirections), for: .touchUpInside)
-        pinView?.leftCalloutAccessoryView = button
-        return pinView
+        
+        if let restaurantAnnotation = annotation as? RestaurantAnnotation {
+            let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView()
+            var pinColor = UIColor.orange
+            switch(restaurantAnnotation.restaurant.status) {
+            case .interested:
+                pinColor = .purple
+            case .liked:
+                pinColor = .green
+            case .disliked:
+                pinColor = .red
+            default:
+                pinColor = .orange
+            }
+            pinView.markerTintColor = pinColor
+            pinView.canShowCallout = true
+            let smallSquare = CGSize(width: 30, height: 30)
+            let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+            button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
+            button.addTarget(self, action: #selector(self.getDirections), for: .touchUpInside)
+            pinView.leftCalloutAccessoryView = button
+            return pinView
+        }
+        return nil
     }
 }
 
-
+class RestaurantAnnotation: MKPointAnnotation {
+    var restaurant: Restaurant
+    
+    init(restaurant: Restaurant) {
+        self.restaurant = restaurant
+        super.init()
+        self.coordinate = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
+    }
+}
