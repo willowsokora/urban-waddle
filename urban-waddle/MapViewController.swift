@@ -44,7 +44,7 @@ class MapViewController: UIViewController {
         
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search Places"
+        searchBar.placeholder = "Waddl your way to new food"
     
         navigationItem.titleView = resultSearchController?.searchBar
         resultSearchController?.hidesNavigationBarDuringPresentation = false
