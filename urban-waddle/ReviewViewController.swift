@@ -18,6 +18,8 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var noteField: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var statusSelector: UISegmentedControl!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var phoneButton: UIButton!
     
     var restaurant: Restaurant?
     
@@ -25,6 +27,7 @@ class ReviewViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        navBar.delegate = self
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
             ratingLabel.text = "\(restaurant.yelpRating)/5"
@@ -36,6 +39,7 @@ class ReviewViewController: UIViewController {
                 noteField.delegate = self
                 noteField.textColor = UIColor.lightGray
             }
+            phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
             let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
             mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.5, 0.5)), animated: true)
             mapView.showsUserLocation = true
@@ -85,6 +89,14 @@ class ReviewViewController: UIViewController {
         }
     }
     
+    @IBAction func call(_ sender: UIButton) {
+        if let phoneUrl = URL(string: "tel:\(phoneButton.title(for: .normal) ?? "")") {
+            if UIApplication.shared.canOpenURL(phoneUrl) {
+                UIApplication.shared.open(phoneUrl)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -110,5 +122,11 @@ extension ReviewViewController: UITextViewDelegate {
             textView.text = "Placeholder"
             textView.textColor = UIColor.lightGray
         }
+    }
+}
+
+extension ReviewViewController: UINavigationBarDelegate {
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }

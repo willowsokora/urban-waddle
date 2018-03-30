@@ -12,7 +12,9 @@ class SavedViewController: UIViewController {
 
     @IBOutlet weak var savedTable: UITableView!
     
-    var savedRestaurants: [Restaurant] = []
+    var savedRestaurants = [[Restaurant]]()
+    
+    let sectionNames = ["Liked", "Interested", "Disliked"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class SavedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        savedRestaurants = Restaurant.getAllInterestedRestaurants()
+        savedRestaurants = Restaurant.getAllInterestedRestaurantsSeparated()
         savedTable.reloadData()
     }
 
@@ -41,7 +43,7 @@ class SavedViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? ReviewViewController {
-            destination.restaurant = savedRestaurants[(savedTable.indexPathForSelectedRow?.row)!]
+            destination.restaurant = savedRestaurants[(savedTable.indexPathForSelectedRow?.section)!][(savedTable.indexPathForSelectedRow?.row)!]
         }
     }
 
@@ -49,29 +51,21 @@ class SavedViewController: UIViewController {
 
 extension SavedViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionNames.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionNames[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedRestaurants.count
+        return savedRestaurants[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath)
-        let restaurant = savedRestaurants[indexPath.row]
+        let restaurant = savedRestaurants[indexPath.section][indexPath.row]
         cell.textLabel?.text = restaurant.name
-        var color: UIColor = .black
-        switch restaurant.status {
-        case .interested:
-            color = .blue
-        case .uninterested:
-            color = .yellow
-        case .disliked:
-            color = .red
-        case .liked:
-            color = .green
-        }
-        cell.textLabel?.textColor = color
         return cell
     }
 }
@@ -79,5 +73,13 @@ extension SavedViewController: UITableViewDataSource {
 extension SavedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UITableViewHeaderFooterView()
+        headerView.textLabel?.text = sectionNames[section]
+        headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        headerView.textLabel?.textColor = statusColors[section]
+        return headerView
     }
 }

@@ -12,22 +12,26 @@ import CoreData
 import CoreLocation
 import UIKit
 
+let statusColors: [UIColor]  = [UIColor(red: 0, green: 0.56, blue: 0.31, alpha: 1), .purple, .red]
+
 public class Restaurant: NSManagedObject {
+    
     public enum Status: Int16 {
-        case uninterested = 0
+        case liked = 0
         case interested = 1
         case disliked = 2
-        case liked = 3
+        case uninterested = 3
     }
 
     @NSManaged public var name: String
     @NSManaged public var note: String?
     @NSManaged public var yelpId: String
-    @NSManaged public var yelpPrice: String?
+    @NSManaged public var yelpPrice: String
     @NSManaged public var yelpRating: Double
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
-    @NSManaged public var phoneNumber: String?
+    @NSManaged public var phoneNumber: String
+    @NSManaged public var address: String
     public var rawStatus: Int16 {
         get {
             willAccessValue(forKey: "rawStatus")
@@ -41,6 +45,10 @@ public class Restaurant: NSManagedObject {
 
             setPrimitiveValue(newValue, forKey: "rawStatus")
         }
+    }
+    
+    public var statusColor: UIColor {
+        return statusColors[Int(rawStatus)]
     }
     
     public var status: Status {
@@ -66,6 +74,7 @@ public class Restaurant: NSManagedObject {
         self.latitude = yelpRestaurant.coordinates.latitude
         self.longitude = yelpRestaurant.coordinates.longitude
         self.phoneNumber = yelpRestaurant.phone
+        self.address = yelpRestaurant.location.address1
     }
     
     @nonobjc func distance(to: CLLocation) -> Double {
@@ -118,6 +127,25 @@ public class Restaurant: NSManagedObject {
             for restaurant in results as! [Restaurant] {
                 if restaurant.status != .uninterested {
                     restaurants.append(restaurant)
+                }
+            }
+        } catch {
+            print("Failed to load data")
+        }
+        return restaurants
+    }
+    
+    @nonobjc static func getAllInterestedRestaurantsSeparated() -> [[Restaurant]] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
+        request.returnsObjectsAsFaults = false
+        var restaurants: [[Restaurant]] = [[], [], []]
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let results = try context.fetch(request)
+            for restaurant in results as! [Restaurant] {
+                if restaurant.status != .uninterested {
+                    restaurants[Int(restaurant.rawStatus)].append(restaurant)
                 }
             }
         } catch {

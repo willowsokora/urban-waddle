@@ -38,6 +38,7 @@
                     <connections>
                         <outlet property="mapView" destination="lKE-8n-a4a" id="onH-N1-Jal"/>
                         <outlet property="searchDisplayController" destination="2nR-gy-mcz" id="jkf-qF-8Dk"/>
+                        <segue destination="eJG-N2-x2T" kind="showDetail" identifier="reviewFromMapSegue" id="1r6-zG-0Ne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -275,69 +276,79 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDE-1Y-MgN">
-                                <rect key="frame" x="317" y="80" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAe-G7-x45">
+                                <rect key="frame" x="16" y="109" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAe-G7-x45">
-                                <rect key="frame" x="317" y="104.5" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDE-1Y-MgN">
+                                <rect key="frame" x="75" y="109" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iyZ-Wp-bNE">
-                                <rect key="frame" x="16" y="330" width="343" height="321"/>
+                                <rect key="frame" x="16" y="348" width="343" height="303"/>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9bn-Xs-4Nt">
-                                <rect key="frame" x="16" y="147.5" width="343" height="171"/>
+                                <rect key="frame" x="16" y="145.5" width="343" height="171"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9bn-Xs-4Nt" secondAttribute="height" multiplier="2:1" constant="1" id="XFx-Ye-iwv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Win-32-N1e">
-                                <rect key="frame" x="16" y="107.5" width="125" height="29"/>
+                                <rect key="frame" x="234" y="80" width="125" height="29"/>
                                 <segments>
                                     <segment title="Liked"/>
                                     <segment title="Disliked"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFa-3X-7UO">
+                                <rect key="frame" x="164.5" y="316" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="call:" destination="eJG-N2-x2T" eventType="touchUpInside" id="IRS-qi-hNv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WDE-1Y-MgN" firstAttribute="top" secondItem="KtA-56-DJA" secondAttribute="top" id="0jE-IF-c9C"/>
                             <constraint firstItem="qb7-0W-wwt" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" id="1pR-DS-LVl"/>
-                            <constraint firstItem="WAe-G7-x45" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" id="4Gw-4Z-OFB"/>
-                            <constraint firstItem="WDE-1Y-MgN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KtA-56-DJA" secondAttribute="trailing" constant="8" id="4Ui-r2-HmO"/>
-                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="firstBaseline" secondItem="Win-32-N1e" secondAttribute="baseline" constant="21" symbolType="layoutAnchor" id="6p7-6T-Ues"/>
+                            <constraint firstItem="TFa-3X-7UO" firstAttribute="centerX" secondItem="hCm-rM-pPj" secondAttribute="centerX" id="3k9-fX-lBo"/>
+                            <constraint firstItem="WAe-G7-x45" firstAttribute="firstBaseline" secondItem="KtA-56-DJA" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="5LQ-Sr-jgr"/>
                             <constraint firstItem="KtA-56-DJA" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" constant="16" id="DaV-QQ-wCN"/>
-                            <constraint firstItem="Win-32-N1e" firstAttribute="firstBaseline" secondItem="KtA-56-DJA" secondAttribute="bottom" constant="20" symbolType="layoutAnchor" id="I2O-Tc-hjT"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="trailing" secondItem="Win-32-N1e" secondAttribute="trailing" id="Gb9-jM-LoB"/>
+                            <constraint firstItem="WDE-1Y-MgN" firstAttribute="leading" secondItem="WAe-G7-x45" secondAttribute="trailing" constant="17" id="HPh-sV-LhT"/>
                             <constraint firstItem="qb7-0W-wwt" firstAttribute="top" secondItem="hCm-rM-pPj" secondAttribute="top" id="IW6-vb-C6F"/>
                             <constraint firstItem="KtA-56-DJA" firstAttribute="top" secondItem="qb7-0W-wwt" secondAttribute="bottom" constant="16" id="J0u-es-qGD"/>
-                            <constraint firstItem="Win-32-N1e" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="K93-Zz-Drc"/>
                             <constraint firstItem="9bn-Xs-4Nt" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="QyP-Nu-k4e"/>
                             <constraint firstItem="iyZ-Wp-bNE" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" constant="16" id="TC5-7L-A5i"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="firstBaseline" secondItem="WAe-G7-x45" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="Tju-lO-JWS"/>
                             <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="qb7-0W-wwt" secondAttribute="trailing" id="caQ-AW-dHr"/>
-                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="firstBaseline" secondItem="WAe-G7-x45" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="fDv-KL-DjS"/>
+                            <constraint firstItem="TFa-3X-7UO" firstAttribute="firstBaseline" secondItem="9bn-Xs-4Nt" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="dZG-3K-0rH"/>
                             <constraint firstItem="hCm-rM-pPj" firstAttribute="bottom" secondItem="iyZ-Wp-bNE" secondAttribute="bottom" constant="16" id="fbC-Pu-u2Y"/>
-                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" constant="16" id="gd6-5G-b80"/>
-                            <constraint firstItem="WAe-G7-x45" firstAttribute="firstBaseline" secondItem="WDE-1Y-MgN" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="iV1-IC-m3V"/>
-                            <constraint firstItem="iyZ-Wp-bNE" firstAttribute="firstBaseline" secondItem="9bn-Xs-4Nt" secondAttribute="baseline" constant="11" symbolType="layoutAnchor" id="rwf-yW-eBs"/>
+                            <constraint firstItem="Win-32-N1e" firstAttribute="top" secondItem="KtA-56-DJA" secondAttribute="top" id="k2d-tR-skb"/>
+                            <constraint firstItem="iyZ-Wp-bNE" firstAttribute="firstBaseline" secondItem="TFa-3X-7UO" secondAttribute="baseline" constant="11.5" symbolType="layoutAnchor" id="nPV-l8-uhp"/>
+                            <constraint firstItem="Win-32-N1e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KtA-56-DJA" secondAttribute="trailing" constant="8" id="ofL-Cm-fIc"/>
+                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="Win-32-N1e" secondAttribute="trailing" constant="16" id="svW-Ys-6nB"/>
                             <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="iyZ-Wp-bNE" secondAttribute="trailing" constant="16" id="t68-IZ-ciJ"/>
-                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="trailing" secondItem="WAe-G7-x45" secondAttribute="trailing" id="tj7-yM-8eo"/>
+                            <constraint firstItem="WDE-1Y-MgN" firstAttribute="top" secondItem="WAe-G7-x45" secondAttribute="top" id="uaW-mm-5IS"/>
+                            <constraint firstItem="WAe-G7-x45" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="vtB-Kk-XHq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hCm-rM-pPj"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="iyZ-Wp-bNE" id="SQU-Yp-cKv"/>
                         <outlet property="nameLabel" destination="KtA-56-DJA" id="5Cw-gB-b5t"/>
+                        <outlet property="navBar" destination="qb7-0W-wwt" id="EFk-NG-TYq"/>
                         <outlet property="noteField" destination="9bn-Xs-4Nt" id="0x4-HV-xvx"/>
-                        <outlet property="priceLabel" destination="WAe-G7-x45" id="1EA-Oe-q1h"/>
-                        <outlet property="ratingLabel" destination="WDE-1Y-MgN" id="Yi6-Tn-IeD"/>
+                        <outlet property="phoneButton" destination="TFa-3X-7UO" id="8Ze-TW-VOf"/>
+                        <outlet property="priceLabel" destination="WDE-1Y-MgN" id="yUE-yz-15C"/>
+                        <outlet property="ratingLabel" destination="WAe-G7-x45" id="tOF-V1-aJb"/>
                         <outlet property="statusSelector" destination="Win-32-N1e" id="EHX-BU-Siv"/>
                     </connections>
                 </viewController>
@@ -429,4 +440,7 @@
         <image name="settings" width="24" height="24"/>
         <image name="undo" width="36" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1r6-zG-0Ne"/>
+    </inferredMetricsTieBreakers>
 </document>
