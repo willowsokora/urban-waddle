@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1624D405206D93CC005459A3 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624D404206D93CB005459A3 /* ReviewViewController.swift */; };
 		162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162B1AAD2050AF9700779003 /* MapViewController.swift */; };
+		162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4620644FBB0067D986 /* RestaurantCell.swift */; };
+		162C6B4D2064AC450067D986 /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4C2064AC450067D986 /* YelpAPI.swift */; };
+		16345014206E8ACE00F8E4DF /* RestaurantCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */; };
+		16345016206E8ADD00F8E4DF /* RestaurantCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */; };
+		16345018206E951400F8E4DF /* Test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16345017206E951400F8E4DF /* Test.xib */; };
+		169E6CEE206979E200DF07D3 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CED206979E200DF07D3 /* ViewManager.swift */; };
+		169E6CF0206979F100DF07D3 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */; };
+		169E6CF220697A0400DF07D3 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CF120697A0400DF07D3 /* Direction.swift */; };
+		169E6CF420697A1A00DF07D3 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CF320697A1A00DF07D3 /* Scheduler.swift */; };
+		169E6CF620697C0900DF07D3 /* DiscoveryCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */; };
+		169E6CF820697C1800DF07D3 /* DiscoveryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */; };
 		16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A26204F185E00931D42 /* AppDelegate.swift */; };
 		16A59A2C204F185E00931D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A2A204F185E00931D42 /* Main.storyboard */; };
 		16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */; };
@@ -15,6 +27,9 @@
 		16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A32204F185F00931D42 /* LaunchScreen.storyboard */; };
 		16A59A3F204F185F00931D42 /* urban_waddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A3E204F185F00931D42 /* urban_waddleTests.swift */; };
 		16A59A4A204F185F00931D42 /* urban_waddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A49204F185F00931D42 /* urban_waddleUITests.swift */; };
+		16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */; };
+		16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E36792206434DD009E6153 /* DiscoveryViewController.swift */; };
+		16E3679520643517009E6153 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E3679420643517009E6153 /* SavedViewController.swift */; };
 		83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +51,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1624D404206D93CB005459A3 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		162B1AAD2050AF9700779003 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		162C6B4620644FBB0067D986 /* RestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		162C6B4C2064AC450067D986 /* YelpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
+		16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCalloutView.swift; sourceTree = "<group>"; };
+		16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantCalloutView.xib; sourceTree = "<group>"; };
+		16345017206E951400F8E4DF /* Test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Test.xib; sourceTree = "<group>"; };
+		169E6CED206979E200DF07D3 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
+		169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
+		169E6CF120697A0400DF07D3 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		169E6CF320697A1A00DF07D3 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCardView.xib; sourceTree = "<group>"; };
+		169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCardView.swift; sourceTree = "<group>"; };
 		16A59A23204F185E00931D42 /* urban-waddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "urban-waddle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A26204F185E00931D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16A59A2B204F185E00931D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,6 +77,9 @@
 		16A59A45204F185F00931D42 /* urban-waddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "urban-waddleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A49204F185F00931D42 /* urban_waddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urban_waddleUITests.swift; sourceTree = "<group>"; };
 		16A59A4B204F185F00931D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		16E36792206434DD009E6153 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
+		16E3679420643517009E6153 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +108,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		169E6CEC206979CB00DF07D3 /* ZLSwipeableView */ = {
+			isa = PBXGroup;
+			children = (
+				169E6CED206979E200DF07D3 /* ViewManager.swift */,
+				169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */,
+				169E6CF120697A0400DF07D3 /* Direction.swift */,
+				169E6CF320697A1A00DF07D3 /* Scheduler.swift */,
+			);
+			path = ZLSwipeableView;
+			sourceTree = "<group>";
+		};
 		16A59A1A204F185E00931D42 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +142,9 @@
 		16A59A25204F185E00931D42 /* urban-waddle */ = {
 			isa = PBXGroup;
 			children = (
+				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
+				16E3679420643517009E6153 /* SavedViewController.swift */,
+				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
 				16A59A26204F185E00931D42 /* AppDelegate.swift */,
 				16A59A2A204F185E00931D42 /* Main.storyboard */,
 				83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */,
@@ -109,6 +153,15 @@
 				16A59A32204F185F00931D42 /* LaunchScreen.storyboard */,
 				16A59A35204F185F00931D42 /* Info.plist */,
 				16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */,
+				162C6B4620644FBB0067D986 /* RestaurantCell.swift */,
+				169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */,
+				169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */,
+				16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */,
+				1624D404206D93CB005459A3 /* ReviewViewController.swift */,
+				16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */,
+				16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */,
+				169E6CEC206979CB00DF07D3 /* ZLSwipeableView */,
+				16345017206E951400F8E4DF /* Test.xib */,
 			);
 			path = "urban-waddle";
 			sourceTree = "<group>";
@@ -235,6 +288,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16345016206E8ADD00F8E4DF /* RestaurantCalloutView.xib in Resources */,
+				16345018206E951400F8E4DF /* Test.xib in Resources */,
+				169E6CF620697C0900DF07D3 /* DiscoveryCardView.xib in Resources */,
 				16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */,
 				16A59A31204F185F00931D42 /* Assets.xcassets in Resources */,
 				16A59A2C204F185E00931D42 /* Main.storyboard in Resources */,
@@ -262,10 +318,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */,
+				16E3679520643517009E6153 /* SavedViewController.swift in Sources */,
+				1624D405206D93CC005459A3 /* ReviewViewController.swift in Sources */,
+				16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */,
+				169E6CF0206979F100DF07D3 /* ZLSwipeableView.swift in Sources */,
+				169E6CF420697A1A00DF07D3 /* Scheduler.swift in Sources */,
 				16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */,
+				162C6B4D2064AC450067D986 /* YelpAPI.swift in Sources */,
+				169E6CF220697A0400DF07D3 /* Direction.swift in Sources */,
+				169E6CEE206979E200DF07D3 /* ViewManager.swift in Sources */,
 				162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */,
 				16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */,
 				83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */,
+				16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */,
+				16345014206E8ACE00F8E4DF /* RestaurantCalloutView.swift in Sources */,
+				169E6CF820697C1800DF07D3 /* DiscoveryCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89YGS6UCLW;
+				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,7 +525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89YGS6UCLW;
+				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

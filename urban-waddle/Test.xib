@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomCalloutView" customModule="MapViewSample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="197"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAg-aD-Giw">
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="119" id="7sd-eq-7pp"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="goButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="GOq-lD-ti4"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample text" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asa-by-Doq">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample text" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qox-YI-3l2">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="r6X-aj-FLs">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample text" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwg-3x-d79">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample text" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6l-7p-jKv">
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zwg-3x-d79" firstAttribute="leading" secondItem="z6l-7p-jKv" secondAttribute="leading" id="15P-QD-0DD"/>
+                <constraint firstItem="z6l-7p-jKv" firstAttribute="top" secondItem="zwg-3x-d79" secondAttribute="bottom" constant="8" symbolic="YES" id="1pD-SN-Zok"/>
+                <constraint firstItem="qox-YI-3l2" firstAttribute="leading" secondItem="Asa-by-Doq" secondAttribute="leading" id="3DH-mU-8Lt"/>
+                <constraint firstItem="Asa-by-Doq" firstAttribute="top" secondItem="qox-YI-3l2" secondAttribute="bottom" constant="8" symbolic="YES" id="4pU-tq-QjP"/>
+                <constraint firstItem="zwg-3x-d79" firstAttribute="trailing" secondItem="z6l-7p-jKv" secondAttribute="trailing" id="FlL-61-CMn"/>
+                <constraint firstItem="vAg-aD-Giw" firstAttribute="leading" secondItem="r6X-aj-FLs" secondAttribute="trailing" constant="55" id="Hig-Kt-88L"/>
+                <constraint firstItem="vAg-aD-Giw" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="NZd-Yl-KdM"/>
+                <constraint firstItem="z6l-7p-jKv" firstAttribute="trailing" secondItem="vAg-aD-Giw" secondAttribute="trailing" id="PZl-Pg-tER"/>
+                <constraint firstItem="zwg-3x-d79" firstAttribute="top" secondItem="Asa-by-Doq" secondAttribute="bottom" constant="8" symbolic="YES" id="T1l-0o-frj"/>
+                <constraint firstItem="qox-YI-3l2" firstAttribute="trailing" secondItem="Asa-by-Doq" secondAttribute="trailing" id="VQ2-sl-ENq"/>
+                <constraint firstAttribute="trailing" secondItem="qox-YI-3l2" secondAttribute="trailing" constant="16" id="VQf-2d-DdZ"/>
+                <constraint firstItem="Asa-by-Doq" firstAttribute="trailing" secondItem="zwg-3x-d79" secondAttribute="trailing" id="XnL-BW-FES"/>
+                <constraint firstAttribute="bottom" secondItem="r6X-aj-FLs" secondAttribute="bottom" id="bdR-LP-Ih2"/>
+                <constraint firstItem="Asa-by-Doq" firstAttribute="leading" secondItem="zwg-3x-d79" secondAttribute="leading" id="e7G-un-rCD"/>
+                <constraint firstItem="qox-YI-3l2" firstAttribute="leading" secondItem="r6X-aj-FLs" secondAttribute="trailing" constant="21" id="msv-5Y-aFV"/>
+                <constraint firstItem="r6X-aj-FLs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qvQ-8I-OBh"/>
+                <constraint firstItem="vAg-aD-Giw" firstAttribute="top" secondItem="z6l-7p-jKv" secondAttribute="bottom" constant="31" id="rXJ-ZB-Z32"/>
+                <constraint firstItem="r6X-aj-FLs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tha-l1-VMa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="name" destination="qox-YI-3l2" id="xqH-8F-kmD"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="info" width="33" height="43"/>
+    </resources>
+</document>
