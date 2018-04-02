@@ -142,13 +142,11 @@
 		16A59A25204F185E00931D42 /* urban-waddle */ = {
 			isa = PBXGroup;
 			children = (
-				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
-				16E3679420643517009E6153 /* SavedViewController.swift */,
-				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
-				16A59A26204F185E00931D42 /* AppDelegate.swift */,
 				16A59A2A204F185E00931D42 /* Main.storyboard */,
+				83B5AE59206EE6A2009D1789 /* View Controllers */,
+				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
+				16A59A26204F185E00931D42 /* AppDelegate.swift */,
 				83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */,
-				162B1AAD2050AF9700779003 /* MapViewController.swift */,
 				16A59A30204F185F00931D42 /* Assets.xcassets */,
 				16A59A32204F185F00931D42 /* LaunchScreen.storyboard */,
 				16A59A35204F185F00931D42 /* Info.plist */,
@@ -157,7 +155,6 @@
 				169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */,
 				169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */,
 				16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */,
-				1624D404206D93CB005459A3 /* ReviewViewController.swift */,
 				16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */,
 				16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */,
 				169E6CEC206979CB00DF07D3 /* ZLSwipeableView */,
@@ -182,6 +179,17 @@
 				16A59A4B204F185F00931D42 /* Info.plist */,
 			);
 			path = "urban-waddleUITests";
+			sourceTree = "<group>";
+		};
+		83B5AE59206EE6A2009D1789 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				16E3679420643517009E6153 /* SavedViewController.swift */,
+				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
+				162B1AAD2050AF9700779003 /* MapViewController.swift */,
+				1624D404206D93CB005459A3 /* ReviewViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,7 +515,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
+				DEVELOPMENT_TEAM = 89YGS6UCLW;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,7 +533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
+				DEVELOPMENT_TEAM = 89YGS6UCLW;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

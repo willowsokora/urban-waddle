@@ -27,6 +27,13 @@ class ReviewViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let viewForDoneButtonOnKeyboard = UIToolbar()
+        viewForDoneButtonOnKeyboard.sizeToFit()
+        let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .bordered, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
+        viewForDoneButtonOnKeyboard.items = [btnDoneOnKeyboard]
+        noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
+        
         navBar.delegate = self
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
@@ -97,6 +104,12 @@ class ReviewViewController: UIViewController {
         }
     }
     
+    @IBAction func doneBtnFromKeyboardClicked (sender: Any) {
+        print("Done Button Clicked.")
+        //Hide Keyboard by endEditing or Anything you want.
+        self.view.endEditing(true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -119,7 +132,7 @@ extension ReviewViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Placeholder"
+            textView.text = "Add a note"
             textView.textColor = UIColor.lightGray
         }
     }

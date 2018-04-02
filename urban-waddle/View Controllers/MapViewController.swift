@@ -27,6 +27,8 @@ class MapViewController: UIViewController {
     
     var selectedRestaurant: Restaurant?
     
+    let button = UIButton(type: UIButtonType.custom) as UIButton
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,6 +64,16 @@ class MapViewController: UIViewController {
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
         
+        //Center Location on User Button
+        
+        let image = UIImage(named: "location") as UIImage?
+        button.frame = CGRect(origin: CGPoint(x: 310, y: 95), size: CGSize(width: 35, height: 35))
+        button.setImage(image, for: .normal)
+        button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(MapViewController.centerMapOnUserButtonClicked), for:.touchUpInside)
+        mapView.addSubview(button)
+        
+    
         
     }
     
@@ -103,6 +115,18 @@ class MapViewController: UIViewController {
             performSegue(withIdentifier: "reviewFromMapSegue", sender: self)
         }
     }
+    
+    @objc func centerMapOnUserButtonClicked() {
+        switch mapView.userTrackingMode {
+        case .follow :
+            mapView.setUserTrackingMode(MKUserTrackingMode.none, animated: true)
+        case .none :
+            mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+        default :
+            mapView.setUserTrackingMode(MKUserTrackingMode.none, animated: true)
+        }
+        
+    }
 
 }
 
@@ -138,7 +162,7 @@ extension MapViewController: HandleMapSearch {
         // cache the pin
         selectedPin = placemark
         // clear existing pins
-        mapView.removeAnnotations(mapView.annotations)
+        //mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
