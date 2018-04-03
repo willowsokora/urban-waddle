@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Contacts
 
 class ReviewViewController: UIViewController {
 
@@ -18,7 +19,6 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var noteField: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var statusSelector: UISegmentedControl!
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var phoneButton: UIButton!
     
     var restaurant: Restaurant?
@@ -30,11 +30,13 @@ class ReviewViewController: UIViewController {
         
         let viewForDoneButtonOnKeyboard = UIToolbar()
         viewForDoneButtonOnKeyboard.sizeToFit()
-        let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .bordered, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
-        viewForDoneButtonOnKeyboard.items = [btnDoneOnKeyboard]
+        let spaceBar = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
+        viewForDoneButtonOnKeyboard.items = [spaceBar, btnDoneOnKeyboard]
         noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
         
-        navBar.delegate = self
+        mapView.delegate = self
+        mapView.layer.cornerRadius = 5
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
             ratingLabel.text = "\(restaurant.yelpRating)/5"
@@ -51,14 +53,7 @@ class ReviewViewController: UIViewController {
             mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.5, 0.5)), animated: true)
             mapView.showsUserLocation = true
             mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
-            switch restaurant.status {
-            case .liked:
-                statusSelector.selectedSegmentIndex = 0
-            case.disliked:
-                statusSelector.selectedSegmentIndex = 1
-            default:
-                statusSelector.selectedSegmentIndex = UISegmentedControlNoSegment
-            }
+            statusSelector.selectedSegmentIndex = Int(restaurant.rawStatus)
         }
     }
 
@@ -78,14 +73,7 @@ class ReviewViewController: UIViewController {
         }
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        switch statusSelector.selectedSegmentIndex {
-        case 0:
-            restaurant.status = .liked
-        case 1:
-            restaurant.status = .disliked
-        default:
-            break
-        }
+        restaurant.status = Restaurant.Status(rawValue: Int16(statusSelector.selectedSegmentIndex))!
         if !noteField.text.isEmpty && noteField.textColor != .lightGray {
             restaurant.note = noteField.text
         }
@@ -104,8 +92,7 @@ class ReviewViewController: UIViewController {
         }
     }
     
-    @IBAction func doneBtnFromKeyboardClicked (sender: Any) {
-        print("Done Button Clicked.")
+    @objc func doneBtnFromKeyboardClicked() {
         //Hide Keyboard by endEditing or Anything you want.
         self.view.endEditing(true)
     }
@@ -138,8 +125,32 @@ extension ReviewViewController: UITextViewDelegate {
     }
 }
 
-extension ReviewViewController: UINavigationBarDelegate {
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        return .topAttached
+extension ReviewViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let restaurant = restaurant else {
+            return
+        }
+        let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
+        mapItem.name = restaurant.name
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        guard let restaurant = restaurant else {
+            return nil
+        }
+        let markerView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+        markerView.titleVisibility = .visible
+        markerView.markerTintColor = restaurant.statusColor
+        markerView.canShowCallout = true
+        let smallSquare = CGSize(width: 30, height: 30)
+        let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+        button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
+        markerView.rightCalloutAccessoryView = button
+        return markerView
     }
 }

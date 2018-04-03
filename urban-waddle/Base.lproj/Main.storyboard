@@ -8,7 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +37,7 @@
                     <connections>
                         <outlet property="mapView" destination="lKE-8n-a4a" id="onH-N1-Jal"/>
                         <outlet property="searchDisplayController" destination="2nR-gy-mcz" id="jkf-qF-8Dk"/>
-                        <segue destination="eJG-N2-x2T" kind="showDetail" identifier="reviewFromMapSegue" id="1r6-zG-0Ne"/>
+                        <segue destination="bVp-jn-dQJ" kind="showDetail" identifier="reviewFromMapSegue" id="1r6-zG-0Ne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -209,7 +208,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="eJG-N2-x2T" kind="showDetail" id="fJt-wH-yiy"/>
+                                            <segue destination="bVp-jn-dQJ" kind="showDetail" id="fJt-wH-yiy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -235,7 +234,7 @@
             </objects>
             <point key="canvasLocation" x="1244" y="889.20539730134942"/>
         </scene>
-        <!--Review View Controller-->
+        <!--Review-->
         <scene sceneID="2zG-Gs-ntj">
             <objects>
                 <viewController id="eJG-N2-x2T" customClass="ReviewViewController" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController">
@@ -243,56 +242,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qb7-0W-wwt">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Review" id="e7g-9s-6EX">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="LQc-uZ-lOr">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QHR-cd-pdS">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Cancel"/>
-                                                <connections>
-                                                    <action selector="cancelReview:" destination="eJG-N2-x2T" eventType="touchUpInside" id="8Fb-8X-2I7"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="8Rt-6b-QCV">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zA6-zA-YiO">
-                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Save"/>
-                                                <connections>
-                                                    <action selector="saveReview:" destination="eJG-N2-x2T" eventType="touchUpInside" id="Zk8-tW-dYs"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtA-56-DJA">
-                                <rect key="frame" x="16" y="80" width="52.5" height="26.5"/>
+                                <rect key="frame" x="16" y="72" width="52.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAe-G7-x45">
-                                <rect key="frame" x="16" y="109" width="42" height="21"/>
+                                <rect key="frame" x="258" y="72" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDE-1Y-MgN">
-                                <rect key="frame" x="75" y="109" width="42" height="21"/>
+                                <rect key="frame" x="317" y="72" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iyZ-Wp-bNE">
-                                <rect key="frame" x="16" y="368" width="343" height="283"/>
+                                <rect key="frame" x="16" y="352.5" width="343" height="249.5"/>
                             </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9bn-Xs-4Nt">
-                                <rect key="frame" x="16" y="183.5" width="343" height="171"/>
+                                <rect key="frame" x="16" y="168" width="343" height="171"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9bn-Xs-4Nt" secondAttribute="height" multiplier="2:1" constant="1" id="XFx-Ye-iwv"/>
@@ -300,60 +272,79 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Win-32-N1e">
-                                <rect key="frame" x="234" y="80" width="125" height="29"/>
-                                <segments>
-                                    <segment title="Liked"/>
-                                    <segment title="Disliked"/>
-                                </segments>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8Q-KH-r8r">
-                                <rect key="frame" x="16" y="138" width="38" height="30"/>
+                                <rect key="frame" x="16" y="134.5" width="38" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFa-3X-7UO">
-                                <rect key="frame" x="62" y="138" width="46" height="30"/>
+                                <rect key="frame" x="62" y="134.5" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="call:" destination="eJG-N2-x2T" eventType="touchUpInside" id="IRS-qi-hNv"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Win-32-N1e">
+                                <rect key="frame" x="16" y="102.5" width="230" height="29"/>
+                                <segments>
+                                    <segment title="Liked"/>
+                                    <segment title="Interested"/>
+                                    <segment title="Disliked"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="qb7-0W-wwt" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" id="1pR-DS-LVl"/>
-                            <constraint firstItem="WAe-G7-x45" firstAttribute="firstBaseline" secondItem="KtA-56-DJA" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="5LQ-Sr-jgr"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" id="3dr-ge-gnS"/>
+                            <constraint firstItem="Win-32-N1e" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="5eD-yk-deE"/>
+                            <constraint firstItem="S8Q-KH-r8r" firstAttribute="top" secondItem="Win-32-N1e" secondAttribute="bottom" constant="4" id="7Yc-BV-PiS"/>
                             <constraint firstItem="KtA-56-DJA" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" constant="16" id="DaV-QQ-wCN"/>
-                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="trailing" secondItem="Win-32-N1e" secondAttribute="trailing" id="Gb9-jM-LoB"/>
                             <constraint firstItem="WDE-1Y-MgN" firstAttribute="leading" secondItem="WAe-G7-x45" secondAttribute="trailing" constant="17" id="HPh-sV-LhT"/>
-                            <constraint firstItem="qb7-0W-wwt" firstAttribute="top" secondItem="hCm-rM-pPj" secondAttribute="top" id="IW6-vb-C6F"/>
-                            <constraint firstItem="KtA-56-DJA" firstAttribute="top" secondItem="qb7-0W-wwt" secondAttribute="bottom" constant="16" id="J0u-es-qGD"/>
-                            <constraint firstItem="S8Q-KH-r8r" firstAttribute="leading" secondItem="WAe-G7-x45" secondAttribute="leading" id="MIW-oc-8Ip"/>
-                            <constraint firstItem="S8Q-KH-r8r" firstAttribute="top" secondItem="WAe-G7-x45" secondAttribute="bottom" constant="8" symbolic="YES" id="NFA-sx-hqG"/>
+                            <constraint firstItem="KtA-56-DJA" firstAttribute="top" secondItem="hCm-rM-pPj" secondAttribute="top" constant="8" id="IY3-hJ-GyG"/>
                             <constraint firstItem="9bn-Xs-4Nt" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="QyP-Nu-k4e"/>
                             <constraint firstItem="iyZ-Wp-bNE" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" constant="16" id="TC5-7L-A5i"/>
                             <constraint firstItem="TFa-3X-7UO" firstAttribute="bottom" secondItem="S8Q-KH-r8r" secondAttribute="bottom" id="XfB-3j-4cE"/>
+                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" constant="16" id="ah6-RL-Au8"/>
+                            <constraint firstItem="KtA-56-DJA" firstAttribute="top" secondItem="WAe-G7-x45" secondAttribute="top" id="aqv-Sr-RIi"/>
                             <constraint firstItem="iyZ-Wp-bNE" firstAttribute="top" secondItem="9bn-Xs-4Nt" secondAttribute="bottom" constant="13.5" id="cAz-N1-Sbx"/>
-                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="qb7-0W-wwt" secondAttribute="trailing" id="caQ-AW-dHr"/>
                             <constraint firstItem="hCm-rM-pPj" firstAttribute="bottom" secondItem="iyZ-Wp-bNE" secondAttribute="bottom" constant="16" id="fbC-Pu-u2Y"/>
                             <constraint firstItem="TFa-3X-7UO" firstAttribute="leading" secondItem="S8Q-KH-r8r" secondAttribute="trailing" constant="8" symbolic="YES" id="h8T-lN-V3I"/>
-                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="firstBaseline" secondItem="S8Q-KH-r8r" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="hl7-rE-LBQ"/>
-                            <constraint firstItem="Win-32-N1e" firstAttribute="top" secondItem="KtA-56-DJA" secondAttribute="top" id="k2d-tR-skb"/>
-                            <constraint firstItem="Win-32-N1e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KtA-56-DJA" secondAttribute="trailing" constant="8" id="ofL-Cm-fIc"/>
-                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="Win-32-N1e" secondAttribute="trailing" constant="16" id="svW-Ys-6nB"/>
+                            <constraint firstItem="9bn-Xs-4Nt" firstAttribute="firstBaseline" secondItem="S8Q-KH-r8r" secondAttribute="baseline" constant="8" id="hl7-rE-LBQ"/>
+                            <constraint firstItem="WAe-G7-x45" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KtA-56-DJA" secondAttribute="trailing" constant="16" id="k9p-eR-cxD"/>
+                            <constraint firstItem="S8Q-KH-r8r" firstAttribute="leading" secondItem="Win-32-N1e" secondAttribute="leading" id="mex-ZI-vIc"/>
+                            <constraint firstItem="Win-32-N1e" firstAttribute="top" secondItem="KtA-56-DJA" secondAttribute="bottom" constant="4" id="nQ1-dv-jIJ"/>
                             <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="iyZ-Wp-bNE" secondAttribute="trailing" constant="16" id="t68-IZ-ciJ"/>
                             <constraint firstItem="WDE-1Y-MgN" firstAttribute="top" secondItem="WAe-G7-x45" secondAttribute="top" id="uaW-mm-5IS"/>
-                            <constraint firstItem="WAe-G7-x45" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="vtB-Kk-XHq"/>
                             <constraint firstItem="TFa-3X-7UO" firstAttribute="top" secondItem="S8Q-KH-r8r" secondAttribute="top" id="wjd-aA-gOQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hCm-rM-pPj"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Review" id="y9b-an-3e4">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="zui-7k-NCc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VSE-Yf-RMk">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelReview:" destination="eJG-N2-x2T" eventType="touchUpInside" id="IWg-Iw-Uyh"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="8Rt-6b-QCV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zA6-zA-YiO">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveReview:" destination="eJG-N2-x2T" eventType="touchUpInside" id="qgv-gW-Gcd"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="iyZ-Wp-bNE" id="SQU-Yp-cKv"/>
                         <outlet property="nameLabel" destination="KtA-56-DJA" id="5Cw-gB-b5t"/>
-                        <outlet property="navBar" destination="qb7-0W-wwt" id="EFk-NG-TYq"/>
                         <outlet property="noteField" destination="9bn-Xs-4Nt" id="0x4-HV-xvx"/>
                         <outlet property="phoneButton" destination="TFa-3X-7UO" id="8Ze-TW-VOf"/>
                         <outlet property="priceLabel" destination="WDE-1Y-MgN" id="yUE-yz-15C"/>
@@ -363,13 +354,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G8U-bE-AtW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392.8000000000002" y="888.30584707646187"/>
+            <point key="canvasLocation" x="3332" y="888.30584707646187"/>
         </scene>
         <!--Map-->
         <scene sceneID="ZaJ-45-eoU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UXZ-rZ-cru" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="cAs-zD-oMM"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="cAs-zD-oMM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NeG-pH-lWq">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -408,7 +399,7 @@
         <scene sceneID="S8j-41-yig">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Usr-3J-PPc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" id="4Ts-8u-N72"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="4Ts-8u-N72"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2WE-Pq-Uo0">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -427,7 +418,7 @@
         <scene sceneID="ZmS-oz-bqz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jQh-lO-v10" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Saved" id="WCb-W6-hpw"/>
+                    <tabBarItem key="tabBarItem" title="Saved" image="saved" id="WCb-W6-hpw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kgb-Wl-ePx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -442,14 +433,35 @@
             </objects>
             <point key="canvasLocation" x="304.80000000000001" y="889.20539730134942"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bqu-IO-Ibj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bVp-jn-dQJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3j7-IB-nku">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eJG-N2-x2T" kind="relationship" relationship="rootViewController" id="x8B-gI-DFv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bDu-t1-PUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2392.8000000000002" y="888.30584707646187"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="discover" width="36" height="36"/>
         <image name="dislike" width="48" height="48"/>
         <image name="like" width="48" height="48"/>
+        <image name="map" width="36" height="36"/>
+        <image name="saved" width="36" height="36"/>
         <image name="settings" width="24" height="24"/>
         <image name="undo" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1r6-zG-0Ne"/>
+        <segue reference="fJt-wH-yiy"/>
     </inferredMetricsTieBreakers>
 </document>

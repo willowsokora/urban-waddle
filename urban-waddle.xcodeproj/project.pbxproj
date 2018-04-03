@@ -13,7 +13,6 @@
 		162C6B4D2064AC450067D986 /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4C2064AC450067D986 /* YelpAPI.swift */; };
 		16345014206E8ACE00F8E4DF /* RestaurantCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */; };
 		16345016206E8ADD00F8E4DF /* RestaurantCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */; };
-		16345018206E951400F8E4DF /* Test.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16345017206E951400F8E4DF /* Test.xib */; };
 		169E6CEE206979E200DF07D3 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CED206979E200DF07D3 /* ViewManager.swift */; };
 		169E6CF0206979F100DF07D3 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */; };
 		169E6CF220697A0400DF07D3 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CF120697A0400DF07D3 /* Direction.swift */; };
@@ -57,7 +56,6 @@
 		162C6B4C2064AC450067D986 /* YelpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
 		16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCalloutView.swift; sourceTree = "<group>"; };
 		16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantCalloutView.xib; sourceTree = "<group>"; };
-		16345017206E951400F8E4DF /* Test.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Test.xib; sourceTree = "<group>"; };
 		169E6CED206979E200DF07D3 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
 		169E6CF120697A0400DF07D3 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 				16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */,
 				16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */,
 				169E6CEC206979CB00DF07D3 /* ZLSwipeableView */,
-				16345017206E951400F8E4DF /* Test.xib */,
 			);
 			path = "urban-waddle";
 			sourceTree = "<group>";
@@ -297,7 +294,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				16345016206E8ADD00F8E4DF /* RestaurantCalloutView.xib in Resources */,
-				16345018206E951400F8E4DF /* Test.xib in Resources */,
 				169E6CF620697C0900DF07D3 /* DiscoveryCardView.xib in Resources */,
 				16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */,
 				16A59A31204F185F00931D42 /* Assets.xcassets in Resources */,
@@ -515,7 +511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89YGS6UCLW;
+				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -533,7 +529,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 89YGS6UCLW;
+				DEVELOPMENT_TEAM = 4FNJNUQ3AD;
 				INFOPLIST_FILE = "urban-waddle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
