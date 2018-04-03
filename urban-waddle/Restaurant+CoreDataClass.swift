@@ -46,6 +46,7 @@ public class Restaurant: NSManagedObject {
             setPrimitiveValue(newValue, forKey: "rawStatus")
         }
     }
+    @NSManaged public var tags: String
     
     public var statusColor: UIColor {
         return statusColors[Int(rawStatus)]
@@ -75,6 +76,11 @@ public class Restaurant: NSManagedObject {
         self.longitude = yelpRestaurant.coordinates.longitude
         self.phoneNumber = yelpRestaurant.phone
         self.address = yelpRestaurant.location.address1
+        self.tags = ""
+        for category in yelpRestaurant.categories {
+            tags.append("\(category.title), ")
+        }
+        tags = String(tags.prefix(tags.count - 2))
     }
     
     @nonobjc func distance(to: CLLocation) -> Double {
