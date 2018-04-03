@@ -32,6 +32,8 @@ public class Restaurant: NSManagedObject {
     @NSManaged public var longitude: Double
     @NSManaged public var phoneNumber: String
     @NSManaged public var address: String
+    @NSManaged public var url: String
+    
     public var rawStatus: Int16 {
         get {
             willAccessValue(forKey: "rawStatus")
@@ -66,6 +68,7 @@ public class Restaurant: NSManagedObject {
     
     @nonobjc func loadData(from yelpRestaurant: YelpRestaurant, with status: Status, note: String?) {
         self.status = status
+        self.url = yelpRestaurant.url
         self.name = yelpRestaurant.name
         self.note = note
         self.yelpId = yelpRestaurant.id

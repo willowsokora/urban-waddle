@@ -76,6 +76,7 @@ class ReviewViewController: UIViewController {
         guard let restaurant = restaurant else {
             return
         }
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         switch statusSelector.selectedSegmentIndex {
