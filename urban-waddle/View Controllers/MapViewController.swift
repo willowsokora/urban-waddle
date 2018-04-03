@@ -20,7 +20,6 @@ class MapViewController: UIViewController {
     
     
     var resultSearchController:UISearchController? = nil
-    var selectedPin:MKPlacemark? = nil
     
     let locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -103,8 +102,10 @@ class MapViewController: UIViewController {
     }
     
     @objc func getDirections(){
-        if let selectedPin = selectedPin {
-            let mapItem = MKMapItem(placemark: selectedPin)
+        if let selected = selectedRestaurant {
+            let coordinate = CLLocationCoordinate2D(latitude: selected.latitude, longitude: selected.longitude)
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+            mapItem.name = selected.name
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
             mapItem.openInMaps(launchOptions: launchOptions)
         }
@@ -206,18 +207,13 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? RestaurantAnnotation {
+            selectedPin = MKPlacemark(coordinate: annotation.coordinate)
             selectedRestaurant = annotation.restaurant
         }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         selectedRestaurant = nil
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if view is MKMarkerAnnotationView {
-            reviewRestaurant()
-        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
@@ -235,18 +231,18 @@ extension MapViewController : MKMapViewDelegate {
             
             let restaurant = restaurantAnnotation.restaurant
             let smallSquare = CGSize(width: 30, height: 30)
-            let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-            button.imageView?.image = UIImage(named: "disclosure")
-            button.setBackgroundImage(UIImage(named: "disclosure"), for: .normal)
-            markerView.rightCalloutAccessoryView = button
+            let discloseButton = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+            discloseButton.imageView?.image = UIImage(named: "disclosure")
+            discloseButton.setBackgroundImage(UIImage(named: "disclosure"), for: .normal)
+            discloseButton.addTarget(self, action: #selector(self.reviewRestaurant), for: .touchUpInside)
+            markerView.rightCalloutAccessoryView = discloseButton
             let label = UILabel()
             label.text = "\(restaurant.yelpPrice)   \(restaurant.yelpRating)/5"
             markerView.detailCalloutAccessoryView = label
-//            let smallSquare = CGSize(width: 30, height: 30)
-//            let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-//            button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
-//            button.addTarget(self, action: #selector(self.getDirections), for: .touchUpInside)
-//            markerView.leftCalloutAccessoryView = button
+            let directionsButton = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+            directionsButton.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
+            directionsButton.addTarget(self, action: #selector(self.getDirections), for: .touchUpInside)
+            markerView.leftCalloutAccessoryView = directionsButton
             return markerView
         }
         return nil

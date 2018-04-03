@@ -67,7 +67,7 @@ class ReviewViewController: UIViewController {
     }
     
     @IBAction func saveReview(_ sender: UIButton) {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
         guard let restaurant = restaurant else {
             return
         }
