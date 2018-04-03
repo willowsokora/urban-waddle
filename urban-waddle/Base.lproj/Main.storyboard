@@ -285,7 +285,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Win-32-N1e">
-                                <rect key="frame" x="16" y="102.5" width="230" height="29"/>
+                                <rect key="frame" x="16" y="102.5" width="343" height="29"/>
                                 <segments>
                                     <segment title="Liked"/>
                                     <segment title="Interested"/>
@@ -297,6 +297,7 @@
                         <constraints>
                             <constraint firstItem="9bn-Xs-4Nt" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" id="3dr-ge-gnS"/>
                             <constraint firstItem="Win-32-N1e" firstAttribute="leading" secondItem="KtA-56-DJA" secondAttribute="leading" id="5eD-yk-deE"/>
+                            <constraint firstItem="hCm-rM-pPj" firstAttribute="trailing" secondItem="Win-32-N1e" secondAttribute="trailing" constant="16" id="679-q8-S3l"/>
                             <constraint firstItem="S8Q-KH-r8r" firstAttribute="top" secondItem="Win-32-N1e" secondAttribute="bottom" constant="4" id="7Yc-BV-PiS"/>
                             <constraint firstItem="KtA-56-DJA" firstAttribute="leading" secondItem="hCm-rM-pPj" secondAttribute="leading" constant="16" id="DaV-QQ-wCN"/>
                             <constraint firstItem="WDE-1Y-MgN" firstAttribute="leading" secondItem="WAe-G7-x45" secondAttribute="trailing" constant="17" id="HPh-sV-LhT"/>
