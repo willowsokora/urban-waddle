@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SafariServices
 import CoreLocation
 import Contacts
 
@@ -20,6 +21,7 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var statusSelector: UISegmentedControl!
     @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet weak var siteButton: UIButton!
     
     var restaurant: Restaurant?
     
@@ -35,25 +37,37 @@ class ReviewViewController: UIViewController {
         viewForDoneButtonOnKeyboard.items = [spaceBar, btnDoneOnKeyboard]
         noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
         
+        let restaurants = Restaurant.getAllInterestedRestaurants()
         mapView.delegate = self
         mapView.layer.cornerRadius = 5
-        if let restaurant = restaurant {
-            nameLabel.text = restaurant.name
-            ratingLabel.text = "\(restaurant.yelpRating)/5"
-            priceLabel.text = restaurant.yelpPrice
-            if let note = restaurant.note {
-                noteField.text = note
-            } else {
-                noteField.text = "Add a note"
-                noteField.delegate = self
-                noteField.textColor = UIColor.lightGray
-            }
-            phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
-            let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
-            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.5, 0.5)), animated: true)
-            mapView.showsUserLocation = true
-            mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
-            statusSelector.selectedSegmentIndex = Int(restaurant.rawStatus)
+        for restaurant in restaurants {
+            //if let restaurant = restaurant {
+                nameLabel.text = restaurant.name
+                ratingLabel.text = "\(restaurant.yelpRating)/5"
+                priceLabel.text = restaurant.yelpPrice
+                if let note = restaurant.note {
+                    noteField.text = note
+                } else {
+                    noteField.text = "Add a note"
+                    noteField.delegate = self
+                    noteField.textColor = UIColor.lightGray
+                }
+                phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
+                let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
+                mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.5, 0.5)), animated: true)
+                mapView.showsUserLocation = true
+                mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
+                statusSelector.selectedSegmentIndex = Int(restaurant.rawStatus)
+                
+                siteButton.setTitle(restaurant.url, for: .normal)
+                siteButton.setTitle("There is no website", for: .disabled)
+                if URL.init(string: restaurant.url) != nil {
+                    siteButton.isEnabled = true
+                }else {
+                    siteButton.isEnabled = false
+                    
+                }
+            //}
         }
     }
 
@@ -92,6 +106,23 @@ class ReviewViewController: UIViewController {
             }
         }
     }
+    @IBAction func openSite(_ sender: UIButton) {
+        guard var urlString = sender.titleLabel?.text else { return }
+        
+        urlString = "https://www.\(urlString)"
+        
+        
+        if let url = URL(string: urlString) {
+            
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+            
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+            
+        }
+    }
+    
     
     @objc func doneBtnFromKeyboardClicked() {
         //Hide Keyboard by endEditing or Anything you want.

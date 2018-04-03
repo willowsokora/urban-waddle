@@ -68,7 +68,6 @@ public class Restaurant: NSManagedObject {
     
     @nonobjc func loadData(from yelpRestaurant: YelpRestaurant, with status: Status, note: String?) {
         self.status = status
-        self.url = yelpRestaurant.url
         self.name = yelpRestaurant.name
         self.note = note
         self.yelpId = yelpRestaurant.id
@@ -78,6 +77,7 @@ public class Restaurant: NSManagedObject {
         self.longitude = yelpRestaurant.coordinates.longitude
         self.phoneNumber = yelpRestaurant.phone
         self.address = yelpRestaurant.location.address1
+        self.url = yelpRestaurant.url
     }
     
     @nonobjc func distance(to: CLLocation) -> Double {
