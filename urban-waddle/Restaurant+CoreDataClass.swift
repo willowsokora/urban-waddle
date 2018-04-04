@@ -48,6 +48,7 @@ public class Restaurant: NSManagedObject {
             setPrimitiveValue(newValue, forKey: "rawStatus")
         }
     }
+    @NSManaged public var tags: String
     
     public var statusColor: UIColor {
         return statusColors[Int(rawStatus)]
