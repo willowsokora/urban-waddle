@@ -18,6 +18,8 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    let defaultButtonColor = UIButton(type: UIButtonType.system).titleColor(for: .normal)!
+    
     
     var resultSearchController:UISearchController? = nil
     
@@ -26,7 +28,7 @@ class MapViewController: UIViewController {
     
     var selectedRestaurant: Restaurant?
     
-    let button = UIButton(type: UIButtonType.custom) as UIButton
+    let locationButton = UIButton(type: UIButtonType.custom) as UIButton
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,12 +67,15 @@ class MapViewController: UIViewController {
         
         //Center Location on User Button
         
-        let image = UIImage(named: "location") as UIImage?
-        button.frame = CGRect(origin: CGPoint(x: 310, y: 95), size: CGSize(width: 35, height: 35))
-        button.setImage(image, for: .normal)
-        button.backgroundColor = .clear
-        button.addTarget(self, action: #selector(MapViewController.centerMapOnUserButtonClicked), for:.touchUpInside)
-        mapView.addSubview(button)
+        let locationImage = UIImage(named: "location") as UIImage?
+        let tintedImage = locationImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        locationButton.frame = CGRect(origin: CGPoint(x: 320, y: 670), size: CGSize(width: 35, height: 38))
+        locationButton.setImage(tintedImage, for: .normal)
+        locationButton.tintColor = defaultButtonColor
+        locationButton.layer.cornerRadius = 10
+        locationButton.backgroundColor = .white
+        locationButton.addTarget(self, action: #selector(MapViewController.centerMapOnUserButtonClicked), for:.touchUpInside)
+        mapView.addSubview(locationButton)
         
     
         
@@ -161,7 +166,7 @@ extension MapViewController: UISearchResultsUpdating {
 extension MapViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
-        selectedPin = placemark
+        let selectedPin = placemark
         // clear existing pins
         //mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
@@ -207,7 +212,7 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? RestaurantAnnotation {
-            selectedPin = MKPlacemark(coordinate: annotation.coordinate)
+            let selectedPin = MKPlacemark(coordinate: annotation.coordinate)
             selectedRestaurant = annotation.restaurant
         }
     }

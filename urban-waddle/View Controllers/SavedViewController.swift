@@ -22,7 +22,6 @@ class SavedViewController: UIViewController {
         savedTable.dataSource = self
         savedTable.delegate = self
         
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
