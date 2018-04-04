@@ -115,6 +115,7 @@ class ReviewViewController: UIViewController {
             config.entersReaderIfAvailable = true
             
             let vc = SFSafariViewController(url: url, configuration: config)
+            vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)
             
         }
