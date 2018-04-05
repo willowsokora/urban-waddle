@@ -54,7 +54,7 @@ class ReviewViewController: UIViewController {
             }
             phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
             let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
-            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.5, 0.5)), animated: true)
+            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.1, 0.1)), animated: true)
             mapView.showsUserLocation = true
             mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
             statusSelector.selectedSegmentIndex = Int(restaurant.rawStatus)
