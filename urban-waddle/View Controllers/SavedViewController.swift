@@ -13,8 +13,11 @@ class SavedViewController: UIViewController {
     @IBOutlet weak var savedTable: UITableView!
     
     var savedRestaurants = [[Restaurant]]()
+    var filteredRestaurants = [[Restaurant]]()
     
     let sectionNames = ["Liked", "Interested", "Disliked"]
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,11 @@ class SavedViewController: UIViewController {
         savedTable.dataSource = self
         savedTable.delegate = self
         
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Saved Restaurants"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +54,32 @@ class SavedViewController: UIViewController {
         }
     }
 
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredRestaurants = [[], [], []]
+        for i in 0..<savedRestaurants.count{
+            filteredRestaurants[i] = savedRestaurants[i].filter({(restaurant: Restaurant) -> Bool in
+                if restaurant.name.lowercased().contains(searchText.lowercased()) {
+                    return true
+                } else {
+                    for tag in restaurant.tags.components(separatedBy: ",") {
+                        if tag.lowercased().contains(searchText.lowercased()) {
+                            return true
+                        }
+                    }
+                }
+                return false
+            })
+        }
+        savedTable.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
 }
 
 extension SavedViewController: UITableViewDataSource {
@@ -58,12 +92,20 @@ extension SavedViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filteredRestaurants[section].count
+        }
         return savedRestaurants[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath)
-        let restaurant = savedRestaurants[indexPath.section][indexPath.row]
+        let restaurant: Restaurant
+        if isFiltering() {
+            restaurant = filteredRestaurants[indexPath.section][indexPath.row]
+        } else {
+            restaurant = savedRestaurants[indexPath.section][indexPath.row]
+        }
         cell.textLabel?.text = restaurant.name
         return cell
     }
@@ -80,5 +122,11 @@ extension SavedViewController: UITableViewDelegate {
         headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         headerView.textLabel?.textColor = statusColors[section]
         return headerView
+    }
+}
+
+extension SavedViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }

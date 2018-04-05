@@ -224,6 +224,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" id="Bxe-9X-j3B">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="91C-rJ-13m"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="gdQ-y5-pAX"/>
                     </navigationItem>
                     <connections>
                         <outlet property="savedTable" destination="ON0-qR-ARQ" id="Llx-lr-m0a"/>

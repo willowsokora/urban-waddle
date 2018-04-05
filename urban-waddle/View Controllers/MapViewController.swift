@@ -54,7 +54,7 @@ class MapViewController: UIViewController {
     
         navigationItem.titleView = resultSearchController?.searchBar
         resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
+        resultSearchController?.obscuresBackgroundDuringPresentation = true
         definesPresentationContext = true
         
         
