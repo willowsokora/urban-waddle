@@ -236,18 +236,18 @@ extension MapViewController : MKMapViewDelegate {
             
             let restaurant = restaurantAnnotation.restaurant
             let smallSquare = CGSize(width: 30, height: 30)
-            let discloseButton = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-            discloseButton.imageView?.image = UIImage(named: "disclosure")
-            discloseButton.setBackgroundImage(UIImage(named: "disclosure"), for: .normal)
+            let discloseButton = UIButton.init(type: .infoDark)//UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+            //discloseButton.imageView?.image = UIImage(named: "disclosure")
+            //discloseButton.setBackgroundImage(UIImage(named: "disclosure"), for: .normal)
             discloseButton.addTarget(self, action: #selector(self.reviewRestaurant), for: .touchUpInside)
-            markerView.rightCalloutAccessoryView = discloseButton
+            markerView.leftCalloutAccessoryView = discloseButton
             let label = UILabel()
             label.text = "\(restaurant.yelpPrice)   \(restaurant.yelpRating)/5"
             markerView.detailCalloutAccessoryView = label
             let directionsButton = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
             directionsButton.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
             directionsButton.addTarget(self, action: #selector(self.getDirections), for: .touchUpInside)
-            markerView.leftCalloutAccessoryView = directionsButton
+            markerView.rightCalloutAccessoryView = directionsButton
             return markerView
         }
         return nil
