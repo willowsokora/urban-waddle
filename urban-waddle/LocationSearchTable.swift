@@ -11,65 +11,55 @@ import MapKit
 
 class LocationSearchTable : UITableViewController {
     
-    var matchingItems:[MKMapItem] = []
     var mapView: MKMapView? = nil
     var handleMapSearchDelegate:HandleMapSearch? = nil
-    
-    func parseAddress( _ selectedItem:MKPlacemark) -> String {
-        // put a space between "4" and "Melrose Place"
-        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
-        // put a comma between street and city/state
-        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
-        // put a space between "Washington" and "DC"
-        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
-        let addressLine = String(
-            format:"%@%@%@%@%@%@%@",
-            // street number
-            selectedItem.subThoroughfare ?? "",
-            firstSpace,
-            // street name
-            selectedItem.thoroughfare ?? "",
-            comma,
-            // city
-            selectedItem.locality ?? "",
-            secondSpace,
-            // state
-            selectedItem.administrativeArea ?? ""
-        )
-        return addressLine
-    }
-    
+    var yelpResults: [YelpRestaurant] = []
+    var savedResults: [Restaurant] = []
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let mapView = mapView,
-            let searchBarText = searchController.searchBar.text else { return }
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchBarText
-        request.region = mapView.region
-        let search = MKLocalSearch(request: request)
-        search.start { response, _ in
-            guard let response = response else {
-                return
+            let searchBarText = searchController.searchBar.text,
+            let location = mapView.userLocation.location else { return }
+        savedResults = Restaurant.search(term: searchBarText)
+        YelpAPI.search(near: location, term: searchBarText) { (results) in
+            switch results {
+            case .success(let result):
+                self.yelpResults = result.businesses
+                self.tableView.reloadData()
+            case .failure(let error):
+                fatalError("error: \(error.localizedDescription)")
             }
-            self.matchingItems = response.mapItems
-            self.tableView.reloadData()
         }
     }
     
 }
 
 extension LocationSearchTable {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? "Saved" : "Yelp"
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return matchingItems.count
+        return section == 0 ? savedResults.count : yelpResults.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell")!
-        let selectedItem = matchingItems[indexPath.row].placemark
-        cell.textLabel?.text = selectedItem.name
-        cell.detailTextLabel?.text = parseAddress(selectedItem)
+        if indexPath.section == 0 {
+            let selectedItem = savedResults[indexPath.row]
+            cell.textLabel?.text = selectedItem.name
+            cell.detailTextLabel?.text = selectedItem.address
+        } else {
+            let selectedItem = yelpResults[indexPath.row]
+            cell.textLabel?.text = selectedItem.name
+            cell.detailTextLabel?.text = selectedItem.location.address1
+        }
         return cell
     }
     
@@ -79,8 +69,15 @@ extension LocationSearchTable {
 extension LocationSearchTable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = matchingItems[indexPath.row].placemark
-        handleMapSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
+        if indexPath.section == 0 {
+            let selectedItem = savedResults[indexPath.row]
+            let coordinate = CLLocationCoordinate2D(latitude: selectedItem.latitude, longitude: selectedItem.longitude)
+            handleMapSearchDelegate?.dropPinZoomIn(placemark: MKPlacemark(coordinate: coordinate))
+        } else {
+            let selectedItem = yelpResults[indexPath.row]
+            let coordinate = CLLocationCoordinate2D(latitude: selectedItem.coordinates.latitude, longitude: selectedItem.coordinates.longitude)
+            handleMapSearchDelegate?.dropPinZoomIn(placemark: MKPlacemark(coordinate: coordinate))
+        }
         dismiss(animated: true, completion: nil)
     }
 }

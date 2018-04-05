@@ -166,17 +166,16 @@ extension MapViewController: UISearchResultsUpdating {
 extension MapViewController: HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark){
         // cache the pin
-        let selectedPin = placemark
         // clear existing pins
         //mapView.removeAnnotations(mapView.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-            annotation.subtitle = "\(city), \(state)"
-        }
-        mapView.addAnnotation(annotation)
+//        let annotation = MKPointAnnotation()
+//        annotation.coordinate = placemark.coordinate
+//        annotation.title = placemark.name
+//        if let city = placemark.locality,
+//            let state = placemark.administrativeArea {
+//            annotation.subtitle = "\(city), \(state)"
+//        }
+//        mapView.addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
@@ -212,7 +211,6 @@ extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? RestaurantAnnotation {
-            let selectedPin = MKPlacemark(coordinate: annotation.coordinate)
             selectedRestaurant = annotation.restaurant
         }
     }

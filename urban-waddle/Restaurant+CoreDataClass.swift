@@ -193,4 +193,30 @@ public class Restaurant: NSManagedObject {
         }
         return restaurantIds
     }
+    
+    @nonobjc static func search(term: String) -> [Restaurant] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
+        request.returnsObjectsAsFaults = false
+        var restaurants = [Restaurant]()
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let results = try context.fetch(request)
+            for restaurant in results as! [Restaurant] {
+                if restaurant.name.contains(term) {
+                    restaurants.append(restaurant)
+                } else {
+                    for category in restaurant.tags.components(separatedBy: ",") {
+                        if category.contains(term) {
+                            restaurants.append(restaurant)
+                            break
+                        }
+                    }
+                }
+            }
+        } catch {
+            print("Failed to load data")
+        }
+        return restaurants
+    }
 }

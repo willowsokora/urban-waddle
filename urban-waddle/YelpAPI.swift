@@ -43,7 +43,6 @@ struct YelpAPI {
         let offsetItem = URLQueryItem(name: "offset", value: "\(page)")
         let radiusItem = URLQueryItem(name: "radius", value: "\(40000)")
         let limitItem = URLQueryItem(name: "limit", value: "\(50)")
-        let sortItem = URLQueryItem(name: "sort_by", value: "distance")
         urlComponents.queryItems = [longitudeItem, latitudeItem, categoriesItem, offsetItem, radiusItem, limitItem]
         guard let url = urlComponents.url else {
             fatalError("Could not create url from components")
@@ -76,6 +75,153 @@ struct YelpAPI {
             }
         }
         task.resume()
+    }
+    
+    static func search(near location: CLLocation, term: String, completion: ((Result<YelpSearch>) -> Void)?) {
+//        if let current = currentLocation {
+//            if current.distance(from: location) > 2000 {
+//                currentLocation = location
+//                page = 0
+//            } else {
+//                page += 1
+//            }
+//        } else {
+//            currentLocation = location
+//            page = 0
+//        }
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.yelp.com"
+        urlComponents.path = "/v3/businesses/search"
+        let longitudeItem = URLQueryItem(name: "longitude", value: "\(location.coordinate.longitude)")
+        let latitudeItem = URLQueryItem(name: "latitude", value: "\(location.coordinate.latitude)")
+        let categoriesItem = URLQueryItem(name: "categories", value: "restaurants")
+//        let offsetItem = URLQueryItem(name: "offset", value: "\(page)")
+        let radiusItem = URLQueryItem(name: "radius", value: "\(40000)")
+        let limitItem = URLQueryItem(name: "limit", value: "\(50)")
+        let termItem = URLQueryItem(name: "term", value: term)
+        urlComponents.queryItems = [longitudeItem, latitudeItem, categoriesItem, radiusItem, limitItem, termItem]
+        guard let url = urlComponents.url else {
+            fatalError("Could not create url from components")
+        }
+        print("\(url)")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = ["Authorization": "Bearer \(API_KEY)"]
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            DispatchQueue.main.async {
+                if let error = responseError {
+                    completion?(.failure(error))
+                } else if let jsonData = responseData {
+                    //print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue))
+                    let decoder = JSONDecoder()
+                    do {
+                        let results = try decoder.decode(YelpSearch.self, from: jsonData)
+                        completion?(.success(results))
+                    } catch {
+                        completion?(.failure(error))
+                    }
+                } else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data was not retrieved from request"]) as Error
+                    completion?(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    static func getDetails(for restaurant: YelpRestaurant, completion: ((Result<YelpRestaurantDetails>) -> Void)?) {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.yelp.com"
+        urlComponents.path = "/v3/businesses/\(restaurant.id)"
+        guard let url = urlComponents.url else {
+            fatalError("Could not create url from components")
+        }
+        print("\(url)")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = ["Authorization": "Bearer \(API_KEY)"]
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) { (responseData, response, responseError) in
+            DispatchQueue.main.async {
+                if let error = responseError {
+                    completion?(.failure(error))
+                } else if let jsonData = responseData {
+                    //print(NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue))
+                    let decoder = JSONDecoder()
+                    do {
+                        let results = try decoder.decode(YelpRestaurantDetails.self, from: jsonData)
+                        completion?(.success(results))
+                    } catch {
+                        completion?(.failure(error))
+                    }
+                } else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data was not retrieved from request"]) as Error
+                    completion?(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
+}
+
+struct YelpRestaurantDetails: Codable {
+    let id: String
+    let alias: String
+    let name: String
+    let imageUrl: String
+    let isClaimed: String
+    let isClosed: String
+    let url: String
+    let price: String
+    let rating: String
+    let reviewCount: String
+    let phone: String
+    let photos: [String]
+    let hours: [YelpHours]
+    let categories: [YelpCategory]
+    let coordinates: YelpCoordinates
+    let location: YelpLocation
+    let transactions: [String]
+    
+    enum CodingKeys: String, CodingKey {
+        case id, alias, name, url, price, rating, phone, photos, hours, categories, coordinates, location, transactions
+        case imageUrl = "image_url"
+        case isClaimed = "is_claimed"
+        case isClosed = "is_closed"
+        case reviewCount = "review_count"
+    }
+}
+
+struct YelpHours: Codable {
+    let hoursType: String
+    let open: [YelpHoursDetails]
+    let isOpenNow: String
+    
+    enum CodingKeys: String, CodingKey {
+        case open
+        case hoursType = "hours_type"
+        case isOpenNow = "is_open_now"
+    }
+}
+
+struct YelpHoursDetails: Codable {
+    let isOvernight: Bool
+    let start: String
+    let end: String
+    let day: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case start, end, day
+        case isOvernight = "is_overnight"
     }
 }
 
