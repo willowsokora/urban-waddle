@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 
 protocol HandleMapSearch {
-    func dropPinZoomIn(placemark:MKPlacemark)
+    func dropPinZoomIn(for restaurant: String, placemark:MKPlacemark)
 }
 
 class MapViewController: UIViewController {
@@ -155,16 +155,8 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
-extension MapViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
-        // TODO
-    }
-}
-
-
 extension MapViewController: HandleMapSearch {
-    func dropPinZoomIn(placemark:MKPlacemark){
+    func dropPinZoomIn(for restaurant: String, placemark:MKPlacemark){
         // cache the pin
         // clear existing pins
         //mapView.removeAnnotations(mapView.annotations)
@@ -176,9 +168,17 @@ extension MapViewController: HandleMapSearch {
 //            annotation.subtitle = "\(city), \(state)"
 //        }
 //        mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.01, 0.01)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
+        for annotation in mapView.annotations {
+            if let restaurantAnnotation = annotation as? RestaurantAnnotation {
+                if restaurantAnnotation.restaurant.yelpId == restaurant {
+                    mapView.selectAnnotation(restaurantAnnotation, animated: true)
+                }
+            }
+        }
+        resultSearchController?.searchBar.text = ""
     }
 }
 extension MapViewController : MKMapViewDelegate {

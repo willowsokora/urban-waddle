@@ -72,11 +72,11 @@ extension LocationSearchTable {
         if indexPath.section == 0 {
             let selectedItem = savedResults[indexPath.row]
             let coordinate = CLLocationCoordinate2D(latitude: selectedItem.latitude, longitude: selectedItem.longitude)
-            handleMapSearchDelegate?.dropPinZoomIn(placemark: MKPlacemark(coordinate: coordinate))
+            handleMapSearchDelegate?.dropPinZoomIn(for: selectedItem.yelpId, placemark: MKPlacemark(coordinate: coordinate))
         } else {
             let selectedItem = yelpResults[indexPath.row]
             let coordinate = CLLocationCoordinate2D(latitude: selectedItem.coordinates.latitude, longitude: selectedItem.coordinates.longitude)
-            handleMapSearchDelegate?.dropPinZoomIn(placemark: MKPlacemark(coordinate: coordinate))
+            handleMapSearchDelegate?.dropPinZoomIn(for: selectedItem.id, placemark: MKPlacemark(coordinate: coordinate))
         }
         dismiss(animated: true, completion: nil)
     }
