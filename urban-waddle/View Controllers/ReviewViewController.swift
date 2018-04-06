@@ -21,6 +21,7 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var statusSelector: UISegmentedControl!
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var siteButton: UIButton!
+    @IBOutlet weak var addressButton: UIButton!
     
     var restaurant: Restaurant?
     var images: [UIImage] = []
@@ -49,6 +50,7 @@ class ReviewViewController: UIViewController {
                 noteField.textColor = UIColor.lightGray
             }
             phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
+            addressButton.setTitle(restaurant.address, for: .normal)
 //            let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
 //            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.1, 0.1)), animated: true)
 //            mapView.showsUserLocation = true
@@ -123,6 +125,15 @@ class ReviewViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func getDirections(_ sender: UIButton) {
+        guard let restaurant = restaurant else {return}
+        let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
+        mapItem.name = restaurant.name
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+    }
+    
     @IBAction func openSite(_ sender: UIButton) {
         guard let urlString = restaurant?.url else {return}
         
