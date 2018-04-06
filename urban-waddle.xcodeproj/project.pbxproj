@@ -19,6 +19,8 @@
 		169E6CF420697A1A00DF07D3 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CF320697A1A00DF07D3 /* Scheduler.swift */; };
 		169E6CF620697C0900DF07D3 /* DiscoveryCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */; };
 		169E6CF820697C1800DF07D3 /* DiscoveryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */; };
+		16A07CEA2076D59F0073D811 /* DiscoveryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A07CE92076D59F0073D811 /* DiscoveryDetailViewController.swift */; };
+		16A07CEC2076E2D40073D811 /* PageImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A07CEB2076E2D40073D811 /* PageImageViewController.swift */; };
 		16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A26204F185E00931D42 /* AppDelegate.swift */; };
 		16A59A2C204F185E00931D42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A2A204F185E00931D42 /* Main.storyboard */; };
 		16A59A2F204F185E00931D42 /* urban_waddle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */; };
@@ -62,6 +64,8 @@
 		169E6CF320697A1A00DF07D3 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryCardView.xib; sourceTree = "<group>"; };
 		169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryCardView.swift; sourceTree = "<group>"; };
+		16A07CE92076D59F0073D811 /* DiscoveryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryDetailViewController.swift; sourceTree = "<group>"; };
+		16A07CEB2076E2D40073D811 /* PageImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageImageViewController.swift; sourceTree = "<group>"; };
 		16A59A23204F185E00931D42 /* urban-waddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "urban-waddle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A26204F185E00931D42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16A59A2B204F185E00931D42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
 				162B1AAD2050AF9700779003 /* MapViewController.swift */,
 				1624D404206D93CB005459A3 /* ReviewViewController.swift */,
+				16A07CE92076D59F0073D811 /* DiscoveryDetailViewController.swift */,
+				16A07CEB2076E2D40073D811 /* PageImageViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -322,8 +328,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16A07CEA2076D59F0073D811 /* DiscoveryDetailViewController.swift in Sources */,
 				162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */,
 				16E3679520643517009E6153 /* SavedViewController.swift in Sources */,
+				16A07CEC2076E2D40073D811 /* PageImageViewController.swift in Sources */,
 				1624D405206D93CC005459A3 /* ReviewViewController.swift in Sources */,
 				16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */,
 				169E6CF0206979F100DF07D3 /* ZLSwipeableView.swift in Sources */,

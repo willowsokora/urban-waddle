@@ -134,11 +134,11 @@ struct YelpAPI {
         task.resume()
     }
     
-    static func getDetails(for restaurant: YelpRestaurant, completion: ((Result<YelpRestaurantDetails>) -> Void)?) {
+    static func getDetails(for restaurant: String, completion: ((Result<YelpRestaurantDetails>) -> Void)?) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.yelp.com"
-        urlComponents.path = "/v3/businesses/\(restaurant.id)"
+        urlComponents.path = "/v3/businesses/\(restaurant)"
         guard let url = urlComponents.url else {
             fatalError("Could not create url from components")
         }
@@ -178,22 +178,22 @@ struct YelpRestaurantDetails: Codable {
     let alias: String
     let name: String
     let imageUrl: String
-    let isClaimed: String
-    let isClosed: String
+    let isClaimed: Bool
+    let isClosed: Bool
     let url: String
     let price: String
-    let rating: String
-    let reviewCount: String
+    let rating: Double
+    let reviewCount: Int
     let phone: String
     let photos: [String]
-    let hours: [YelpHours]
+    //let hours: [YelpHours]
     let categories: [YelpCategory]
     let coordinates: YelpCoordinates
     let location: YelpLocation
     let transactions: [String]
     
     enum CodingKeys: String, CodingKey {
-        case id, alias, name, url, price, rating, phone, photos, hours, categories, coordinates, location, transactions
+        case id, alias, name, url, price, rating, phone, photos, categories, coordinates, location, transactions
         case imageUrl = "image_url"
         case isClaimed = "is_claimed"
         case isClosed = "is_closed"

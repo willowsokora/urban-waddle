@@ -38,6 +38,11 @@ class DiscoveryViewController: UIViewController {
         }
     }
     
+    @IBAction func openDetail(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended && topCard < yelpRestaurants.count {
+            performSegue(withIdentifier: "showDiscoveryDetail", sender: self)
+        }
+    }
     @IBOutlet weak var emptyLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +62,7 @@ class DiscoveryViewController: UIViewController {
             self.handleSwipe(view as! DiscoveryCardView, direction)
             self.topCard += 1
         }
+        
     }
     
     @IBAction func goToSettings(_ sender: UIButton) {
@@ -146,15 +152,19 @@ class DiscoveryViewController: UIViewController {
         Restaurant.add(restaurant: restaurant, status: direction == .Right ? .interested : .uninterested)
     }
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        if let destination = segue.destination as? DiscoveryDetailViewController {
+            destination.restaurant = yelpRestaurants[topCard]
+            destination.cardView = swipeableView
+        }
      }
-     */
+ 
+ 
     @IBAction func swipeRight(_ sender: UIButton) {
         swipeableView.swipeTopView(inDirection: .Right)
     }

@@ -18,12 +18,12 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var noteField: UITextView!
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var statusSelector: UISegmentedControl!
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var siteButton: UIButton!
     
     var restaurant: Restaurant?
+    var images: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +37,6 @@ class ReviewViewController: UIViewController {
         viewForDoneButtonOnKeyboard.items = [spaceBar, btnDoneOnKeyboard]
         noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
         
-        
-        mapView.delegate = self
-        mapView.layer.cornerRadius = 5
-        
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
             ratingLabel.text = "\(restaurant.yelpRating)/5"
@@ -53,22 +49,43 @@ class ReviewViewController: UIViewController {
                 noteField.textColor = UIColor.lightGray
             }
             phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
-            let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
-            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.1, 0.1)), animated: true)
-            mapView.showsUserLocation = true
-            mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
+//            let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
+//            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.1, 0.1)), animated: true)
+//            mapView.showsUserLocation = true
+//            mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
             statusSelector.selectedSegmentIndex = Int(restaurant.rawStatus)
             
             siteButton.setTitle("Yelp Site", for: .normal)
             siteButton.setTitle("There is no website", for: .disabled)
             if URL.init(string: restaurant.url) != nil {
                 siteButton.isEnabled = true
-            }else {
+            } else {
                 siteButton.isEnabled = false
-                
             }
+            
+            let pageView = self.childViewControllers[0] as! UIPageViewController
+            YelpAPI.getDetails(for: restaurant.yelpId) { (results) in
+                switch results {
+                case .success(let details):
+                    for imageUrl in details.photos {
+                        if let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                            self.images.append(image)
+                        }
+                    }
+                    if self.images.count > 0 {
+                        let firstController = self.getPageController(for: 0)!
+                        let startingViewControllers = [firstController]
+                        pageView.setViewControllers(startingViewControllers, direction: .forward, animated: false, completion: nil)
+                    }
+                case .failure(let error):
+                    fatalError("error: \(error.localizedDescription)")
+                }
+            }
+            pageView.dataSource = self
+            let appearance = UIPageControl.appearance()
+            appearance.currentPageIndicatorTintColor = .purple
+            appearance.pageIndicatorTintColor = .lightGray
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -158,32 +175,70 @@ extension ReviewViewController: UITextViewDelegate {
     }
 }
 
-extension ReviewViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let restaurant = restaurant else {
-            return
+extension ReviewViewController: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        if let page = viewController as? PageImageViewController {
+            if page.index > 0 {
+                return getPageController(for: page.index - 1)
+            }
         }
-        let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
-        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
-        mapItem.name = restaurant.name
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        return nil
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            return nil
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        if let page = viewController as? PageImageViewController {
+            if page.index + 1 < images.count {
+                return getPageController(for: page.index + 1)
+            }
         }
-        guard let restaurant = restaurant else {
-            return nil
+        return nil
+    }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return images.count
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+    
+    private func getPageController(for index: Int) -> PageImageViewController? {
+        if index < images.count {
+            let pageView = storyboard?.instantiateViewController(withIdentifier: "PageImageViewController") as! PageImageViewController
+            pageView.index = index
+            pageView.image = images[index]
+            return pageView
         }
-        let markerView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
-        markerView.titleVisibility = .visible
-        markerView.markerTintColor = restaurant.statusColor
-        markerView.canShowCallout = true
-        let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
-        markerView.rightCalloutAccessoryView = button
-        return markerView
+        return nil
     }
 }
+
+//extension ReviewViewController: MKMapViewDelegate {
+//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//        guard let restaurant = restaurant else {
+//            return
+//        }
+//        let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
+//        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
+//        mapItem.name = restaurant.name
+//        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+//    }
+//
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if annotation is MKUserLocation {
+//            return nil
+//        }
+//        guard let restaurant = restaurant else {
+//            return nil
+//        }
+//        let markerView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
+//        markerView.titleVisibility = .visible
+//        markerView.markerTintColor = restaurant.statusColor
+//        markerView.canShowCallout = true
+//        let smallSquare = CGSize(width: 30, height: 30)
+//        let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+//        button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
+//        markerView.rightCalloutAccessoryView = button
+//        return markerView
+//    }
+//}
