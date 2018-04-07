@@ -186,7 +186,6 @@ struct YelpRestaurantDetails: Codable {
     let reviewCount: Int
     let phone: String
     let photos: [String]
-    //let hours: [YelpHours]
     let categories: [YelpCategory]
     let coordinates: YelpCoordinates
     let location: YelpLocation

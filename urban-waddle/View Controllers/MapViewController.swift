@@ -171,10 +171,25 @@ extension MapViewController: HandleMapSearch {
         let span = MKCoordinateSpanMake(0.01, 0.01)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
+        var annotationFound = false
         for annotation in mapView.annotations {
             if let restaurantAnnotation = annotation as? RestaurantAnnotation {
                 if restaurantAnnotation.restaurant.yelpId == restaurant {
                     mapView.selectAnnotation(restaurantAnnotation, animated: true)
+                    annotationFound = true
+                }
+            }
+        }
+        if !annotationFound {
+            YelpAPI.getDetails(for: restaurant) { (results) in
+                switch results {
+                case .success(let details):
+                    let data = Restaurant.add(restaurant: details, status: .interested)
+                    let annotation = RestaurantAnnotation(restaurant: data)
+                    self.mapView.addAnnotation(annotation)
+                    self.mapView.selectAnnotation(annotation, animated: true)
+                case .failure(let error):
+                    print("error: \(error.localizedDescription)")
                 }
             }
         }

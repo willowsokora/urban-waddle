@@ -81,12 +81,30 @@ public class Restaurant: NSManagedObject {
         self.url = yelpRestaurant.url
     }
     
+    @nonobjc func loadData(fromDetails yelpRestaurant: YelpRestaurantDetails, with status: Status) {
+        loadData(fromDetails: yelpRestaurant, with: status, note: nil)
+    }
+    
+    @nonobjc func loadData(fromDetails yelpRestaurant: YelpRestaurantDetails, with status: Status, note: String?) {
+        self.status = status
+        self.name = yelpRestaurant.name
+        self.note = note
+        self.yelpId = yelpRestaurant.id
+        self.yelpPrice = yelpRestaurant.price
+        self.yelpRating = yelpRestaurant.rating
+        self.latitude = yelpRestaurant.coordinates.latitude
+        self.longitude = yelpRestaurant.coordinates.longitude
+        self.phoneNumber = yelpRestaurant.phone
+        self.address = yelpRestaurant.location.address1
+        self.url = yelpRestaurant.url
+    }
+    
     @nonobjc func distance(to: CLLocation) -> Double {
         let fromLocation = CLLocation(latitude: latitude, longitude: longitude)
         return to.distance(from: fromLocation)
     }
     
-    @nonobjc static func add(restaurant: YelpRestaurant, status: Restaurant.Status) {
+    @nonobjc static func add(restaurant: YelpRestaurant, status: Restaurant.Status) -> Restaurant {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         context.mergePolicy = NSOverwriteMergePolicy
@@ -98,6 +116,22 @@ public class Restaurant: NSManagedObject {
         } catch {
             print("Failed to add restaurant: \(error.localizedDescription)")
         }
+        return data
+    }
+    
+    @nonobjc static func add(restaurant: YelpRestaurantDetails, status: Restaurant.Status) -> Restaurant {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        context.mergePolicy = NSOverwriteMergePolicy
+        let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
+        let data = Restaurant(entity: entity!, insertInto: context)
+        data.loadData(fromDetails: restaurant, with: status)
+        do {
+            try context.save()
+        } catch {
+            print("Failed to add restaurant: \(error.localizedDescription)")
+        }
+        return data
     }
     
     @nonobjc static func remove(restaurant yelpRestaurant: YelpRestaurant) {
