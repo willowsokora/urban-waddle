@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "fa-car-30x30.png",
+      "filename" : "ic_directions_car_36pt.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "fa-car-60x60.png",
+      "filename" : "ic_directions_car_36pt_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "fa-car-90x90.png",
+      "filename" : "ic_directions_car_36pt_3x.png",
       "scale" : "3x"
     }
   ],

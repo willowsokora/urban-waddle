@@ -258,7 +258,8 @@ extension MapViewController : MKMapViewDelegate {
             label.text = "\(restaurant.yelpPrice)   \(restaurant.yelpRating)/5"
             markerView.detailCalloutAccessoryView = label
             let directionsButton = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-            directionsButton.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
+            directionsButton.setBackgroundImage(UIImage(named: "car")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            directionsButton.tintColor = .blue
             directionsButton.addTarget(self, action: #selector(self.getDirections), for: .touchUpInside)
             markerView.rightCalloutAccessoryView = directionsButton
             return markerView
