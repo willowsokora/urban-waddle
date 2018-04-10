@@ -227,6 +227,7 @@ extension MapViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? RestaurantAnnotation {
             selectedRestaurant = annotation.restaurant
+            mapView.setCenter(CLLocationCoordinate2D(latitude: (selectedRestaurant?.latitude)!, longitude: (selectedRestaurant?.longitude)!), animated: true)
         }
     }
     
