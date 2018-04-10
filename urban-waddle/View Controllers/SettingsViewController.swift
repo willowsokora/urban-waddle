@@ -19,7 +19,7 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        distanceLabel.text = formatter.string(fromDistance: formatter.distance(from: "\(Int(distanceSlider.value)) miles"))
+        distanceLabel.text = formatter.string(fromDistance: formatter.distance(from: "\(Int(distanceSlider.value)) meters"))
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,7 +28,7 @@ class SettingsViewController: UITableViewController {
     }
 
     @IBAction func distanceChanged(_ sender: UISlider) {
-        distanceLabel.text = formatter.string(fromDistance: formatter.distance(from: "\(Int(distanceSlider.value)) miles"))
+        distanceLabel.text = formatter.string(fromDistance: formatter.distance(from: "\(Int(distanceSlider.value)) meters"))
     }
     
     override func didReceiveMemoryWarning() {

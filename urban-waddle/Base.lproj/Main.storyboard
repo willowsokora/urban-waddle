@@ -710,7 +710,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-pz-Z5t">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="40000" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-pz-Z5t">
                                                     <rect key="frame" x="14" y="40" width="347" height="36.5"/>
                                                     <connections>
                                                         <action selector="distanceChanged:" destination="Ff1-V2-tl2" eventType="valueChanged" id="PkR-QO-3M1"/>
