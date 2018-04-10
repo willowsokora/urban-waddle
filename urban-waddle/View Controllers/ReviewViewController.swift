@@ -22,15 +22,19 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var siteButton: UIButton!
     @IBOutlet weak var addressButton: UIButton!
+
     
     var restaurant: Restaurant?
     var images: [UIImage] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //Note Field Sizing
+        noteField.sizeThatFits(CGSize(width: noteField.frame.size.width, height: noteField.frame.size.height))
         
+        //Note Field Done Button
         let viewForDoneButtonOnKeyboard = UIToolbar()
         viewForDoneButtonOnKeyboard.sizeToFit()
         let spaceBar = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -38,6 +42,7 @@ class ReviewViewController: UIViewController {
         viewForDoneButtonOnKeyboard.items = [spaceBar, btnDoneOnKeyboard]
         noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
         
+        // Label Setting
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
             ratingLabel.text = "\(restaurant.yelpRating)/5"
@@ -65,6 +70,7 @@ class ReviewViewController: UIViewController {
                 siteButton.isEnabled = false
             }
             
+            //Page View Setup
             let pageView = self.childViewControllers[0] as! UIPageViewController
             YelpAPI.getDetails(for: restaurant.yelpId) { (results) in
                 switch results {
