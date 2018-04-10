@@ -342,6 +342,7 @@
                                 <state key="normal" image="settings"/>
                                 <connections>
                                     <action selector="goToSettings:" destination="isL-zO-Wp8" eventType="touchUpInside" id="jkt-nt-ajZ"/>
+                                    <segue destination="Ff1-V2-tl2" kind="show" id="73w-6f-bcG"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -410,11 +411,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" id="Bxe-9X-j3B">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="91C-rJ-13m"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="gdQ-y5-pAX">
-                            <connections>
-                                <segue destination="iEg-km-Yq7" kind="presentation" id="IOE-gg-ElL"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="gdQ-y5-pAX"/>
                     </navigationItem>
                     <connections>
                         <outlet property="savedTable" destination="ON0-qR-ARQ" id="Llx-lr-m0a"/>
@@ -634,7 +631,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMb-v7-256" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244" y="1700.5997001499252"/>
+            <point key="canvasLocation" x="1244" y="1624"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="H81-7f-etr">
@@ -682,6 +679,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMa-6f-77I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4" y="33.733133433283363"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="3SR-fW-sbC">
+            <objects>
+                <tableViewController id="Ff1-V2-tl2" customClass="SettingsViewController" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="DVz-0W-pRV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Discovery Settings" id="G8s-km-CQj">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="92" id="Z4H-Ym-AdV">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="92"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z4H-Ym-AdV" id="s9g-UN-a0X">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="91.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od9-xy-KFM">
+                                                    <rect key="frame" x="16" y="11" width="146" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywb-AK-Btc">
+                                                    <rect key="frame" x="317" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="kVs-pz-Z5t">
+                                                    <rect key="frame" x="14" y="40" width="347" height="36.5"/>
+                                                    <connections>
+                                                        <action selector="distanceChanged:" destination="Ff1-V2-tl2" eventType="valueChanged" id="PkR-QO-3M1"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ywb-AK-Btc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Od9-xy-KFM" secondAttribute="trailing" constant="8" id="1Ql-ME-3P0"/>
+                                                <constraint firstItem="Od9-xy-KFM" firstAttribute="leading" secondItem="s9g-UN-a0X" secondAttribute="leading" constant="16" id="2lw-YD-p28"/>
+                                                <constraint firstItem="kVs-pz-Z5t" firstAttribute="top" secondItem="Od9-xy-KFM" secondAttribute="bottom" constant="8" id="Ftb-MG-Mpg"/>
+                                                <constraint firstItem="Ywb-AK-Btc" firstAttribute="top" secondItem="Od9-xy-KFM" secondAttribute="top" id="O45-Ff-hK7"/>
+                                                <constraint firstAttribute="bottom" secondItem="kVs-pz-Z5t" secondAttribute="bottom" constant="16" id="P6n-yH-Foo"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ywb-AK-Btc" secondAttribute="trailing" constant="16" id="T2t-RH-dwE"/>
+                                                <constraint firstItem="Od9-xy-KFM" firstAttribute="top" secondItem="s9g-UN-a0X" secondAttribute="top" constant="11" id="e8r-4E-KXa"/>
+                                                <constraint firstItem="kVs-pz-Z5t" firstAttribute="trailing" secondItem="Ywb-AK-Btc" secondAttribute="trailing" id="v7K-6B-N5Y"/>
+                                                <constraint firstItem="kVs-pz-Z5t" firstAttribute="leading" secondItem="Od9-xy-KFM" secondAttribute="leading" id="wUE-k6-Wf7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Ff1-V2-tl2" id="GNJ-4Q-gWE"/>
+                            <outlet property="delegate" destination="Ff1-V2-tl2" id="iv4-kP-6Rm"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="distanceLabel" destination="Ywb-AK-Btc" id="IVz-U3-D5I"/>
+                        <outlet property="distanceSlider" destination="kVs-pz-Z5t" id="nQA-v4-Zq9"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ul-yx-tHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1575.2" y="788.45577211394311"/>
         </scene>
         <!--Discover-->
         <scene sceneID="S8j-41-yig">

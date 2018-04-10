@@ -66,12 +66,12 @@ class DiscoveryViewController: UIViewController {
     }
     
     @IBAction func goToSettings(_ sender: UIButton) {
-        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-            return
-        }
-        if UIApplication.shared.canOpenURL(settingsUrl) {
-            UIApplication.shared.open(settingsUrl)
-        }
+//        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+//            return
+//        }
+//        if UIApplication.shared.canOpenURL(settingsUrl) {
+//            UIApplication.shared.open(settingsUrl)
+//        }
     }
     
     func reloadRestaurants() {
