@@ -28,6 +28,7 @@
 		16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A32204F185F00931D42 /* LaunchScreen.storyboard */; };
 		16A59A3F204F185F00931D42 /* urban_waddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A3E204F185F00931D42 /* urban_waddleTests.swift */; };
 		16A59A4A204F185F00931D42 /* urban_waddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A49204F185F00931D42 /* urban_waddleUITests.swift */; };
+		16C718EA207C1C67007A99EA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C718E9207C1C67007A99EA /* SettingsViewController.swift */; };
 		16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */; };
 		16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E36792206434DD009E6153 /* DiscoveryViewController.swift */; };
 		16E3679520643517009E6153 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E3679420643517009E6153 /* SavedViewController.swift */; };
@@ -80,6 +81,7 @@
 		16A59A45204F185F00931D42 /* urban-waddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "urban-waddleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A49204F185F00931D42 /* urban_waddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urban_waddleUITests.swift; sourceTree = "<group>"; };
 		16A59A4B204F185F00931D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16C718E9207C1C67007A99EA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataClass.swift"; sourceTree = "<group>"; };
 		16E36792206434DD009E6153 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		16E3679420643517009E6153 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				16A07CE92076D59F0073D811 /* DiscoveryDetailViewController.swift */,
 				16A07CEB2076E2D40073D811 /* PageImageViewController.swift */,
 				16E7052B20780C510054FFE1 /* AddRestaurantViewController.swift */,
+				16C718E9207C1C67007A99EA /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				16A07CEA2076D59F0073D811 /* DiscoveryDetailViewController.swift in Sources */,
 				162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */,
 				16E3679520643517009E6153 /* SavedViewController.swift in Sources */,
+				16C718EA207C1C67007A99EA /* SettingsViewController.swift in Sources */,
 				16A07CEC2076E2D40073D811 /* PageImageViewController.swift in Sources */,
 				1624D405206D93CC005459A3 /* ReviewViewController.swift in Sources */,
 				16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */,
