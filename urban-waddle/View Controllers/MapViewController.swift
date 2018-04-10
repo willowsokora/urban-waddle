@@ -249,7 +249,7 @@ extension MapViewController : MKMapViewDelegate {
             
             let restaurant = restaurantAnnotation.restaurant
             let smallSquare = CGSize(width: 30, height: 30)
-            let discloseButton = UIButton.init(type: .infoDark)//UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+            let discloseButton = UIButton.init(type: .detailDisclosure)//UIButton(frame: CGRect(origin: .zero, size: smallSquare))
             //discloseButton.imageView?.image = UIImage(named: "disclosure")
             //discloseButton.setBackgroundImage(UIImage(named: "disclosure"), for: .normal)
             discloseButton.addTarget(self, action: #selector(self.reviewRestaurant), for: .touchUpInside)
