@@ -411,7 +411,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" id="Bxe-9X-j3B">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="91C-rJ-13m"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gdQ-y5-pAX"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gdQ-y5-pAX">
+                            <connections>
+                                <segue destination="iEg-km-Yq7" kind="presentation" id="XZb-Vn-Hcu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="savedTable" destination="ON0-qR-ARQ" id="Llx-lr-m0a"/>
@@ -607,7 +611,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zvv-ES-ZRv">
                                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="cancel:" destination="iEg-km-Yq7" eventType="touchUpInside" id="X7l-2D-HFi"/>
                                                 </connections>
@@ -632,9 +636,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjg-CB-ZjQ">
-                                <rect key="frame" x="16" y="117" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjg-CB-ZjQ">
+                                <rect key="frame" x="16" y="117" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -642,9 +645,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="xjg-CB-ZjQ" firstAttribute="leading" secondItem="w8t-Xs-P7g" secondAttribute="leading" id="030-Ul-J7l"/>
                             <constraint firstItem="1gA-qN-dmM" firstAttribute="trailing" secondItem="w8t-Xs-P7g" secondAttribute="trailing" constant="16" id="IEe-MQ-40s"/>
                             <constraint firstItem="dPe-iB-Jcj" firstAttribute="top" secondItem="1gA-qN-dmM" secondAttribute="top" id="IaW-5P-Oew"/>
+                            <constraint firstItem="1gA-qN-dmM" firstAttribute="trailing" secondItem="xjg-CB-ZjQ" secondAttribute="trailing" constant="16" id="JFZ-Lx-pTX"/>
                             <constraint firstItem="dPe-iB-Jcj" firstAttribute="leading" secondItem="1gA-qN-dmM" secondAttribute="leading" id="a4p-Qk-mwC"/>
+                            <constraint firstItem="xjg-CB-ZjQ" firstAttribute="top" secondItem="w8t-Xs-P7g" secondAttribute="bottom" constant="7" id="beQ-vo-7xF"/>
                             <constraint firstItem="w8t-Xs-P7g" firstAttribute="centerX" secondItem="1gA-qN-dmM" secondAttribute="centerX" id="nWq-dn-N24"/>
                             <constraint firstItem="w8t-Xs-P7g" firstAttribute="top" secondItem="dPe-iB-Jcj" secondAttribute="bottom" constant="16" id="pkW-Jg-ngy"/>
                             <constraint firstItem="dPe-iB-Jcj" firstAttribute="trailing" secondItem="1gA-qN-dmM" secondAttribute="trailing" id="uTN-pR-Zwb"/>
@@ -657,7 +663,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMb-v7-256" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244" y="1624"/>
+            <point key="canvasLocation" x="1244" y="1623.2383808095954"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="H81-7f-etr">
