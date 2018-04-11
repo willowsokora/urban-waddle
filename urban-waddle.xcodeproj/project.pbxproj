@@ -86,7 +86,7 @@
 		16E36792206434DD009E6153 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		16E3679420643517009E6153 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		16E7052B20780C510054FFE1 /* AddRestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestaurantViewController.swift; sourceTree = "<group>"; };
-		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchTable.swift; path = ../LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +152,6 @@
 				83B5AE59206EE6A2009D1789 /* View Controllers */,
 				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
 				16A59A26204F185E00931D42 /* AppDelegate.swift */,
-				83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */,
 				16A59A30204F185F00931D42 /* Assets.xcassets */,
 				16A59A32204F185F00931D42 /* LaunchScreen.storyboard */,
 				16A59A35204F185F00931D42 /* Info.plist */,
@@ -197,6 +196,7 @@
 				16A07CEB2076E2D40073D811 /* PageImageViewController.swift */,
 				16E7052B20780C510054FFE1 /* AddRestaurantViewController.swift */,
 				16C718E9207C1C67007A99EA /* SettingsViewController.swift */,
+				83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
