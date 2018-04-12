@@ -104,7 +104,7 @@ public class Restaurant: NSManagedObject {
         return to.distance(from: fromLocation)
     }
     
-    @nonobjc static func add(restaurant: YelpRestaurant, status: Restaurant.Status) -> Restaurant {
+    @nonobjc static func add(restaurant: YelpRestaurant, status: Restaurant.Status) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy//NSOverwriteMergePolicy
@@ -116,7 +116,7 @@ public class Restaurant: NSManagedObject {
         } catch {
             print("Failed to add restaurant: \(error.localizedDescription)")
         }
-        return data
+       
     }
     
     @nonobjc static func add(restaurant: YelpRestaurantDetails, status: Restaurant.Status) -> Restaurant {
