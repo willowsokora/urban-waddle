@@ -30,6 +30,8 @@ class SavedViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Saved Restaurants"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        //savedTable.tableFooterView = UIView(frame: .zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,9 +128,12 @@ extension SavedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "") { (ac: UIContextualAction, view: UIView, success: (Bool) -> Void) in
-            let restaurant = self.savedRestaurants[indexPath.section][indexPath.row]
+            let restaurant = self.savedRestaurants[indexPath.section].remove(at: indexPath.row)
             Restaurant.remove(restaurant: restaurant)
+            
             success(true)
+            tableView.reloadData()
+            
         }
         deleteAction.image = UIImage(named: "delete")
         return UISwipeActionsConfiguration(actions: [deleteAction])
