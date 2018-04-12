@@ -107,7 +107,7 @@ public class Restaurant: NSManagedObject {
     @nonobjc static func add(restaurant: YelpRestaurant, status: Restaurant.Status) -> Restaurant {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        context.mergePolicy = NSOverwriteMergePolicy
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy//NSOverwriteMergePolicy
         let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
         let data = Restaurant(entity: entity!, insertInto: context)
         data.loadData(from: restaurant, with: status)

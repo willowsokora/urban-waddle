@@ -17,6 +17,8 @@ class DiscoveryCardView: UIView {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var interestedLabel: UILabel!
+    @IBOutlet weak var notInterestedLabel: UILabel!
     var restaurant: YelpRestaurant?
     
     override func awakeFromNib() {

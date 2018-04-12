@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14124.1" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14124.1" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Restaurant" representedClassName=".Restaurant" syncable="YES">
         <attribute name="address" attributeType="String" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -20,6 +20,6 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Restaurant" positionX="-54" positionY="-9" width="128" height="225"/>
+        <element name="Restaurant" positionX="-54" positionY="-9" width="128" height="223"/>
     </elements>
 </model>
