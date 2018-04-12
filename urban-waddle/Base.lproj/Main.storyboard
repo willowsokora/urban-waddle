@@ -589,6 +589,7 @@
                         <outlet property="phoneButton" destination="TFa-3X-7UO" id="8Ze-TW-VOf"/>
                         <outlet property="priceLabel" destination="WDE-1Y-MgN" id="yUE-yz-15C"/>
                         <outlet property="ratingLabel" destination="WAe-G7-x45" id="tOF-V1-aJb"/>
+                        <outlet property="scrollView" destination="BSq-Uc-bAJ" id="jiy-PY-pc3"/>
                         <outlet property="siteButton" destination="yL1-J1-iDR" id="LfE-er-6S7"/>
                         <outlet property="statusSelector" destination="Win-32-N1e" id="EHX-BU-Siv"/>
                     </connections>

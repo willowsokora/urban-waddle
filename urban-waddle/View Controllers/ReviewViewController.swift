@@ -22,7 +22,8 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var siteButton: UIButton!
     @IBOutlet weak var addressButton: UIButton!
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     var restaurant: Restaurant?
     var images: [UIImage] = []
@@ -227,6 +228,12 @@ extension ReviewViewController: UIPageViewControllerDataSource {
             return pageView
         }
         return nil
+    }
+}
+
+extension ReviewViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 10, y: 10), animated: true)
     }
 }
 

@@ -12,7 +12,7 @@ import CoreData
 import CoreLocation
 import UIKit
 
-let statusColors: [UIColor]  = [UIColor(red: 0, green: 0.56, blue: 0.31, alpha: 1), .purple, .red]
+let statusColors: [UIColor]  = [UIColor(red: 0, green: 0.56, blue: 0.31, alpha: 1), .lightGray, .red]
 
 public class Restaurant: NSManagedObject {
     
