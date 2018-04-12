@@ -62,7 +62,16 @@ class DiscoveryViewController: UIViewController {
             self.handleSwipe(view as! DiscoveryCardView, direction)
             self.topCard += 1
         }
-        
+        swipeableView.swiping = { view, location, translation in
+            let card = view as! DiscoveryCardView
+            card.interestedLabel.isHidden = translation.x < 1
+            card.notInterestedLabel.isHidden = translation.x > -1
+        }
+        swipeableView.didCancel = { view in
+            let card = view as! DiscoveryCardView
+            card.interestedLabel.isHidden = true
+            card.notInterestedLabel.isHidden = true
+        }
     }
     
     @IBAction func goToSettings(_ sender: UIButton) {

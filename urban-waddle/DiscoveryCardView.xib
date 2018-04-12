@@ -55,13 +55,28 @@
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="1" height="0.0"/>
                 </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INTERESTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qca-rd-Pde">
+                    <rect key="frame" x="16" y="36" width="162.5" height="33"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                    <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOT INTERESTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoH-RH-S9v">
+                    <rect key="frame" x="135" y="36" width="224" height="32.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="57f-4g-UH2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uhr-TO-6We" secondAttribute="trailing" constant="8" id="6kD-KZ-NvL"/>
+                <constraint firstItem="OoH-RH-S9v" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="8sR-FN-cac"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nzL-ly-j5Y" secondAttribute="trailing" id="Ak4-M5-PhB"/>
+                <constraint firstItem="qca-rd-Pde" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="CEi-BA-VNJ"/>
                 <constraint firstItem="57f-4g-UH2" firstAttribute="firstBaseline" secondItem="CHa-DH-Wgz" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="D2F-wa-1Mk"/>
                 <constraint firstItem="Gzc-K6-Zu9" firstAttribute="leading" secondItem="uhr-TO-6We" secondAttribute="leading" id="DbA-CF-1Qa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OoH-RH-S9v" secondAttribute="trailing" constant="16" id="IVP-FG-L3v"/>
                 <constraint firstItem="CHa-DH-Wgz" firstAttribute="top" secondItem="L9B-40-UFP" secondAttribute="top" id="NOS-Z2-cZg"/>
                 <constraint firstItem="Gzc-K6-Zu9" firstAttribute="top" secondItem="nzL-ly-j5Y" secondAttribute="bottom" constant="-32" id="Ncm-zK-euo"/>
                 <constraint firstItem="57f-4g-UH2" firstAttribute="trailing" secondItem="CHa-DH-Wgz" secondAttribute="trailing" id="PO9-tD-Tcr"/>
@@ -72,13 +87,16 @@
                 <constraint firstItem="uhr-TO-6We" firstAttribute="leading" secondItem="L9B-40-UFP" secondAttribute="leading" id="dfd-Yb-aIl"/>
                 <constraint firstItem="uhr-TO-6We" firstAttribute="firstBaseline" secondItem="L9B-40-UFP" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="fDS-Mq-5oo"/>
                 <constraint firstItem="CHa-DH-Wgz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L9B-40-UFP" secondAttribute="trailing" constant="8" id="fDW-95-c8l"/>
+                <constraint firstItem="qca-rd-Pde" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fFz-jR-AGd"/>
                 <constraint firstItem="L9B-40-UFP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="rzk-fp-cCa"/>
                 <constraint firstItem="Gzc-K6-Zu9" firstAttribute="firstBaseline" secondItem="uhr-TO-6We" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="wak-rj-Ozh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="distanceLabel" destination="uhr-TO-6We" id="RZO-FK-TCh"/>
+                <outlet property="interestedLabel" destination="qca-rd-Pde" id="OFI-U8-4Tw"/>
                 <outlet property="nameLabel" destination="L9B-40-UFP" id="tMK-Hm-Wky"/>
+                <outlet property="notInterestedLabel" destination="OoH-RH-S9v" id="j9h-OF-nZ9"/>
                 <outlet property="previewImage" destination="nzL-ly-j5Y" id="hRS-IT-7h9"/>
                 <outlet property="priceLabel" destination="57f-4g-UH2" id="v44-H7-pCj"/>
                 <outlet property="ratingLabel" destination="CHa-DH-Wgz" id="zDE-32-VdB"/>
