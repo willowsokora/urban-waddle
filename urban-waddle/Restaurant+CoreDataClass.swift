@@ -154,6 +154,18 @@ public class Restaurant: NSManagedObject {
         }
     }
     
+    @nonobjc static func remove(restaurant: Restaurant) {
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            context.mergePolicy = NSOverwriteMergePolicy
+            context.delete(restaurant)
+            try context.save()
+        } catch {
+            print("Failed to delete restaurant: \(error.localizedDescription)")
+        }
+    }
+    
     @nonobjc static func getAllInterestedRestaurants() -> [Restaurant] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
         request.returnsObjectsAsFaults = false

@@ -123,6 +123,16 @@ extension SavedViewController: UITableViewDelegate {
         headerView.textLabel?.textColor = statusColors[section]
         return headerView
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { (ac: UIContextualAction, view: UIView, success: (Bool) -> Void) in
+            let restaurant = self.savedRestaurants[indexPath.section][indexPath.row]
+            Restaurant.remove(restaurant: restaurant)
+            success(true)
+        }
+        deleteAction.image = UIImage(named: "delete")
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 
 extension SavedViewController: UISearchResultsUpdating {
