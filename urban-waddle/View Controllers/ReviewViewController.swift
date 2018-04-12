@@ -41,6 +41,7 @@ class ReviewViewController: UIViewController {
         let btnDoneOnKeyboard = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtnFromKeyboardClicked))
         viewForDoneButtonOnKeyboard.items = [spaceBar, btnDoneOnKeyboard]
         noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
+        noteField.delegate = self
         
         // Label Setting
         if let restaurant = restaurant {
@@ -51,7 +52,6 @@ class ReviewViewController: UIViewController {
                 noteField.text = note
             } else {
                 noteField.text = "Add a note"
-                noteField.delegate = self
                 noteField.textColor = UIColor.lightGray
             }
             phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
