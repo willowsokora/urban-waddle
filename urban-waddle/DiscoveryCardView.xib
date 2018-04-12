@@ -55,14 +55,14 @@
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="1" height="0.0"/>
                 </label>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INTERESTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qca-rd-Pde">
-                    <rect key="frame" x="16" y="36" width="162.5" height="33"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" INTERESTED " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qca-rd-Pde">
+                    <rect key="frame" x="16" y="52" width="174" height="33"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                     <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOT INTERESTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoH-RH-S9v">
-                    <rect key="frame" x="135" y="36" width="224" height="32.5"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" NOT INTERESTED " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OoH-RH-S9v">
+                    <rect key="frame" x="123.5" y="52" width="235.5" height="32.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -71,9 +71,9 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="57f-4g-UH2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uhr-TO-6We" secondAttribute="trailing" constant="8" id="6kD-KZ-NvL"/>
-                <constraint firstItem="OoH-RH-S9v" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="8sR-FN-cac"/>
+                <constraint firstItem="OoH-RH-S9v" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="8sR-FN-cac"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nzL-ly-j5Y" secondAttribute="trailing" id="Ak4-M5-PhB"/>
-                <constraint firstItem="qca-rd-Pde" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="CEi-BA-VNJ"/>
+                <constraint firstItem="qca-rd-Pde" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="CEi-BA-VNJ"/>
                 <constraint firstItem="57f-4g-UH2" firstAttribute="firstBaseline" secondItem="CHa-DH-Wgz" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="D2F-wa-1Mk"/>
                 <constraint firstItem="Gzc-K6-Zu9" firstAttribute="leading" secondItem="uhr-TO-6We" secondAttribute="leading" id="DbA-CF-1Qa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OoH-RH-S9v" secondAttribute="trailing" constant="16" id="IVP-FG-L3v"/>

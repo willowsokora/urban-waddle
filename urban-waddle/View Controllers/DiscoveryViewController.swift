@@ -65,7 +65,11 @@ class DiscoveryViewController: UIViewController {
         swipeableView.swiping = { view, location, translation in
             let card = view as! DiscoveryCardView
             card.interestedLabel.isHidden = translation.x < 1
+            card.interestedLabel.layer.borderColor = card.interestedLabel.textColor.withAlphaComponent(translation.x / 100).cgColor
+            card.interestedLabel.textColor = card.interestedLabel.textColor.withAlphaComponent(translation.x / 100)
             card.notInterestedLabel.isHidden = translation.x > -1
+            card.notInterestedLabel.layer.borderColor = card.notInterestedLabel.textColor.withAlphaComponent(translation.x / -100).cgColor
+            card.notInterestedLabel.textColor = card.notInterestedLabel.textColor.withAlphaComponent(translation.x / -100)
         }
         swipeableView.didCancel = { view in
             let card = view as! DiscoveryCardView

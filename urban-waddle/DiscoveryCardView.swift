@@ -41,6 +41,14 @@ class DiscoveryCardView: UIView {
             priceLabel.text = restaurant.price ?? "$?"
             ratingLabel.text = "\(restaurant.rating)/5"
         }
+        interestedLabel.transform = CGAffineTransform(rotationAngle: -0.17)
+        interestedLabel.layer.borderWidth = 3
+        interestedLabel.layer.cornerRadius = 5
+        interestedLabel.layer.borderColor = interestedLabel.textColor.cgColor
+        notInterestedLabel.transform = CGAffineTransform(rotationAngle: 0.17)
+        notInterestedLabel.layer.borderWidth = 3
+        notInterestedLabel.layer.cornerRadius = 5
+        notInterestedLabel.layer.borderColor = notInterestedLabel.textColor.cgColor
     }
     
     /*
