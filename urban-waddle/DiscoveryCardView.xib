@@ -5,8 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,36 +19,22 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nzL-ly-j5Y">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9B-40-UFP">
-                    <rect key="frame" x="8" y="579.5" width="64" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9B-40-UFP">
+                    <rect key="frame" x="8" y="579.5" width="359" height="30"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="1" height="0.0"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57f-4g-UH2">
-                    <rect key="frame" x="323.5" y="603.5" width="43.5" height="21"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                    <size key="shadowOffset" width="1" height="1"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHa-DH-Wgz">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHa-DH-Wgz">
                     <rect key="frame" x="323.5" y="579.5" width="43.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                     <size key="shadowOffset" width="1" height="1"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzc-K6-Zu9">
-                    <rect key="frame" x="8" y="635" width="43.5" height="21"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                    <size key="shadowOffset" width="1" height="0.0"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhr-TO-6We">
-                    <rect key="frame" x="8" y="611" width="43.5" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzc-K6-Zu9">
+                    <rect key="frame" x="8" y="635" width="359" height="21"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -67,39 +52,42 @@
                     <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BAg-Pb-T0w">
+                    <rect key="frame" x="0.0" y="604" width="98" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="BAg-Pb-T0w" secondAttribute="height" multiplier="102:18" id="syc-ow-BpV"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="57f-4g-UH2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uhr-TO-6We" secondAttribute="trailing" constant="8" id="6kD-KZ-NvL"/>
+                <constraint firstItem="CHa-DH-Wgz" firstAttribute="centerY" secondItem="BAg-Pb-T0w" secondAttribute="centerY" id="2vP-sv-p1u"/>
                 <constraint firstItem="OoH-RH-S9v" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="8sR-FN-cac"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nzL-ly-j5Y" secondAttribute="trailing" id="Ak4-M5-PhB"/>
+                <constraint firstItem="Gzc-K6-Zu9" firstAttribute="top" secondItem="BAg-Pb-T0w" secondAttribute="bottom" constant="8" id="BIz-BY-PGO"/>
                 <constraint firstItem="qca-rd-Pde" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="CEi-BA-VNJ"/>
-                <constraint firstItem="57f-4g-UH2" firstAttribute="firstBaseline" secondItem="CHa-DH-Wgz" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="D2F-wa-1Mk"/>
-                <constraint firstItem="Gzc-K6-Zu9" firstAttribute="leading" secondItem="uhr-TO-6We" secondAttribute="leading" id="DbA-CF-1Qa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="L9B-40-UFP" secondAttribute="trailing" constant="8" id="Eqt-JW-3pq"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OoH-RH-S9v" secondAttribute="trailing" constant="16" id="IVP-FG-L3v"/>
-                <constraint firstItem="CHa-DH-Wgz" firstAttribute="top" secondItem="L9B-40-UFP" secondAttribute="top" id="NOS-Z2-cZg"/>
+                <constraint firstItem="CHa-DH-Wgz" firstAttribute="leading" secondItem="BAg-Pb-T0w" secondAttribute="trailing" constant="16" id="MSU-O6-kPL"/>
                 <constraint firstItem="Gzc-K6-Zu9" firstAttribute="top" secondItem="nzL-ly-j5Y" secondAttribute="bottom" constant="-32" id="Ncm-zK-euo"/>
-                <constraint firstItem="57f-4g-UH2" firstAttribute="trailing" secondItem="CHa-DH-Wgz" secondAttribute="trailing" id="PO9-tD-Tcr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Gzc-K6-Zu9" secondAttribute="trailing" constant="8" id="Q5X-5c-LKP"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nzL-ly-j5Y" secondAttribute="bottom" id="TMA-hM-LwC"/>
+                <constraint firstItem="BAg-Pb-T0w" firstAttribute="top" secondItem="L9B-40-UFP" secondAttribute="bottom" constant="8" id="TRd-8G-EPt"/>
                 <constraint firstItem="nzL-ly-j5Y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="XOk-a6-bJD"/>
                 <constraint firstItem="nzL-ly-j5Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Xi0-cg-323"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CHa-DH-Wgz" secondAttribute="trailing" constant="8" id="ad8-TW-imK"/>
-                <constraint firstItem="uhr-TO-6We" firstAttribute="leading" secondItem="L9B-40-UFP" secondAttribute="leading" id="dfd-Yb-aIl"/>
-                <constraint firstItem="uhr-TO-6We" firstAttribute="firstBaseline" secondItem="L9B-40-UFP" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="fDS-Mq-5oo"/>
-                <constraint firstItem="CHa-DH-Wgz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L9B-40-UFP" secondAttribute="trailing" constant="8" id="fDW-95-c8l"/>
                 <constraint firstItem="qca-rd-Pde" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fFz-jR-AGd"/>
+                <constraint firstItem="Gzc-K6-Zu9" firstAttribute="leading" secondItem="BAg-Pb-T0w" secondAttribute="leading" id="ncx-BU-d6s"/>
                 <constraint firstItem="L9B-40-UFP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="rzk-fp-cCa"/>
-                <constraint firstItem="Gzc-K6-Zu9" firstAttribute="firstBaseline" secondItem="uhr-TO-6We" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="wak-rj-Ozh"/>
+                <constraint firstItem="BAg-Pb-T0w" firstAttribute="leading" secondItem="L9B-40-UFP" secondAttribute="leading" id="svs-mk-49T"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="distanceLabel" destination="uhr-TO-6We" id="RZO-FK-TCh"/>
                 <outlet property="interestedLabel" destination="qca-rd-Pde" id="OFI-U8-4Tw"/>
                 <outlet property="nameLabel" destination="L9B-40-UFP" id="tMK-Hm-Wky"/>
                 <outlet property="notInterestedLabel" destination="OoH-RH-S9v" id="j9h-OF-nZ9"/>
                 <outlet property="previewImage" destination="nzL-ly-j5Y" id="hRS-IT-7h9"/>
-                <outlet property="priceLabel" destination="57f-4g-UH2" id="v44-H7-pCj"/>
-                <outlet property="ratingLabel" destination="CHa-DH-Wgz" id="zDE-32-VdB"/>
+                <outlet property="priceLabel" destination="CHa-DH-Wgz" id="H2q-BN-Vm2"/>
+                <outlet property="ratingImage" destination="BAg-Pb-T0w" id="07U-iT-sUh"/>
                 <outlet property="tagsLabel" destination="Gzc-K6-Zu9" id="EeF-5X-GEF"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="-89.5"/>

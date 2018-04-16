@@ -13,9 +13,8 @@ class DiscoveryCardView: UIView {
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tagsLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var ratingImage: UIImageView!
     
     @IBOutlet weak var interestedLabel: UILabel!
     @IBOutlet weak var notInterestedLabel: UILabel!
@@ -32,14 +31,15 @@ class DiscoveryCardView: UIView {
                 previewImage.image = UIImage(data: data)
             }
             nameLabel.text = restaurant.name
-            distanceLabel.text = restaurant.location.address1
+            //distanceLabel.text = restaurant.location.address1
             var tagText = ""
             for category in restaurant.categories {
                 tagText.append("\(category.title), ")
             }
             tagsLabel.text = String(tagText.prefix(tagText.count - 2))
             priceLabel.text = restaurant.price ?? "$?"
-            ratingLabel.text = "\(restaurant.rating)/5"
+            ratingImage.image = UIImage(named: "\(restaurant.rating)stars")
+            //ratingLabel.text = "\(restaurant.rating)/5"
         }
         interestedLabel.transform = CGAffineTransform(rotationAngle: -0.17)
         interestedLabel.layer.borderWidth = 3
