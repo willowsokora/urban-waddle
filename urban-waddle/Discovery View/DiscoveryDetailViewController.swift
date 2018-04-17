@@ -13,12 +13,12 @@ import SafariServices
 class DiscoveryDetailViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var yelpButton: UIButton!
     @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var ratingImage: UIImageView!
     
     var restaurant: YelpRestaurant?
     var cardView: ZLSwipeableView?
@@ -30,7 +30,7 @@ class DiscoveryDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
-            ratingLabel.text = "\(restaurant.rating)/5"
+            ratingImage.image = UIImage(named: "\(restaurant.rating)stars")
             priceLabel.text = restaurant.price
             addressButton.setTitle(restaurant.location.address1, for: .normal)
             callButton.setTitle(Restaurant.format(phoneNumber: restaurant.phone), for: .normal)
