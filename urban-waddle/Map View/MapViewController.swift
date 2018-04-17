@@ -19,21 +19,16 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let defaultButtonColor = UIButton(type: UIButtonType.system).titleColor(for: .normal)!
-    
-    
     var resultSearchController:UISearchController? = nil
-    
     let locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
-    
     var selectedRestaurant: Restaurant?
-    
     let locationButton = UIButton(type: UIButtonType.custom) as UIButton
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Map Setup
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -51,13 +46,13 @@ class MapViewController: UIViewController {
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Waddl your way to new food"
-    
+        
         navigationItem.titleView = resultSearchController?.searchBar
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.obscuresBackgroundDuringPresentation = true
         definesPresentationContext = true
         
-        
+        // Navigation Bar Clearing
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -76,11 +71,7 @@ class MapViewController: UIViewController {
         locationButton.backgroundColor = .white
         locationButton.addTarget(self, action: #selector(MapViewController.centerMapOnUserButtonClicked), for:.touchUpInside)
         mapView.addSubview(locationButton)
-        
-    
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -95,15 +86,10 @@ class MapViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if let destination = segue.destination as? ReviewViewController {
             destination.restaurant = selectedRestaurant
         }
@@ -134,9 +120,7 @@ class MapViewController: UIViewController {
         default :
             mapView.setUserTrackingMode(MKUserTrackingMode.none, animated: true)
         }
-        
     }
-
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -159,18 +143,8 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 extension MapViewController: HandleMapSearch {
+    // Handle Pin for Restaurants from Search
     func dropPinZoomIn(for restaurant: String, placemark:MKPlacemark){
-        // cache the pin
-        // clear existing pins
-        //mapView.removeAnnotations(mapView.annotations)
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = placemark.coordinate
-//        annotation.title = placemark.name
-//        if let city = placemark.locality,
-//            let state = placemark.administrativeArea {
-//            annotation.subtitle = "\(city), \(state)"
-//        }
-//        mapView.addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.01, 0.01)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
@@ -200,33 +174,8 @@ extension MapViewController: HandleMapSearch {
     }
 }
 extension MapViewController : MKMapViewDelegate {
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        if view.annotation is MKUserLocation { return }
-//        //hides the pin image
-//        selectedPin = MKPlacemark(coordinate: (view.annotation?.coordinate)!)
-//        for sub in view.subviews[3].subviews {
-//            sub.isHidden = true
-//        }
-//        if let restaurantAnnotation = view.annotation as? RestaurantAnnotation {
-//            if let callout = Bundle.main.loadNibNamed("RestaurantCalloutView", owner: self, options: nil)?.first as? RestaurantCalloutView {
-//                let restaurant = restaurantAnnotation.restaurant
-//                callout.restaurant = restaurant
-//                callout.center = CGPoint(x: view.bounds.size.width / 2, y: -callout.bounds.size.height * 0.5)
-//                callout.awakeFromNib()
-//                view.addSubview(callout)
-//                mapView.setCenter((view.annotation?.coordinate)!, animated: true)
-//            }
-//        }
-//    }
-//
-//    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-//        for subview in view.subviews {
-//            if subview is RestaurantCalloutView {
-//                subview.removeFromSuperview()
-//            }
-//        }
-//    }
     
+    //Handle Selection of Pin
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? RestaurantAnnotation {
             selectedRestaurant = annotation.restaurant
@@ -239,10 +188,12 @@ extension MapViewController : MKMapViewDelegate {
         }
     }
     
+    //Handle Deselection of Pin
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         selectedRestaurant = nil
     }
     
+    //Creation of Restaurant Callout View
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
         if annotation is MKUserLocation {
             //return nil so map view draws "blue dot" for standard user location
@@ -258,9 +209,7 @@ extension MapViewController : MKMapViewDelegate {
             
             let restaurant = restaurantAnnotation.restaurant
             let smallSquare = CGSize(width: 30, height: 30)
-            let discloseButton = UIButton.init(type: .detailDisclosure)//UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-            //discloseButton.imageView?.image = UIImage(named: "disclosure")
-            //discloseButton.setBackgroundImage(UIImage(named: "disclosure"), for: .normal)
+            let discloseButton = UIButton.init(type: .detailDisclosure)
             discloseButton.addTarget(self, action: #selector(self.reviewRestaurant), for: .touchUpInside)
             markerView.leftCalloutAccessoryView = discloseButton
             let label = UILabel()
