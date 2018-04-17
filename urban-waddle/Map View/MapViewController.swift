@@ -88,6 +88,9 @@ class MapViewController: UIViewController {
         for restaurant in Restaurant.getAllInterestedRestaurants() {
             mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
         }
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 
     override func didReceiveMemoryWarning() {
