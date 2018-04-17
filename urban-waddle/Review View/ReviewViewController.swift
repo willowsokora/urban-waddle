@@ -208,12 +208,12 @@ extension ReviewViewController {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
             
-            // so increase contentView's height by keyboard height
+            //Increase contentView's height by keyboard height
             UIView.animate(withDuration: 0.3, animations: {
                 self.constraintContentHeight.constant += self.keyboardHeight
             })
             
-            // move if keyboard hide input field
+            //Move if keyboard hides input field
             let distanceToBottom = self.scrollView.frame.size.height - noteField.frame.origin.y - noteField.frame.size.height
             let collapseSpace = keyboardHeight - distanceToBottom
             
@@ -222,7 +222,7 @@ extension ReviewViewController {
                 return
             }
             
-            // set new offset for scroll view
+            //Set new offset for scroll view
             UIView.animate(withDuration: 0.3, animations: {
                 // scroll to the position above keyboard 10 points
                 if let lastOffset = self.lastOffset {

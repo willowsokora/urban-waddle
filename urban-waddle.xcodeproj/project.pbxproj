@@ -86,7 +86,7 @@
 		16E36792206434DD009E6153 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		16E3679420643517009E6153 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		16E7052B20780C510054FFE1 /* AddRestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestaurantViewController.swift; sourceTree = "<group>"; };
-		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationSearchTable.swift; path = ../LocationSearchTable.swift; sourceTree = "<group>"; };
+		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,20 +149,18 @@
 			isa = PBXGroup;
 			children = (
 				16A59A2A204F185E00931D42 /* Main.storyboard */,
-				83B5AE59206EE6A2009D1789 /* View Controllers */,
+				8370E49F2086A8BD009983FC /* Saved View */,
+				8370E4A02086A8E2009983FC /* Review View */,
+				8370E4A12086A965009983FC /* Discovery View */,
+				8370E4A22086A9B3009983FC /* Map View */,
+				83B5AE59206EE6A2009D1789 /* Other View Controllers */,
 				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
+				16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */,
 				16A59A26204F185E00931D42 /* AppDelegate.swift */,
 				16A59A30204F185F00931D42 /* Assets.xcassets */,
 				16A59A32204F185F00931D42 /* LaunchScreen.storyboard */,
 				16A59A35204F185F00931D42 /* Info.plist */,
 				16A59A2D204F185E00931D42 /* urban_waddle.xcdatamodeld */,
-				162C6B4620644FBB0067D986 /* RestaurantCell.swift */,
-				169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */,
-				169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */,
-				16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */,
-				16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */,
-				16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */,
-				169E6CEC206979CB00DF07D3 /* ZLSwipeableView */,
 			);
 			path = "urban-waddle";
 			sourceTree = "<group>";
@@ -185,20 +183,54 @@
 			path = "urban-waddleUITests";
 			sourceTree = "<group>";
 		};
-		83B5AE59206EE6A2009D1789 /* View Controllers */ = {
+		8370E49F2086A8BD009983FC /* Saved View */ = {
 			isa = PBXGroup;
 			children = (
 				16E3679420643517009E6153 /* SavedViewController.swift */,
-				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
-				162B1AAD2050AF9700779003 /* MapViewController.swift */,
+				162C6B4620644FBB0067D986 /* RestaurantCell.swift */,
+			);
+			path = "Saved View";
+			sourceTree = "<group>";
+		};
+		8370E4A02086A8E2009983FC /* Review View */ = {
+			isa = PBXGroup;
+			children = (
 				1624D404206D93CB005459A3 /* ReviewViewController.swift */,
-				16A07CE92076D59F0073D811 /* DiscoveryDetailViewController.swift */,
 				16A07CEB2076E2D40073D811 /* PageImageViewController.swift */,
-				16E7052B20780C510054FFE1 /* AddRestaurantViewController.swift */,
+			);
+			path = "Review View";
+			sourceTree = "<group>";
+		};
+		8370E4A12086A965009983FC /* Discovery View */ = {
+			isa = PBXGroup;
+			children = (
+				169E6CEC206979CB00DF07D3 /* ZLSwipeableView */,
+				16E36792206434DD009E6153 /* DiscoveryViewController.swift */,
+				16A07CE92076D59F0073D811 /* DiscoveryDetailViewController.swift */,
 				16C718E9207C1C67007A99EA /* SettingsViewController.swift */,
+				169E6CF720697C1800DF07D3 /* DiscoveryCardView.swift */,
+				169E6CF520697C0900DF07D3 /* DiscoveryCardView.xib */,
+			);
+			path = "Discovery View";
+			sourceTree = "<group>";
+		};
+		8370E4A22086A9B3009983FC /* Map View */ = {
+			isa = PBXGroup;
+			children = (
+				162B1AAD2050AF9700779003 /* MapViewController.swift */,
+				16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */,
+				16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */,
 				83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */,
 			);
-			path = "View Controllers";
+			path = "Map View";
+			sourceTree = "<group>";
+		};
+		83B5AE59206EE6A2009D1789 /* Other View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				16E7052B20780C510054FFE1 /* AddRestaurantViewController.swift */,
+			);
+			path = "Other View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
