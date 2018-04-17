@@ -182,9 +182,12 @@ extension MapViewController : MKMapViewDelegate {
             mapView.setCenter(CLLocationCoordinate2D(latitude: (selectedRestaurant?.latitude)!, longitude: (selectedRestaurant?.longitude)!), animated: true)
 
             let span = MKCoordinateSpanMake(0.01, 0.01)
-        
-            let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
-            mapView.setRegion(region, animated: true)
+            //Only zoom in, not zoom out
+            if span.latitudeDelta < mapView.region.span.latitudeDelta {
+                let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
+                mapView.setRegion(region, animated: true)
+            }
+            
         }
     }
     
