@@ -218,13 +218,24 @@ extension ReviewViewController {
             // set new offset for scroll view
             UIView.animate(withDuration: 0.3, animations: {
                 // scroll to the position above keyboard 10 points
-                self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace + 10)
+                if let lastOffset = self.lastOffset {
+                    self.scrollView.contentOffset = CGPoint(x: lastOffset.x, y: collapseSpace + 10)
+                }else {
+                    self.scrollView.contentOffset = CGPoint(x: 0, y: collapseSpace + 10)
+                }
+                
             })
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        self.scrollView.contentOffset = self.lastOffset
+        if let lastOffset = self.lastOffset {
+            self.scrollView.contentOffset = lastOffset
+        }else {
+            self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        }
+
+        
         keyboardHeight = nil
     }
     @objc func doneBtnFromKeyboardClicked() {
