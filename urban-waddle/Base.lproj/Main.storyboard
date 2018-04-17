@@ -519,9 +519,6 @@
                                                     <segment title="Interested"/>
                                                     <segment title="Disliked"/>
                                                 </segments>
-                                                <connections>
-                                                    <action selector="statusChanged:" destination="eJG-N2-x2T" eventType="valueChanged" id="bSg-Aj-Ito"/>
-                                                </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yL1-J1-iDR">
                                                 <rect key="frame" x="287" y="445.5" width="68" height="39"/>

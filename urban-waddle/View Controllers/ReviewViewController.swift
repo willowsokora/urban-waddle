@@ -28,6 +28,7 @@ class ReviewViewController: UIViewController {
     var restaurant: Restaurant?
     var images: [UIImage] = []
     
+    //Note Field scrolling
     @IBOutlet weak var constraintContentHeight: NSLayoutConstraint!
     var lastOffset: CGPoint!
     var keyboardHeight: CGFloat!
@@ -35,10 +36,12 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Note Field Sizing
+        //MARK: Note Field Setup
+        
+        //Sizing
         noteField.sizeThatFits(CGSize(width: noteField.frame.size.width, height: noteField.frame.size.height))
         
-        //Note Field Done Button
+        //Keyboard Done Button
         let viewForDoneButtonOnKeyboard = UIToolbar()
         viewForDoneButtonOnKeyboard.sizeToFit()
         let spaceBar = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -47,19 +50,15 @@ class ReviewViewController: UIViewController {
         noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
         noteField.delegate = self
         
-        // Note Field - Observe keyboard change
+        // Keyboard observers
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        // Add touch gesture for contentView
+        // Add Tap Gesture for contentView
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
         
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(returnTextView(gesture:)))
-        swipeGesture.direction = .down
         
-        self.view.addGestureRecognizer(swipeGesture)
-        
-        // Label Setting
+        // MARK: Label Setting
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
             ratingLabel.text = "\(restaurant.yelpRating)/5"
@@ -116,30 +115,8 @@ class ReviewViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func cancelReview(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-    
-    @IBAction func saveReview(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
-        guard let restaurant = restaurant else {
-            return
-        }
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        restaurant.status = Restaurant.Status(rawValue: Int16(statusSelector.selectedSegmentIndex))!
-        if !noteField.text.isEmpty && noteField.textColor != .lightGray {
-            restaurant.note = noteField.text
-        }
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save review: \(error.localizedDescription)")
-        }
-    }
-    
+
+//MARK:  Handle Restaurant Buttons
     @IBAction func call(_ sender: UIButton) {
         if let phoneUrl = URL(string: "tel:\(phoneButton.title(for: .normal) ?? "")") {
             if UIApplication.shared.canOpenURL(phoneUrl) {
@@ -170,58 +147,11 @@ class ReviewViewController: UIViewController {
             
         }
     }
-    @IBAction func statusChanged(_ sender: UISegmentedControl) {
-       // mapView
-    }
-    
-    
-    @objc func doneBtnFromKeyboardClicked() {
-        //Hide Keyboard by endEditing or Anything you want.
-        self.view.endEditing(true)
-    }
-    
-    @objc func returnTextView(gesture: UIGestureRecognizer) {
-        noteField.resignFirstResponder()
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
-extension ReviewViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-//        scrollView.setContentOffset(textView.safeAreaLayoutGuide.centerYAnchor.accessibilityActivationPoint, animated: true)
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Add a note"
-            textView.textColor = UIColor.lightGray
-        }
-    }
-    
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        lastOffset = self.scrollView.contentOffset
-        return true
-    }
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        textView.resignFirstResponder()
-        return true
-    }
-}
 
+//MARK: Image Page Controller
 extension ReviewViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let page = viewController as? PageImageViewController {
@@ -261,7 +191,7 @@ extension ReviewViewController: UIPageViewControllerDataSource {
 }
 
 
-// MARK: Keyboard Handling
+// MARK: Note Field Scroll Handling
 extension ReviewViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if keyboardHeight != nil {
@@ -296,5 +226,65 @@ extension ReviewViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
         self.scrollView.contentOffset = self.lastOffset
         keyboardHeight = nil
+    }
+    @objc func doneBtnFromKeyboardClicked() {
+        //Hide Keyboard by endEditing or Anything you want.
+        self.view.endEditing(true)
+    }
+    
+    @objc func returnTextView(gesture: UIGestureRecognizer) {
+        noteField.resignFirstResponder()
+    }
+}
+
+extension ReviewViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Add a note"
+            textView.textColor = UIColor.lightGray
+        }
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        lastOffset = self.scrollView.contentOffset
+        return true
+    }
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
+    }
+}
+
+//MARK: Navigation Bar Button Handling
+extension ReviewViewController {
+    
+    @IBAction func cancelReview(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    @IBAction func saveReview(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+        guard let restaurant = restaurant else {
+            return
+        }
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        restaurant.status = Restaurant.Status(rawValue: Int16(statusSelector.selectedSegmentIndex))!
+        if !noteField.text.isEmpty && noteField.textColor != .lightGray {
+            restaurant.note = noteField.text
+        }
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save review: \(error.localizedDescription)")
+        }
     }
 }
