@@ -228,6 +228,11 @@ extension MapViewController : MKMapViewDelegate {
         if let annotation = view.annotation as? RestaurantAnnotation {
             selectedRestaurant = annotation.restaurant
             mapView.setCenter(CLLocationCoordinate2D(latitude: (selectedRestaurant?.latitude)!, longitude: (selectedRestaurant?.longitude)!), animated: true)
+
+            let span = MKCoordinateSpanMake(0.01, 0.01)
+        
+            let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
+            mapView.setRegion(region, animated: true)
         }
     }
     
