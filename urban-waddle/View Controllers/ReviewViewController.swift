@@ -28,6 +28,9 @@ class ReviewViewController: UIViewController {
     var restaurant: Restaurant?
     var images: [UIImage] = []
     
+    @IBOutlet weak var constraintContentHeight: NSLayoutConstraint!
+    var lastOffset: CGPoint!
+    var keyboardHeight: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,18 @@ class ReviewViewController: UIViewController {
         viewForDoneButtonOnKeyboard.items = [spaceBar, btnDoneOnKeyboard]
         noteField.inputAccessoryView = viewForDoneButtonOnKeyboard
         noteField.delegate = self
+        
+        // Note Field - Observe keyboard change
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        // Add touch gesture for contentView
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(returnTextView(gesture:)))
+        swipeGesture.direction = .down
+        
+        self.view.addGestureRecognizer(swipeGesture)
         
         // Label Setting
         if let restaurant = restaurant {
@@ -165,6 +180,10 @@ class ReviewViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @objc func returnTextView(gesture: UIGestureRecognizer) {
+        noteField.resignFirstResponder()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -183,6 +202,7 @@ extension ReviewViewController: UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.black
         }
+//        scrollView.setContentOffset(textView.safeAreaLayoutGuide.centerYAnchor.accessibilityActivationPoint, animated: true)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -190,6 +210,15 @@ extension ReviewViewController: UITextViewDelegate {
             textView.text = "Add a note"
             textView.textColor = UIColor.lightGray
         }
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        lastOffset = self.scrollView.contentOffset
+        return true
+    }
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
     }
 }
 
@@ -231,38 +260,41 @@ extension ReviewViewController: UIPageViewControllerDataSource {
     }
 }
 
-extension ReviewViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrollView.setContentOffset(CGPoint(x: 10, y: 10), animated: true)
+
+// MARK: Keyboard Handling
+extension ReviewViewController {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if keyboardHeight != nil {
+            return
+        }
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboardHeight = keyboardSize.height
+            
+            // so increase contentView's height by keyboard height
+            UIView.animate(withDuration: 0.3, animations: {
+                self.constraintContentHeight.constant += self.keyboardHeight
+            })
+            
+            // move if keyboard hide input field
+            let distanceToBottom = self.scrollView.frame.size.height - noteField.frame.origin.y - noteField.frame.size.height
+            let collapseSpace = keyboardHeight - distanceToBottom
+            
+            if collapseSpace < 0 {
+                // no collapse
+                return
+            }
+            
+            // set new offset for scroll view
+            UIView.animate(withDuration: 0.3, animations: {
+                // scroll to the position above keyboard 10 points
+                self.scrollView.contentOffset = CGPoint(x: self.lastOffset.x, y: collapseSpace + 10)
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.scrollView.contentOffset = self.lastOffset
+        keyboardHeight = nil
     }
 }
-
-//extension ReviewViewController: MKMapViewDelegate {
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        guard let restaurant = restaurant else {
-//            return
-//        }
-//        let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
-//        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
-//        mapItem.name = restaurant.name
-//        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-//    }
-//
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation {
-//            return nil
-//        }
-//        guard let restaurant = restaurant else {
-//            return nil
-//        }
-//        let markerView = mapView.dequeueReusableAnnotationView(withIdentifier: "marker") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "marker")
-//        markerView.titleVisibility = .visible
-//        markerView.markerTintColor = restaurant.statusColor
-//        markerView.canShowCallout = true
-//        let smallSquare = CGSize(width: 30, height: 30)
-//        let button = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-//        button.setBackgroundImage(UIImage(named: "fa-car"), for: .normal)
-//        markerView.rightCalloutAccessoryView = button
-//        return markerView
-//    }
-//}
