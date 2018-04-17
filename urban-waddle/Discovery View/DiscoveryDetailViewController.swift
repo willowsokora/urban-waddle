@@ -33,7 +33,7 @@ class DiscoveryDetailViewController: UIViewController {
             ratingLabel.text = "\(restaurant.rating)/5"
             priceLabel.text = restaurant.price
             addressButton.setTitle(restaurant.location.address1, for: .normal)
-            callButton.setTitle(restaurant.phone, for: .normal)
+            callButton.setTitle(Restaurant.format(phoneNumber: restaurant.phone), for: .normal)
             var tagText = ""
             for category in restaurant.categories {
                 tagText.append("\(category.title), ")

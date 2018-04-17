@@ -69,7 +69,8 @@ class ReviewViewController: UIViewController {
                 noteField.text = "Add a note"
                 noteField.textColor = UIColor.lightGray
             }
-            phoneButton.setTitle(restaurant.phoneNumber, for: .normal)
+            
+            phoneButton.setTitle(Restaurant.format(phoneNumber: restaurant.phoneNumber), for: .normal)
             addressButton.setTitle(restaurant.address, for: .normal)
 //            let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
 //            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.1, 0.1)), animated: true)
@@ -306,3 +307,4 @@ extension ReviewViewController {
         }
     }
 }
+
