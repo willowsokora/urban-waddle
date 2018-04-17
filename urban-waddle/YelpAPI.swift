@@ -47,7 +47,7 @@ struct YelpAPI {
         guard let url = urlComponents.url else {
             fatalError("Could not create url from components")
         }
-        print("\(url)")
+        //print("\(url)")
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

@@ -11,12 +11,19 @@ import UIKit
 class AddRestaurantViewController: UIViewController {
 
     @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var addressField: UITextField!
+    
+    var restaurantName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         navBar.delegate = self
+        if let name = restaurantName {
+            nameField.text = name
+        }
     }
 
     override func didReceiveMemoryWarning() {

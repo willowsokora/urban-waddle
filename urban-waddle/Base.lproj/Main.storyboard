@@ -59,8 +59,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" textLabel="qqY-d2-jkA" detailTextLabel="ejx-gt-NxX" style="IBUITableViewCellStyleSubtitle" id="ZB4-e6-yRL">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addManuallyCell" textLabel="J29-c1-YFK" style="IBUITableViewCellStyleDefault" id="yTJ-Ka-Wlf">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yTJ-Ka-Wlf" id="iPF-8o-3Tj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Add manually..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J29-c1-YFK">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="iEg-km-Yq7" kind="presentation" id="xeI-7c-olD"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" textLabel="qqY-d2-jkA" detailTextLabel="ejx-gt-NxX" style="IBUITableViewCellStyleSubtitle" id="ZB4-e6-yRL">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZB4-e6-yRL" id="PW6-0h-JvT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -409,7 +429,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C11-1F-JWK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" id="Bxe-9X-j3B">
+                    <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="Bxe-9X-j3B">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="91C-rJ-13m"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gdQ-y5-pAX">
                             <connections>
@@ -612,8 +632,9 @@
                                     <navigationItem title="Add Restaurant" id="KZO-v4-HA1">
                                         <barButtonItem key="leftBarButtonItem" id="GKp-bw-TCz">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zvv-ES-ZRv">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                <rect key="frame" x="16" y="5" width="83" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="cancel:" destination="iEg-km-Yq7" eventType="touchUpInside" id="X7l-2D-HFi"/>
@@ -622,8 +643,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" id="tp8-aT-1Fv">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ALj-um-ky3">
-                                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                <rect key="frame" x="276" y="5" width="83" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Save"/>
                                                 <connections>
                                                     <action selector="save:" destination="iEg-km-Yq7" eventType="touchUpInside" id="ShO-WX-dwU"/>
@@ -639,7 +661,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjg-CB-ZjQ">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjg-CB-ZjQ">
                                 <rect key="frame" x="8" y="117" width="351" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -661,6 +683,8 @@
                         <viewLayoutGuide key="safeArea" id="1gA-qN-dmM"/>
                     </view>
                     <connections>
+                        <outlet property="addressField" destination="xjg-CB-ZjQ" id="HKH-u1-0Lt"/>
+                        <outlet property="nameField" destination="w8t-Xs-P7g" id="qfB-xG-F82"/>
                         <outlet property="navBar" destination="dPe-iB-Jcj" id="igL-r2-3MA"/>
                     </connections>
                 </viewController>
@@ -833,6 +857,7 @@
         <image name="yelp" width="1000" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sX9-Gk-CbL"/>
+        <segue reference="xeI-7c-olD"/>
+        <segue reference="WOX-6n-zMb"/>
     </inferredMetricsTieBreakers>
 </document>
