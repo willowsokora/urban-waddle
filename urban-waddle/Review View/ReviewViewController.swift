@@ -27,6 +27,7 @@ class ReviewViewController: UIViewController {
     
     var restaurant: Restaurant?
     var images: [UIImage] = []
+    var unformattedPhoneNumber: String?
     
     //Note Field scrolling
     @IBOutlet weak var constraintContentHeight: NSLayoutConstraint!
@@ -71,11 +72,8 @@ class ReviewViewController: UIViewController {
             }
             
             phoneButton.setTitle(Restaurant.format(phoneNumber: restaurant.phoneNumber), for: .normal)
+            unformattedPhoneNumber = restaurant.phoneNumber
             addressButton.setTitle(restaurant.address, for: .normal)
-//            let coordinates = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
-//            mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpanMake(0.1, 0.1)), animated: true)
-//            mapView.showsUserLocation = true
-//            mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
             statusSelector.selectedSegmentIndex = Int(restaurant.rawStatus)
             
             siteButton.setTitle("Yelp Site", for: .normal)
@@ -126,7 +124,7 @@ class ReviewViewController: UIViewController {
 
 //MARK:  Handle Restaurant Buttons
     @IBAction func call(_ sender: UIButton) {
-        if let phoneUrl = URL(string: "tel:\(phoneButton.title(for: .normal) ?? "")") {
+        if let phoneUrl = URL(string: "tel:\(unformattedPhoneNumber ?? "")") {
             if UIApplication.shared.canOpenURL(phoneUrl) {
                 UIApplication.shared.open(phoneUrl)
             }

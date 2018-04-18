@@ -23,6 +23,7 @@ class DiscoveryDetailViewController: UIViewController {
     var restaurant: YelpRestaurant?
     var cardView: ZLSwipeableView?
     var images: [UIImage] = []
+    var unformattedPhoneNumber: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class DiscoveryDetailViewController: UIViewController {
             priceLabel.text = restaurant.price
             addressButton.setTitle(restaurant.location.address1, for: .normal)
             callButton.setTitle(Restaurant.format(phoneNumber: restaurant.phone), for: .normal)
+            unformattedPhoneNumber = restaurant.phone
             var tagText = ""
             for category in restaurant.categories {
                 tagText.append("\(category.title), ")
@@ -110,7 +112,7 @@ class DiscoveryDetailViewController: UIViewController {
     }
     
     @IBAction func call(_ sender: UIButton) {
-        if let phoneUrl = URL(string: "tel:\(callButton.title(for: .normal) ?? "")") {
+        if let phoneUrl = URL(string: "tel:\(unformattedPhoneNumber ?? "")") {
             if UIApplication.shared.canOpenURL(phoneUrl) {
                 UIApplication.shared.open(phoneUrl)
             }
