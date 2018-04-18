@@ -15,7 +15,7 @@ import Contacts
 class ReviewViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var noteField: UITextView!
     @IBOutlet weak var statusSelector: UISegmentedControl!
@@ -62,7 +62,7 @@ class ReviewViewController: UIViewController {
         // MARK: Label Setting
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
-            ratingLabel.text = "\(restaurant.yelpRating)/5"
+            ratingImageView.image = UIImage(named: "\(restaurant.yelpRating)stars")
             priceLabel.text = restaurant.yelpPrice
             if let note = restaurant.note {
                 noteField.text = note
