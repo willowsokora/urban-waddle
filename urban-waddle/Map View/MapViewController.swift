@@ -215,9 +215,11 @@ extension MapViewController : MKMapViewDelegate {
             let discloseButton = UIButton.init(type: .detailDisclosure)
             discloseButton.addTarget(self, action: #selector(self.reviewRestaurant), for: .touchUpInside)
             markerView.leftCalloutAccessoryView = discloseButton
-            let label = UILabel()
-            label.text = "\(restaurant.yelpPrice)   \(restaurant.yelpRating)/5"
-            markerView.detailCalloutAccessoryView = label
+            let callout = Bundle.main.loadNibNamed("RestaurantCalloutView", owner: self, options: nil)!.first! as! RestaurantCalloutView
+            callout.layoutIfNeeded()
+            callout.restaurant = restaurant
+            callout.awakeFromNib()
+            markerView.detailCalloutAccessoryView = callout
             let directionsButton = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
             directionsButton.setBackgroundImage(UIImage(named: "car")?.withRenderingMode(.alwaysTemplate), for: .normal)
             directionsButton.tintColor = .blue
