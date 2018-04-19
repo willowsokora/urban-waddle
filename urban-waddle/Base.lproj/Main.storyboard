@@ -161,7 +161,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7O8-Jz-l6u">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="465.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="457.5"/>
                                 <connections>
                                     <segue destination="mg1-7c-zk5" kind="embed" id="sGJ-f4-WZ3"/>
                                 </connections>
@@ -271,7 +271,7 @@
                             <constraint firstItem="DcV-bX-c7u" firstAttribute="top" secondItem="ReS-dT-IcO" secondAttribute="bottom" constant="16" id="qb6-VO-cRn"/>
                             <constraint firstItem="UdA-sa-cfg" firstAttribute="trailing" secondItem="mI8-69-IAE" secondAttribute="trailing" constant="48" id="r38-lj-cy6"/>
                             <constraint firstItem="B9d-LA-PyM" firstAttribute="top" secondItem="DUT-8e-osM" secondAttribute="bottom" constant="2" id="tAF-oi-5vs"/>
-                            <constraint firstItem="DUT-8e-osM" firstAttribute="top" secondItem="7O8-Jz-l6u" secondAttribute="bottom" id="tLP-dV-hb0"/>
+                            <constraint firstItem="DUT-8e-osM" firstAttribute="top" secondItem="7O8-Jz-l6u" secondAttribute="bottom" constant="8" id="tLP-dV-hb0"/>
                             <constraint firstItem="Cko-eT-wj4" firstAttribute="centerY" secondItem="B9d-LA-PyM" secondAttribute="centerY" id="tod-7W-HLk"/>
                             <constraint firstItem="B9d-LA-PyM" firstAttribute="leading" secondItem="DUT-8e-osM" secondAttribute="leading" id="yDe-W0-OCW"/>
                         </constraints>
