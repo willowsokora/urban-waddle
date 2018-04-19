@@ -27,9 +27,10 @@ class SavedViewController: UIViewController {
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Saved Restaurants"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
+        searchController.searchBar.placeholder = "Saved Restaurants"
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.titleView = searchController.searchBar
+//        definesPresentationContext = true
         
         //savedTable.tableFooterView = UIView(frame: .zero)
     }
