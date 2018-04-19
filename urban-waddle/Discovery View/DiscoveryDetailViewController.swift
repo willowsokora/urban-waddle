@@ -75,9 +75,10 @@ class DiscoveryDetailViewController: UIViewController {
                 }
             }
             pageView.dataSource = self
-            let appearance = UIPageControl.appearance()
-            appearance.currentPageIndicatorTintColor = .purple
-            appearance.pageIndicatorTintColor = .lightGray
+//            let appearance = UIPageControl.appearance()
+//            appearance.currentPageIndicatorTintColor = .purple
+//            appearance.pageIndicatorTintColor = .lightGray
+//            appearance.bottomAnchor.constraint(equalTo: pageView.view.bottomAnchor).isActive = true
             let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
             effectView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(effectView)

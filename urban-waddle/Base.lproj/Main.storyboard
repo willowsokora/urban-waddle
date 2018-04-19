@@ -115,10 +115,10 @@
             </objects>
             <point key="canvasLocation" x="2392.8000000000002" y="33.733133433283363"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Page View Controller With Overlay Indicator-->
         <scene sceneID="RJV-Sk-v4f">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mg1-7c-zk5" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mg1-7c-zk5" customClass="UIPageViewControllerWithOverlayIndicator" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8og-5a-oqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2478" y="1373"/>
@@ -139,7 +139,7 @@
                         <constraints>
                             <constraint firstItem="CxQ-Hx-oz3" firstAttribute="trailing" secondItem="sGA-ZW-uEE" secondAttribute="trailing" id="9YQ-yF-R1A"/>
                             <constraint firstItem="sGA-ZW-uEE" firstAttribute="top" secondItem="Jtl-OB-2zZ" secondAttribute="top" id="GiN-F0-yz7"/>
-                            <constraint firstItem="CxQ-Hx-oz3" firstAttribute="bottom" secondItem="sGA-ZW-uEE" secondAttribute="bottom" id="Jwz-9Y-WR0"/>
+                            <constraint firstAttribute="bottom" secondItem="sGA-ZW-uEE" secondAttribute="bottom" id="Jwz-9Y-WR0"/>
                             <constraint firstItem="sGA-ZW-uEE" firstAttribute="leading" secondItem="CxQ-Hx-oz3" secondAttribute="leading" id="OZH-PW-oim"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CxQ-Hx-oz3"/>
