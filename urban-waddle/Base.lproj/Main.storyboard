@@ -77,9 +77,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="iEg-km-Yq7" kind="presentation" id="xeI-7c-olD"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" textLabel="qqY-d2-jkA" detailTextLabel="ejx-gt-NxX" style="IBUITableViewCellStyleSubtitle" id="ZB4-e6-yRL">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
@@ -116,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="2392.8000000000002" y="33.733133433283363"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Page View Controller With Overlay Indicator-->
         <scene sceneID="RJV-Sk-v4f">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mg1-7c-zk5" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mg1-7c-zk5" customClass="UIPageViewControllerWithOverlayIndicator" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8og-5a-oqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2478" y="1373"/>
@@ -133,14 +130,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sGA-ZW-uEE">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CxQ-Hx-oz3" firstAttribute="trailing" secondItem="sGA-ZW-uEE" secondAttribute="trailing" id="9YQ-yF-R1A"/>
-                            <constraint firstItem="sGA-ZW-uEE" firstAttribute="top" secondItem="CxQ-Hx-oz3" secondAttribute="top" id="GiN-F0-yz7"/>
-                            <constraint firstItem="CxQ-Hx-oz3" firstAttribute="bottom" secondItem="sGA-ZW-uEE" secondAttribute="bottom" id="Jwz-9Y-WR0"/>
+                            <constraint firstItem="sGA-ZW-uEE" firstAttribute="top" secondItem="Jtl-OB-2zZ" secondAttribute="top" id="GiN-F0-yz7"/>
+                            <constraint firstAttribute="bottom" secondItem="sGA-ZW-uEE" secondAttribute="bottom" id="Jwz-9Y-WR0"/>
                             <constraint firstItem="sGA-ZW-uEE" firstAttribute="leading" secondItem="CxQ-Hx-oz3" secondAttribute="leading" id="OZH-PW-oim"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CxQ-Hx-oz3"/>
@@ -162,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7O8-Jz-l6u">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="465.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="457.5"/>
                                 <connections>
                                     <segue destination="mg1-7c-zk5" kind="embed" id="sGJ-f4-WZ3"/>
                                 </connections>
@@ -265,14 +262,14 @@
                             <constraint firstItem="syt-TH-q0i" firstAttribute="width" secondItem="syt-TH-q0i" secondAttribute="height" multiplier="68:39" id="e6j-xs-5DI"/>
                             <constraint firstItem="7O8-Jz-l6u" firstAttribute="leading" secondItem="UdA-sa-cfg" secondAttribute="leading" id="iN4-Xo-yrc"/>
                             <constraint firstItem="GnA-zc-AC1" firstAttribute="centerY" secondItem="DUT-8e-osM" secondAttribute="centerY" id="kfp-ZL-DuO"/>
-                            <constraint firstItem="7O8-Jz-l6u" firstAttribute="top" secondItem="UdA-sa-cfg" secondAttribute="top" constant="-20" id="lPo-Ox-cGl"/>
+                            <constraint firstItem="7O8-Jz-l6u" firstAttribute="top" secondItem="9ov-IL-6YW" secondAttribute="top" id="lPo-Ox-cGl"/>
                             <constraint firstItem="l1f-hJ-K4k" firstAttribute="centerX" secondItem="UdA-sa-cfg" secondAttribute="centerX" id="lUl-oo-ujS"/>
                             <constraint firstItem="l1f-hJ-K4k" firstAttribute="centerY" secondItem="DcV-bX-c7u" secondAttribute="centerY" id="pno-ns-gLm"/>
                             <constraint firstItem="UdA-sa-cfg" firstAttribute="trailing" secondItem="GnA-zc-AC1" secondAttribute="trailing" constant="16" id="qWC-Y7-DE3"/>
                             <constraint firstItem="DcV-bX-c7u" firstAttribute="top" secondItem="ReS-dT-IcO" secondAttribute="bottom" constant="16" id="qb6-VO-cRn"/>
                             <constraint firstItem="UdA-sa-cfg" firstAttribute="trailing" secondItem="mI8-69-IAE" secondAttribute="trailing" constant="48" id="r38-lj-cy6"/>
                             <constraint firstItem="B9d-LA-PyM" firstAttribute="top" secondItem="DUT-8e-osM" secondAttribute="bottom" constant="2" id="tAF-oi-5vs"/>
-                            <constraint firstItem="DUT-8e-osM" firstAttribute="top" secondItem="7O8-Jz-l6u" secondAttribute="bottom" id="tLP-dV-hb0"/>
+                            <constraint firstItem="DUT-8e-osM" firstAttribute="top" secondItem="7O8-Jz-l6u" secondAttribute="bottom" constant="8" id="tLP-dV-hb0"/>
                             <constraint firstItem="Cko-eT-wj4" firstAttribute="centerY" secondItem="B9d-LA-PyM" secondAttribute="centerY" id="tod-7W-HLk"/>
                             <constraint firstItem="B9d-LA-PyM" firstAttribute="leading" secondItem="DUT-8e-osM" secondAttribute="leading" id="yDe-W0-OCW"/>
                         </constraints>
@@ -317,7 +314,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zal-kO-xcm" customClass="ZLSwipeableView" customModule="urban_waddle" customModuleProvider="target">
-                                <rect key="frame" x="16" y="80" width="343" height="458"/>
+                                <rect key="frame" x="16" y="36" width="343" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -325,7 +322,7 @@
                                 </connections>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no more restaurants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePN-2C-7aK">
-                                <rect key="frame" x="71.5" y="330.5" width="232" height="21"/>
+                                <rect key="frame" x="71.5" y="308.5" width="232" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -541,7 +538,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="Bxe-9X-j3B">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="91C-rJ-13m"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gdQ-y5-pAX">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="gdQ-y5-pAX">
                             <connections>
                                 <segue destination="iEg-km-Yq7" kind="presentation" id="XZb-Vn-Hcu"/>
                             </connections>
@@ -950,7 +947,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Usr-3J-PPc" kind="relationship" relationship="viewControllers" id="3Jq-K8-pUy"/>
+                        <segue destination="isL-zO-Wp8" kind="relationship" relationship="viewControllers" id="8ub-Kf-a78"/>
                         <segue destination="UXZ-rZ-cru" kind="relationship" relationship="viewControllers" id="Oj4-Xd-kaV"/>
                         <segue destination="jQh-lO-v10" kind="relationship" relationship="viewControllers" id="Vs7-dg-RHA"/>
                     </connections>
@@ -958,25 +955,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMa-6f-77I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4" y="33.733133433283363"/>
-        </scene>
-        <!--Discover-->
-        <scene sceneID="S8j-41-yig">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Usr-3J-PPc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="4Ts-8u-N72"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2WE-Pq-Uo0">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="isL-zO-Wp8" kind="relationship" relationship="rootViewController" id="vXl-jk-TFE"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1i3-mm-rhC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-647" y="790"/>
         </scene>
         <!--Saved-->
         <scene sceneID="ZmS-oz-bqz">
@@ -1009,7 +987,6 @@
         <image name="yelp" width="1000" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XZb-Vn-Hcu"/>
-        <segue reference="WOX-6n-zMb"/>
+        <segue reference="sX9-Gk-CbL"/>
     </inferredMetricsTieBreakers>
 </document>
