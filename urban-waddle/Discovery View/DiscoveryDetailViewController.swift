@@ -28,6 +28,10 @@ class DiscoveryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
+        gestureRecognizer.direction = .down
+        view.addGestureRecognizer(gestureRecognizer)
+        
         // Do any additional setup after loading the view.
         if let restaurant = restaurant {
             nameLabel.text = restaurant.name
@@ -75,10 +79,7 @@ class DiscoveryDetailViewController: UIViewController {
                 }
             }
             pageView.dataSource = self
-//            let appearance = UIPageControl.appearance()
-//            appearance.currentPageIndicatorTintColor = .purple
-//            appearance.pageIndicatorTintColor = .lightGray
-//            appearance.bottomAnchor.constraint(equalTo: pageView.view.bottomAnchor).isActive = true
+            
             let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
             effectView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(effectView)

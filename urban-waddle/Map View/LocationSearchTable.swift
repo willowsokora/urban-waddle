@@ -59,7 +59,9 @@ extension LocationSearchTable {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            return tableView.dequeueReusableCell(withIdentifier: "addManuallyCell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addManuallyCell")!
+            cell.textLabel?.textColor = .lightGray
+            return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell")!
         if indexPath.row < savedResults.count {
@@ -80,11 +82,13 @@ extension LocationSearchTable {
 extension LocationSearchTable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dismiss(animated: true, completion: nil)
         if indexPath.section == 0 {
-            print("Add manually")
+            //print("Add manually")
+            tableView.deselectRow(at: indexPath, animated: false)
             return
         }
+        tableView.deselectRow(at: indexPath, animated: true)
+        dismiss(animated: true)
         if indexPath.row < savedResults.count {
             let selectedItem = savedResults[indexPath.row]
             let coordinate = CLLocationCoordinate2D(latitude: selectedItem.latitude, longitude: selectedItem.longitude)

@@ -76,9 +76,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="iEg-km-Yq7" kind="presentation" id="xeI-7c-olD"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" textLabel="qqY-d2-jkA" detailTextLabel="ejx-gt-NxX" style="IBUITableViewCellStyleSubtitle" id="ZB4-e6-yRL">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
@@ -420,7 +417,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="Bxe-9X-j3B">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="91C-rJ-13m"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gdQ-y5-pAX">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="gdQ-y5-pAX">
                             <connections>
                                 <segue destination="iEg-km-Yq7" kind="presentation" id="XZb-Vn-Hcu"/>
                             </connections>
@@ -758,7 +755,6 @@
         <image name="yelp" width="1000" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XZb-Vn-Hcu"/>
         <segue reference="sX9-Gk-CbL"/>
     </inferredMetricsTieBreakers>
 </document>
