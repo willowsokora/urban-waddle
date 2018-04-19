@@ -15,13 +15,6 @@ class LocationSearchTable : UITableViewController {
     var handleMapSearchDelegate:HandleMapSearch? = nil
     var yelpResults: [YelpRestaurant] = []
     var savedResults: [Restaurant] = []
-    var searchText = ""
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? AddRestaurantViewController {
-            destination.restaurantName = searchText
-        }
-    }
 }
 
 extension LocationSearchTable : UISearchResultsUpdating {
@@ -29,7 +22,6 @@ extension LocationSearchTable : UISearchResultsUpdating {
         guard let mapView = mapView,
             let searchBarText = searchController.searchBar.text,
             let location = mapView.userLocation.location else { return }
-        searchText = searchBarText
         savedResults = Restaurant.search(term: searchBarText)
         YelpAPI.search(near: location, term: searchBarText) { (results) in
             switch results {
@@ -46,23 +38,14 @@ extension LocationSearchTable : UISearchResultsUpdating {
 
 extension LocationSearchTable {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return section == 0 ? "Saved" : "Yelp"
-//    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : savedResults.count + yelpResults.count
+        return savedResults.count + yelpResults.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "addManuallyCell")!
-            cell.textLabel?.textColor = .lightGray
-            return cell
-        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell")!
         if indexPath.row < savedResults.count {
             let selectedItem = savedResults[indexPath.row]
@@ -82,11 +65,6 @@ extension LocationSearchTable {
 extension LocationSearchTable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            //print("Add manually")
-            tableView.deselectRow(at: indexPath, animated: false)
-            return
-        }
         tableView.deselectRow(at: indexPath, animated: true)
         dismiss(animated: true)
         if indexPath.row < savedResults.count {
