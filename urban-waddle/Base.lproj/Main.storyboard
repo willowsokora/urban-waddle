@@ -904,10 +904,10 @@
             </objects>
             <point key="canvasLocation" x="1244" y="1623.2383808095954"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Page View Controller With Overlay Indicator-->
         <scene sceneID="H81-7f-etr">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Cpy-fX-1B1" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Cpy-fX-1B1" customClass="UIPageViewControllerWithOverlayIndicator" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byq-CD-C46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2737" y="1571"/>

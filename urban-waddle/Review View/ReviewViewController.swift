@@ -104,9 +104,6 @@ class ReviewViewController: UIViewController {
                 }
             }
             pageView.dataSource = self
-            let appearance = UIPageControl.appearance()
-            appearance.currentPageIndicatorTintColor = .purple
-            appearance.pageIndicatorTintColor = .lightGray
         }
     }
     
