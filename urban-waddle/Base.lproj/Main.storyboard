@@ -289,7 +289,7 @@
             </objects>
             <point key="canvasLocation" x="-1575.2" y="1503.5982008995504"/>
         </scene>
-        <!--Discover-->
+        <!--Title-->
         <scene sceneID="psC-s4-4r6">
             <objects>
                 <viewController id="isL-zO-Wp8" customClass="DiscoveryViewController" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController">
@@ -352,13 +352,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="THb-VF-LPc"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Discover" id="dwP-yS-kjU">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="lsP-Ut-FFc">
-                            <connections>
-                                <segue destination="rT2-ls-BkK" kind="show" id="KZs-RV-5Vw"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Discover" image="discover" selectedImage="discover" id="Mdd-qn-Fkg"/>
+                    <navigationItem key="navigationItem" title="Title" id="d2S-Yk-YbY"/>
                     <connections>
                         <outlet property="dislikeButton" destination="1mG-bc-fCj" id="5DW-HO-Hkg"/>
                         <outlet property="emptyLabel" destination="ePN-2C-7aK" id="5vj-YI-aSp"/>
@@ -375,7 +370,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-647.20000000000005" y="1487.4062968515743"/>
+            <point key="canvasLocation" x="-647" y="1427"/>
         </scene>
         <!--Filters-->
         <scene sceneID="Gcu-om-z3n">
@@ -947,7 +942,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="isL-zO-Wp8" kind="relationship" relationship="viewControllers" id="8ub-Kf-a78"/>
+                        <segue destination="isL-zO-Wp8" kind="relationship" relationship="viewControllers" id="SpD-kw-9Kf"/>
                         <segue destination="UXZ-rZ-cru" kind="relationship" relationship="viewControllers" id="Oj4-Xd-kaV"/>
                         <segue destination="jQh-lO-v10" kind="relationship" relationship="viewControllers" id="Vs7-dg-RHA"/>
                     </connections>
