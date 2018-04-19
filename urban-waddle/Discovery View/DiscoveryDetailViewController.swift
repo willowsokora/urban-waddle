@@ -78,7 +78,15 @@ class DiscoveryDetailViewController: UIViewController {
             let appearance = UIPageControl.appearance()
             appearance.currentPageIndicatorTintColor = .purple
             appearance.pageIndicatorTintColor = .lightGray
+            let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+            effectView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(effectView)
+            effectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            effectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            effectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            effectView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1).isActive = true
         }
+        
     }
 
     override func didReceiveMemoryWarning() {

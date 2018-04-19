@@ -132,13 +132,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sGA-ZW-uEE">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CxQ-Hx-oz3" firstAttribute="trailing" secondItem="sGA-ZW-uEE" secondAttribute="trailing" id="9YQ-yF-R1A"/>
-                            <constraint firstItem="sGA-ZW-uEE" firstAttribute="top" secondItem="CxQ-Hx-oz3" secondAttribute="top" id="GiN-F0-yz7"/>
+                            <constraint firstItem="sGA-ZW-uEE" firstAttribute="top" secondItem="Jtl-OB-2zZ" secondAttribute="top" id="GiN-F0-yz7"/>
                             <constraint firstItem="CxQ-Hx-oz3" firstAttribute="bottom" secondItem="sGA-ZW-uEE" secondAttribute="bottom" id="Jwz-9Y-WR0"/>
                             <constraint firstItem="sGA-ZW-uEE" firstAttribute="leading" secondItem="CxQ-Hx-oz3" secondAttribute="leading" id="OZH-PW-oim"/>
                         </constraints>
@@ -264,7 +264,7 @@
                             <constraint firstItem="syt-TH-q0i" firstAttribute="width" secondItem="syt-TH-q0i" secondAttribute="height" multiplier="68:39" id="e6j-xs-5DI"/>
                             <constraint firstItem="7O8-Jz-l6u" firstAttribute="leading" secondItem="UdA-sa-cfg" secondAttribute="leading" id="iN4-Xo-yrc"/>
                             <constraint firstItem="GnA-zc-AC1" firstAttribute="centerY" secondItem="DUT-8e-osM" secondAttribute="centerY" id="kfp-ZL-DuO"/>
-                            <constraint firstItem="7O8-Jz-l6u" firstAttribute="top" secondItem="UdA-sa-cfg" secondAttribute="top" constant="-20" id="lPo-Ox-cGl"/>
+                            <constraint firstItem="7O8-Jz-l6u" firstAttribute="top" secondItem="9ov-IL-6YW" secondAttribute="top" id="lPo-Ox-cGl"/>
                             <constraint firstItem="l1f-hJ-K4k" firstAttribute="centerX" secondItem="UdA-sa-cfg" secondAttribute="centerX" id="lUl-oo-ujS"/>
                             <constraint firstItem="l1f-hJ-K4k" firstAttribute="centerY" secondItem="DcV-bX-c7u" secondAttribute="centerY" id="pno-ns-gLm"/>
                             <constraint firstItem="UdA-sa-cfg" firstAttribute="trailing" secondItem="GnA-zc-AC1" secondAttribute="trailing" constant="16" id="qWC-Y7-DE3"/>
@@ -759,6 +759,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XZb-Vn-Hcu"/>
-        <segue reference="WOX-6n-zMb"/>
+        <segue reference="sX9-Gk-CbL"/>
     </inferredMetricsTieBreakers>
 </document>
