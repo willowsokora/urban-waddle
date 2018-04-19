@@ -464,13 +464,15 @@
                             <outlet property="delegate" destination="rT2-ls-BkK" id="9vf-py-ctz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Filters" id="bki-yk-sDe"/>
+                    <navigationItem key="navigationItem" title="Filters" id="bki-yk-sDe">
+                        <barButtonItem key="backBarButtonItem" title="Saved" id="AnH-cj-JHU"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p2x-cN-7vL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-647" y="2328"/>
+            <point key="canvasLocation" x="1244" y="1701"/>
         </scene>
-        <!--Saved Restaurants-->
+        <!--Saved-->
         <scene sceneID="y7Z-Kh-gMG">
             <objects>
                 <viewController id="aZz-HC-SB1" customClass="SavedViewController" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController">
@@ -514,8 +516,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C11-1F-JWK"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Saved Restaurants" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="Bxe-9X-j3B">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="91C-rJ-13m"/>
+                    <navigationItem key="navigationItem" title="Saved" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="Bxe-9X-j3B">
+                        <barButtonItem key="backBarButtonItem" title="Saved" id="91C-rJ-13m"/>
+                        <barButtonItem key="rightBarButtonItem" title="Filter" image="filter" id="aoH-L9-rVg">
+                            <connections>
+                                <segue destination="rT2-ls-BkK" kind="show" id="xuK-hc-Man"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="savedTable" destination="ON0-qR-ARQ" id="Llx-lr-m0a"/>
@@ -732,7 +739,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4q2-Ai-HqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="2082"/>
+            <point key="canvasLocation" x="2191" y="1450"/>
         </scene>
         <!--City Table View Controller-->
         <scene sceneID="016-67-a9o">
@@ -769,7 +776,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHy-rf-CH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="2314"/>
+            <point key="canvasLocation" x="2190" y="1743"/>
         </scene>
         <!--Price Table View Controller-->
         <scene sceneID="l3j-zo-blw">
@@ -806,7 +813,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sQJ-CK-nnj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="2548"/>
+            <point key="canvasLocation" x="2191" y="2010"/>
         </scene>
         <!--Page View Controller With Overlay Indicator-->
         <scene sceneID="H81-7f-etr">
@@ -814,7 +821,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Cpy-fX-1B1" customClass="UIPageViewControllerWithOverlayIndicator" customModule="urban_waddle" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byq-CD-C46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2737" y="1571"/>
+            <point key="canvasLocation" x="3108" y="889"/>
         </scene>
         <!--Map-->
         <scene sceneID="ZaJ-45-eoU">
@@ -879,6 +886,7 @@
         <image name="close" width="48" height="48"/>
         <image name="discover" width="18" height="18"/>
         <image name="dislike" width="48" height="48"/>
+        <image name="filter" width="24" height="24"/>
         <image name="like" width="48" height="48"/>
         <image name="map" width="18" height="18"/>
         <image name="saved" width="18" height="18"/>

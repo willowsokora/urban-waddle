@@ -22,7 +22,7 @@ class FilterTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         
-        
+        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.title = "Saved"
     }
 
     override func didReceiveMemoryWarning() {
