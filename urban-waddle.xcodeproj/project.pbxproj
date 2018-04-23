@@ -28,14 +28,11 @@
 		16A59A34204F185F00931D42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16A59A32204F185F00931D42 /* LaunchScreen.storyboard */; };
 		16A59A3F204F185F00931D42 /* urban_waddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A3E204F185F00931D42 /* urban_waddleTests.swift */; };
 		16A59A4A204F185F00931D42 /* urban_waddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A59A49204F185F00931D42 /* urban_waddleUITests.swift */; };
+		16B188ED208D7C0F00D9D065 /* FilteringTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B188EC208D7C0F00D9D065 /* FilteringTableViewController.swift */; };
 		16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */; };
 		16E27E0F20891290000F9A1F /* UIPageViewControllerWithOverlayIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E27E0E20891290000F9A1F /* UIPageViewControllerWithOverlayIndicator.swift */; };
 		16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E36792206434DD009E6153 /* DiscoveryViewController.swift */; };
 		16E3679520643517009E6153 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E3679420643517009E6153 /* SavedViewController.swift */; };
-		8370E4B020890BFD009983FC /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8370E4AF20890BFD009983FC /* FilterTableViewController.swift */; };
-		8370E4B92089145A009983FC /* TagTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8370E4B82089145A009983FC /* TagTableViewController.swift */; };
-		8370E4BB208914D2009983FC /* CityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8370E4BA208914D2009983FC /* CityTableViewController.swift */; };
-		8370E4BD208914DC009983FC /* PriceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8370E4BC208914DC009983FC /* PriceTableViewController.swift */; };
 		83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,14 +81,11 @@
 		16A59A45204F185F00931D42 /* urban-waddleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "urban-waddleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A59A49204F185F00931D42 /* urban_waddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urban_waddleUITests.swift; sourceTree = "<group>"; };
 		16A59A4B204F185F00931D42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16B188EC208D7C0F00D9D065 /* FilteringTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteringTableViewController.swift; sourceTree = "<group>"; };
 		16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataClass.swift"; sourceTree = "<group>"; };
 		16E27E0E20891290000F9A1F /* UIPageViewControllerWithOverlayIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewControllerWithOverlayIndicator.swift; sourceTree = "<group>"; };
 		16E36792206434DD009E6153 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		16E3679420643517009E6153 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
-		8370E4AF20890BFD009983FC /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
-		8370E4B82089145A009983FC /* TagTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewController.swift; sourceTree = "<group>"; };
-		8370E4BA208914D2009983FC /* CityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewController.swift; sourceTree = "<group>"; };
-		8370E4BC208914DC009983FC /* PriceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTableViewController.swift; sourceTree = "<group>"; };
 		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -233,10 +227,7 @@
 		8370E4B52089130A009983FC /* Filter View */ = {
 			isa = PBXGroup;
 			children = (
-				8370E4AF20890BFD009983FC /* FilterTableViewController.swift */,
-				8370E4BA208914D2009983FC /* CityTableViewController.swift */,
-				8370E4BC208914DC009983FC /* PriceTableViewController.swift */,
-				8370E4B82089145A009983FC /* TagTableViewController.swift */,
+				16B188EC208D7C0F00D9D065 /* FilteringTableViewController.swift */,
 			);
 			path = "Filter View";
 			sourceTree = "<group>";
@@ -385,9 +376,7 @@
 			files = (
 				16A07CEA2076D59F0073D811 /* DiscoveryDetailViewController.swift in Sources */,
 				162C6B4820644FBB0067D986 /* RestaurantCell.swift in Sources */,
-				8370E4B92089145A009983FC /* TagTableViewController.swift in Sources */,
 				16E3679520643517009E6153 /* SavedViewController.swift in Sources */,
-				8370E4B020890BFD009983FC /* FilterTableViewController.swift in Sources */,
 				16A07CEC2076E2D40073D811 /* PageImageViewController.swift in Sources */,
 				1624D405206D93CC005459A3 /* ReviewViewController.swift in Sources */,
 				16D8D608206A93D7001901BA /* Restaurant+CoreDataClass.swift in Sources */,
@@ -399,13 +388,12 @@
 				169E6CF220697A0400DF07D3 /* Direction.swift in Sources */,
 				169E6CEE206979E200DF07D3 /* ViewManager.swift in Sources */,
 				162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */,
+				16B188ED208D7C0F00D9D065 /* FilteringTableViewController.swift in Sources */,
 				16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */,
 				83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */,
-				8370E4BB208914D2009983FC /* CityTableViewController.swift in Sources */,
 				16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */,
 				16345014206E8ACE00F8E4DF /* RestaurantCalloutView.swift in Sources */,
 				169E6CF820697C1800DF07D3 /* DiscoveryCardView.swift in Sources */,
-				8370E4BD208914DC009983FC /* PriceTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

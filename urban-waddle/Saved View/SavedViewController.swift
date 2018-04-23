@@ -12,6 +12,10 @@ class SavedViewController: UIViewController {
 
     @IBOutlet weak var savedTable: UITableView!
     
+    var tagFilters: [String] = []
+    var priceFilters: [String] = []
+    var cityFilters: [String] = []
+    
     var savedRestaurants = [[Restaurant]]()
     var filteredRestaurants = [[Restaurant]]()
     
@@ -38,7 +42,27 @@ class SavedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         savedRestaurants = Restaurant.getAllInterestedRestaurantsSeparated()
+        let store = UserDefaults.standard
+        tagFilters = store.stringArray(forKey: "SavedTagArray") ?? []
+        priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
+        cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
+        if tagFilters.count > 0 || priceFilters.count > 0 || cityFilters.count > 0 {
+            for i in 0..<savedRestaurants.count {
+                savedRestaurants[i] = savedRestaurants[i].filter{ restaurant in
+                    for tag in restaurant.tags?.allObjects as! [Tag] {
+                        if tagFilters.contains(tag.title!) {
+                            return true
+                        }
+                    }
+                    return cityFilters.contains(restaurant.city) || priceFilters.contains(restaurant.yelpPrice)
+                }
+            }
+        }
         savedTable.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,8 +92,8 @@ class SavedViewController: UIViewController {
                 if restaurant.name.lowercased().contains(searchText.lowercased()) {
                     return true
                 } else {
-                    for tag in restaurant.tags.components(separatedBy: ",") {
-                        if tag.lowercased().contains(searchText.lowercased()) {
+                    for tag in restaurant.tags?.allObjects as! [Tag] {
+                        if tag.title!.lowercased().contains(searchText.lowercased()) {
                             return true
                         }
                     }

@@ -33,6 +33,7 @@ public class Restaurant: NSManagedObject {
     @NSManaged public var phoneNumber: String
     @NSManaged public var address: String
     @NSManaged public var url: String
+    @NSManaged public var city: String
     
     public var rawStatus: Int16 {
         get {
@@ -48,7 +49,8 @@ public class Restaurant: NSManagedObject {
             setPrimitiveValue(newValue, forKey: "rawStatus")
         }
     }
-    @NSManaged public var tags: String
+    
+    @NSManaged public var tags: NSSet?
     
     public var statusColor: UIColor {
         return statusColors[Int(rawStatus)]
@@ -79,6 +81,8 @@ public class Restaurant: NSManagedObject {
         self.phoneNumber = yelpRestaurant.phone
         self.address = yelpRestaurant.location.address1
         self.url = yelpRestaurant.url
+        self.city = yelpRestaurant.location.city
+        self.addToTags(NSSet(array: getTags(from: yelpRestaurant.categories)))
     }
     
     @nonobjc func loadData(fromDetails yelpRestaurant: YelpRestaurantDetails, with status: Status) {
@@ -97,6 +101,8 @@ public class Restaurant: NSManagedObject {
         self.phoneNumber = yelpRestaurant.phone
         self.address = yelpRestaurant.location.address1
         self.url = yelpRestaurant.url
+        self.city = yelpRestaurant.location.city
+        self.addToTags(NSSet(array: getTags(from: yelpRestaurant.categories)))
     }
     
     @nonobjc func distance(to: CLLocation) -> Double {
@@ -104,10 +110,24 @@ public class Restaurant: NSManagedObject {
         return to.distance(from: fromLocation)
     }
     
+    @nonobjc func getTags(from categories: [YelpCategory]) -> [Tag] {
+        var tags = [Tag]()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        context.mergePolicy = NSRollbackMergePolicy
+        let entity = NSEntityDescription.entity(forEntityName: "Tag", in: context)
+        for category in categories {
+            let tag = Tag(entity: entity!, insertInto: context)
+            tag.title = category.title
+            tags.append(tag)
+        }
+        return tags
+    }
+    
     @nonobjc static func add(restaurant: YelpRestaurant, status: Restaurant.Status) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy//NSOverwriteMergePolicy
+        context.mergePolicy = NSRollbackMergePolicy
         let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
         let data = Restaurant(entity: entity!, insertInto: context)
         data.loadData(from: restaurant, with: status)
@@ -122,7 +142,7 @@ public class Restaurant: NSManagedObject {
     @nonobjc static func add(restaurant: YelpRestaurantDetails, status: Restaurant.Status) -> Restaurant {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        context.mergePolicy = NSOverwriteMergePolicy
+        context.mergePolicy = NSRollbackMergePolicy
         let entity = NSEntityDescription.entity(forEntityName: "Restaurant", in: context)
         let data = Restaurant(entity: entity!, insertInto: context)
         data.loadData(fromDetails: restaurant, with: status)
@@ -252,12 +272,12 @@ public class Restaurant: NSManagedObject {
                 if restaurant.name.contains(term) {
                     restaurants.append(restaurant)
                 } else {
-                    for category in restaurant.tags.components(separatedBy: ",") {
-                        if category.contains(term) {
-                            restaurants.append(restaurant)
-                            break
-                        }
-                    }
+//                    for category in restaurant.tags.components(separatedBy: ",") {
+//                        if category.contains(term) {
+//                            restaurants.append(restaurant)
+//                            break
+//                        }
+//                    }
                 }
             }
         } catch {
@@ -313,6 +333,23 @@ public class Restaurant: NSManagedObject {
         
         return areaCode + prefix + "-" + suffix
     }
+}
+
+// MARK: Generated accessors for tags
+extension Restaurant {
+    
+    @objc(addTagsObject:)
+    @NSManaged public func addToTags(_ value: Tag)
+    
+    @objc(removeTagsObject:)
+    @NSManaged public func removeFromTags(_ value: Tag)
+    
+    @objc(addTags:)
+    @NSManaged public func addToTags(_ values: NSSet)
+    
+    @objc(removeTags:)
+    @NSManaged public func removeFromTags(_ values: NSSet)
+    
 }
 
 extension String {
