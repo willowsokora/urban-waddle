@@ -304,6 +304,8 @@
                     <connections>
                         <outlet property="addressButton" destination="B9d-LA-PyM" id="df2-RO-4oC"/>
                         <outlet property="callButton" destination="t3C-kq-dOn" id="eek-nD-poG"/>
+                        <outlet property="dislikeButton" destination="DcV-bX-c7u" id="A9X-fC-fRK"/>
+                        <outlet property="likeButton" destination="mI8-69-IAE" id="1dx-I9-BgH"/>
                         <outlet property="nameLabel" destination="DUT-8e-osM" id="rpp-TI-rf3"/>
                         <outlet property="priceLabel" destination="GnA-zc-AC1" id="YJ0-aw-3YE"/>
                         <outlet property="ratingImage" destination="Cko-eT-wj4" id="e3k-Vk-NYK"/>
@@ -339,14 +341,6 @@
                                     <action selector="swipeRight:" destination="isL-zO-Wp8" eventType="touchUpInside" id="8nd-ci-P0F"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zal-kO-xcm" customClass="ZLSwipeableView" customModule="urban_waddle" customModuleProvider="target">
-                                <rect key="frame" x="16" y="36" width="343" height="502"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Oic-hY-lad" appends="YES" id="t1I-SJ-XFe"/>
-                                </connections>
-                            </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no more restaurants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePN-2C-7aK">
                                 <rect key="frame" x="71.5" y="308.5" width="232" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -360,6 +354,14 @@
                                     <action selector="undoSwipe:" destination="isL-zO-Wp8" eventType="touchUpInside" id="fAk-La-Aat"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zal-kO-xcm" customClass="ZLSwipeableView" customModule="urban_waddle" customModuleProvider="target">
+                                <rect key="frame" x="16" y="36" width="343" height="502"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Oic-hY-lad" appends="YES" id="t1I-SJ-XFe"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

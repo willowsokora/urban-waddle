@@ -25,8 +25,13 @@ class DiscoveryDetailViewController: UIViewController {
     var images: [UIImage] = []
     var unformattedPhoneNumber: String?
     
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var dislikeButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        likeButton.imageView?.tintColor = statusColors[0]
+        dislikeButton.imageView?.tintColor = .red
         
         let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
         gestureRecognizer.direction = .down

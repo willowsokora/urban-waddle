@@ -44,8 +44,12 @@ class DiscoveryViewController: UIViewController {
         }
     }
     @IBOutlet weak var emptyLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        likeButton.imageView?.tintColor = statusColors[0]
+        dislikeButton.imageView?.tintColor = .red
         
         // Do any additional setup after loading the view.
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

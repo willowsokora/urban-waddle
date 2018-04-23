@@ -33,7 +33,7 @@ class MapViewController: UIViewController {
 //        buttonContainer.layer.borderColor = UIColor.lightGray.cgColor
 //        buttonContainer.layer.borderWidth = 1
         buttonContainer.layer.shadowColor = UIColor.black.cgColor
-        buttonContainer.layer.shadowOffset = CGSize.zero
+        buttonContainer.layer.shadowOffset = .zero
         buttonContainer.layer.shadowRadius = 1
         buttonContainer.layer.shadowOpacity = 0.5
 
