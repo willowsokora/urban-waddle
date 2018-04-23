@@ -222,12 +222,21 @@ public class Restaurant: NSManagedObject {
             let results = try context.fetch(request)
             for restaurant in results as! [Restaurant] {
                 if restaurant.status != .uninterested {
-                    var include = true
-                    if tagFilters.count > 0 || priceFilters.count > 0 || cityFilters.count > 0 {
-                        include = priceFilters.contains(restaurant.yelpPrice) || cityFilters.contains(restaurant.city)
+                    var include = false
+                    if tagFilters.count > 0 {
                         for tag in restaurant.tags?.allObjects as! [Tag] {
-                            include = include || tagFilters.contains(tag.title!)
+                            if tagFilters.contains(tag.title!) {
+                                include = true
+                            }
                         }
+                    } else {
+                        include = true
+                    }
+                    if cityFilters.count > 0 {
+                        include = include && cityFilters.contains(restaurant.city)
+                    }
+                    if priceFilters.count > 0  {
+                        include = include && priceFilters.contains(restaurant.yelpPrice)
                     }
                     if include {
                         restaurants.append(restaurant)

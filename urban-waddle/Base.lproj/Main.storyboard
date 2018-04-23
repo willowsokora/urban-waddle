@@ -27,7 +27,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSE-mZ-Zo6">
                                         <rect key="frame" x="4" y="49" width="36" height="36"/>
-                                        <state key="normal" image="near"/>
+                                        <state key="normal" image="location"/>
                                         <connections>
                                             <action selector="centerMapOnUserButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wvz-vL-PpR"/>
                                         </connections>
@@ -35,6 +35,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBx-fG-jxy">
                                         <rect key="frame" x="4" y="4" width="36" height="36"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="KBx-fG-jxy" secondAttribute="height" multiplier="1:1" id="gK0-nd-doD"/>
+                                        </constraints>
                                         <state key="normal" image="filter"/>
                                         <connections>
                                             <segue destination="akC-sj-UO1" kind="presentation" id="OUL-yJ-BCD"/>
@@ -785,10 +788,10 @@
         <image name="close" width="48" height="48"/>
         <image name="discover" width="18" height="18"/>
         <image name="dislike" width="48" height="48"/>
-        <image name="filter" width="36" height="36"/>
+        <image name="filter" width="24" height="24"/>
         <image name="like" width="48" height="48"/>
+        <image name="location" width="36" height="36"/>
         <image name="map" width="18" height="18"/>
-        <image name="near" width="36" height="36"/>
         <image name="saved" width="18" height="18"/>
         <image name="undo" width="36" height="36"/>
         <image name="yelp" width="1000" height="640"/>
