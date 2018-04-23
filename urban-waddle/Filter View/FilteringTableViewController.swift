@@ -41,7 +41,7 @@ class FilteringTableViewController: UIViewController {
             print("Failed to load tags: \(error.localizedDescription)")
         }
         
-        let restaurants = Restaurant.getAllInterestedRestaurants()
+        let restaurants = Restaurant.getAllInterestedRestaurantsUnfiltered()
         for restaurant in restaurants {
             if !sectionContent[0].contains(restaurant.yelpPrice) {
                 sectionContent[0].append(restaurant.yelpPrice)

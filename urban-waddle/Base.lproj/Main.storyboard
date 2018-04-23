@@ -27,7 +27,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSE-mZ-Zo6">
                                         <rect key="frame" x="4" y="49" width="36" height="36"/>
-                                        <state key="normal" image="location"/>
+                                        <state key="normal" image="near"/>
                                         <connections>
                                             <action selector="centerMapOnUserButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wvz-vL-PpR"/>
                                         </connections>
@@ -787,14 +787,14 @@
         <image name="dislike" width="48" height="48"/>
         <image name="filter" width="36" height="36"/>
         <image name="like" width="48" height="48"/>
-        <image name="location" width="36" height="36"/>
         <image name="map" width="18" height="18"/>
+        <image name="near" width="36" height="36"/>
         <image name="saved" width="18" height="18"/>
         <image name="undo" width="36" height="36"/>
         <image name="yelp" width="1000" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WF9-pY-Hqd"/>
-        <segue reference="sX9-Gk-CbL"/>
+        <segue reference="OUL-yJ-BCD"/>
+        <segue reference="WOX-6n-zMb"/>
     </inferredMetricsTieBreakers>
 </document>

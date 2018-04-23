@@ -186,6 +186,26 @@ public class Restaurant: NSManagedObject {
         }
     }
     
+    @nonobjc static func getAllInterestedRestaurantsUnfiltered() -> [Restaurant] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
+        request.returnsObjectsAsFaults = false
+        var restaurants = [Restaurant]()
+        
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let results = try context.fetch(request)
+            for restaurant in results as! [Restaurant] {
+                if restaurant.status != .uninterested {
+                    restaurants.append(restaurant)
+                }
+            }
+        } catch {
+            print("Failed to load data")
+        }
+        return restaurants
+    }
+    
     @nonobjc static func getAllInterestedRestaurants() -> [Restaurant] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
         request.returnsObjectsAsFaults = false
