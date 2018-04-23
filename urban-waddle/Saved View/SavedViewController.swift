@@ -42,22 +42,7 @@ class SavedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         savedRestaurants = Restaurant.getAllInterestedRestaurantsSeparated()
-        let store = UserDefaults.standard
-        tagFilters = store.stringArray(forKey: "SavedTagArray") ?? []
-        priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
-        cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
-        if tagFilters.count > 0 || priceFilters.count > 0 || cityFilters.count > 0 {
-            for i in 0..<savedRestaurants.count {
-                savedRestaurants[i] = savedRestaurants[i].filter{ restaurant in
-                    for tag in restaurant.tags?.allObjects as! [Tag] {
-                        if tagFilters.contains(tag.title!) {
-                            return true
-                        }
-                    }
-                    return cityFilters.contains(restaurant.city) || priceFilters.contains(restaurant.yelpPrice)
-                }
-            }
-        }
+        
         savedTable.reloadData()
     }
     
@@ -135,6 +120,10 @@ extension SavedViewController: UITableViewDataSource {
         }
         cell.textLabel?.text = restaurant.name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
     }
 }
 

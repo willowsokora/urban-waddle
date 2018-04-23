@@ -17,6 +17,7 @@ protocol HandleMapSearch {
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var buttonContainer: UIView!
     
     let defaultButtonColor = UIButton(type: UIButtonType.system).titleColor(for: .normal)!
     var resultSearchController:UISearchController? = nil
@@ -27,6 +28,14 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        buttonContainer.layer.cornerRadius = 5
+//        buttonContainer.layer.borderColor = UIColor.lightGray.cgColor
+//        buttonContainer.layer.borderWidth = 1
+        buttonContainer.layer.shadowColor = UIColor.black.cgColor
+        buttonContainer.layer.shadowOffset = CGSize.zero
+        buttonContainer.layer.shadowRadius = 1
+        buttonContainer.layer.shadowOpacity = 0.5
 
         // Map Setup
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -59,18 +68,6 @@ class MapViewController: UIViewController {
         
         locationSearchTable.mapView = mapView
         locationSearchTable.handleMapSearchDelegate = self
-        
-        //Center Location on User Button
-        
-        let locationImage = UIImage(named: "location") as UIImage?
-        let tintedImage = locationImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        locationButton.frame = CGRect(origin: CGPoint(x: 320, y: 670), size: CGSize(width: 35, height: 38))
-        locationButton.setImage(tintedImage, for: .normal)
-        locationButton.tintColor = defaultButtonColor
-        locationButton.layer.cornerRadius = 10
-        locationButton.backgroundColor = .white
-        locationButton.addTarget(self, action: #selector(MapViewController.centerMapOnUserButtonClicked), for:.touchUpInside)
-        mapView.addSubview(locationButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +108,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    @objc func centerMapOnUserButtonClicked() {
+    @IBAction func centerMapOnUserButtonClicked(_ sender: UIButton) {
         switch mapView.userTrackingMode {
         case .follow :
             mapView.setUserTrackingMode(MKUserTrackingMode.none, animated: true)

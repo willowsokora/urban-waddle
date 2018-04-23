@@ -190,13 +190,28 @@ public class Restaurant: NSManagedObject {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
         request.returnsObjectsAsFaults = false
         var restaurants = [Restaurant]()
+        
+        let store = UserDefaults.standard
+        let tagFilters = store.stringArray(forKey: "SavedTagArray") ?? []
+        let priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
+        let cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
+        
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let results = try context.fetch(request)
             for restaurant in results as! [Restaurant] {
                 if restaurant.status != .uninterested {
-                    restaurants.append(restaurant)
+                    var include = true
+                    if tagFilters.count > 0 || priceFilters.count > 0 || cityFilters.count > 0 {
+                        include = priceFilters.contains(restaurant.yelpPrice) || cityFilters.contains(restaurant.city)
+                        for tag in restaurant.tags?.allObjects as! [Tag] {
+                            include = include || tagFilters.contains(tag.title!)
+                        }
+                    }
+                    if include {
+                        restaurants.append(restaurant)
+                    }
                 }
             }
         } catch {
@@ -209,13 +224,28 @@ public class Restaurant: NSManagedObject {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Restaurant")
         request.returnsObjectsAsFaults = false
         var restaurants: [[Restaurant]] = [[], [], []]
+        
+        let store = UserDefaults.standard
+        let tagFilters = store.stringArray(forKey: "SavedTagArray") ?? []
+        let priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
+        let cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
+        
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let results = try context.fetch(request)
             for restaurant in results as! [Restaurant] {
                 if restaurant.status != .uninterested {
-                    restaurants[Int(restaurant.rawStatus)].append(restaurant)
+                    var include = true
+                    if tagFilters.count > 0 || priceFilters.count > 0 || cityFilters.count > 0 {
+                        include = priceFilters.contains(restaurant.yelpPrice) || cityFilters.contains(restaurant.city)
+                        for tag in restaurant.tags?.allObjects as! [Tag] {
+                            include = include || tagFilters.contains(tag.title!)
+                        }
+                    }
+                    if include {
+                        restaurants[Int(restaurant.rawStatus)].append(restaurant)
+                    }
                 }
             }
         } catch {
