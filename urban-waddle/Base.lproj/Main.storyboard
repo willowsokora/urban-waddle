@@ -350,7 +350,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-tA-rwQ">
-                                <rect key="frame" x="169" y="554" width="36" height="36"/>
+                                <rect key="frame" x="169.5" y="554" width="36" height="36"/>
                                 <state key="normal" image="undo"/>
                                 <connections>
                                     <action selector="undoSwipe:" destination="isL-zO-Wp8" eventType="touchUpInside" id="fAk-La-Aat"/>
