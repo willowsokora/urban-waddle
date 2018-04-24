@@ -18,14 +18,18 @@ class FilteringTableViewController: UIViewController {
     let sectionTitles = ["Prices", "Cities", "Tags"]
     var sectionContent: [[String]] = [[], [], []]
     var selectedContent: [[String]] = [[], [], []]
-
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBar.delegate = self
-        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        navBar.delegate = self
+        
+        
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
         request.returnsObjectsAsFaults = false

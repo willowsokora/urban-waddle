@@ -338,6 +338,7 @@
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4g-E0-uUm">
                                 <rect key="frame" x="279" y="554" width="48" height="48"/>
                                 <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="titleShadowOffset" width="20" height="20"/>
                                 <state key="normal" image="like"/>
                                 <connections>
                                     <action selector="swipeRight:" destination="isL-zO-Wp8" eventType="touchUpInside" id="8nd-ci-P0F"/>
