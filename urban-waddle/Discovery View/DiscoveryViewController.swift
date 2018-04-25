@@ -18,23 +18,28 @@ class DiscoveryViewController: UIViewController {
     var yelpRestaurants = [YelpRestaurant]()
     
     @IBOutlet weak var swipeableView: ZLSwipeableView!
-    @IBOutlet weak var dislikeButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var undoButton: UIButton!
+//    @IBOutlet weak var dislikeButton: UIButton!
+//    @IBOutlet weak var likeButton: UIButton!
+//    @IBOutlet weak var undoButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tutorialView: UIView!
     
     var cardIndex = 0
     var topCard = 0 {
         didSet {
-            undoButton.isEnabled = topCard != 0
-            likeButton.isEnabled = topCard < yelpRestaurants.count
-            dislikeButton.isEnabled = topCard < yelpRestaurants.count
+//            undoButton.isEnabled = topCard != 0
+//            likeButton.isEnabled = topCard < yelpRestaurants.count
+//            dislikeButton.isEnabled = topCard < yelpRestaurants.count
             if topCard == yelpRestaurants.count - 2 {
                 getNextPageFromYelp()
                 emptyLabel.isHidden = true
+                swipeableView.isHidden = false
             } else if topCard >= yelpRestaurants.count {
                 emptyLabel.isHidden = false
+                swipeableView.isHidden = true
             } else {
                 emptyLabel.isHidden = true
+                swipeableView.isHidden = false
             }
         }
     }
@@ -49,19 +54,21 @@ class DiscoveryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tutorialView.isHidden = UserDefaults.standard.bool(forKey: "TutorialCompleted")
         
-        likeButton.imageView?.tintColor = statusColors[0]
-        //likeButton.clipsToBounds = true
-//        likeButton.layer.cornerRadius = 0.4 * likeButton.bounds.size.width
-//        likeButton.backgroundColor = .white
-        //likeButton.layer.borderColor = UIColor.gray.cgColor
-        //likeButton.imageView?.layer.borderColor = UIColor.gray.cgColor
-//        likeButton.layer.shadowColor = UIColor.black.cgColor
-//        likeButton.layer.shadowOffset = .zero
-//        likeButton.layer.shadowRadius = 3
-//        likeButton.layer.shadowOpacity = 1.0
-   
-        dislikeButton.imageView?.tintColor = .red
+        
+//        likeButton.imageView?.tintColor = statusColors[0]
+//        //likeButton.clipsToBounds = true
+////        likeButton.layer.cornerRadius = 0.4 * likeButton.bounds.size.width
+////        likeButton.backgroundColor = .white
+//        //likeButton.layer.borderColor = UIColor.gray.cgColor
+//        //likeButton.imageView?.layer.borderColor = UIColor.gray.cgColor
+////        likeButton.layer.shadowColor = UIColor.black.cgColor
+////        likeButton.layer.shadowOffset = .zero
+////        likeButton.layer.shadowRadius = 3
+////        likeButton.layer.shadowOpacity = 1.0
+//
+//        dislikeButton.imageView?.tintColor = .red
         
         // Do any additional setup after loading the view.
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -154,8 +161,10 @@ class DiscoveryViewController: UIViewController {
     
     func nextCardView() -> UIView? {
         if cardIndex >= yelpRestaurants.count {
+            activityIndicator.startAnimating()
             return nil
         }
+        activityIndicator.stopAnimating()
         let contentView = Bundle.main.loadNibNamed("DiscoveryCardView", owner: self, options: nil)?.first! as! DiscoveryCardView
         contentView.frame = swipeableView.bounds
         contentView.layoutIfNeeded()
@@ -193,20 +202,35 @@ class DiscoveryViewController: UIViewController {
      }
  
  
-    @IBAction func swipeRight(_ sender: UIButton) {
-        swipeableView.swipeTopView(inDirection: .Right)
+//    @IBAction func swipeRight(_ sender: UIButton) {
+//        swipeableView.swipeTopView(inDirection: .Right)
+//    }
+//
+//    @IBAction func swipeLeft(_ sender: UIButton) {
+//        swipeableView.swipeTopView(inDirection: .Left)
+//    }
+//
+//    @IBAction func undoSwipe(_ sender: UIButton) {
+//        swipeableView.rewind()
+//        topCard -= 1
+//        Restaurant.remove(restaurant: yelpRestaurants[topCard])
+//    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake && topCard != 0 {
+            swipeableView.rewind()
+            topCard -= 1
+            Restaurant.remove(restaurant: yelpRestaurants[topCard])
+            let top = swipeableView.activeViews().first as! DiscoveryCardView
+            top.interestedLabel.isHidden = true
+            top.notInterestedLabel.isHidden = true
+        }
     }
     
-    @IBAction func swipeLeft(_ sender: UIButton) {
-        swipeableView.swipeTopView(inDirection: .Left)
+    @IBAction func dismissTutorial(_ sender: UIButton) {
+        UserDefaults.standard.set(true, forKey: "TutorialCompleted")
+        tutorialView.isHidden = true
     }
-    
-    @IBAction func undoSwipe(_ sender: UIButton) {
-        swipeableView.rewind()
-        topCard -= 1
-        Restaurant.remove(restaurant: yelpRestaurants[topCard])
-    }
-    
 }
 
 extension DiscoveryViewController: CLLocationManagerDelegate {
