@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1hQ-y8-Njz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1hQ-y8-Njz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -327,70 +329,94 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mG-bc-fCj">
-                                <rect key="frame" x="48" y="554" width="48" height="48"/>
-                                <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="dislike"/>
-                                <connections>
-                                    <action selector="swipeLeft:" destination="isL-zO-Wp8" eventType="touchUpInside" id="M0h-Ws-nDl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4g-E0-uUm">
-                                <rect key="frame" x="279" y="554" width="48" height="48"/>
-                                <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="titleShadowOffset" width="20" height="20"/>
-                                <state key="normal" image="like"/>
-                                <connections>
-                                    <action selector="swipeRight:" destination="isL-zO-Wp8" eventType="touchUpInside" id="8nd-ci-P0F"/>
-                                </connections>
-                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no more restaurants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePN-2C-7aK">
                                 <rect key="frame" x="71.5" y="308.5" width="232" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-tA-rwQ">
-                                <rect key="frame" x="169.5" y="554" width="36" height="36"/>
-                                <state key="normal" image="undo"/>
-                                <connections>
-                                    <action selector="undoSwipe:" destination="isL-zO-Wp8" eventType="touchUpInside" id="fAk-La-Aat"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zal-kO-xcm" customClass="ZLSwipeableView" customModule="urban_waddle" customModuleProvider="target">
-                                <rect key="frame" x="16" y="36" width="343" height="502"/>
+                                <rect key="frame" x="16" y="36" width="343" height="566"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Oic-hY-lad" appends="YES" id="t1I-SJ-XFe"/>
                                 </connections>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0H1-nF-tP2">
+                                <rect key="frame" x="167" y="299" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="O9l-RK-vDY"/>
+                                    <constraint firstAttribute="height" constant="40" id="Q6q-oh-c3N"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwr-L2-lqD">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XT1-MF-x6T">
+                                        <rect key="frame" x="160.5" y="399" width="53" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Got it!"/>
+                                        <connections>
+                                            <action selector="dismissTutorial:" destination="isL-zO-Wp8" eventType="touchUpInside" id="Yxj-7o-W7q"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe right if you're interested" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1x-6Y-1PJ">
+                                        <rect key="frame" x="57" y="287" width="261.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left if you're not" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeP-KH-gUa">
+                                        <rect key="frame" x="91" y="311" width="192" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake to undo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIm-0x-l8b">
+                                        <rect key="frame" x="125.5" y="335" width="124.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ZeP-KH-gUa" firstAttribute="centerX" secondItem="e1x-6Y-1PJ" secondAttribute="centerX" id="7E3-H1-kBi"/>
+                                    <constraint firstItem="e1x-6Y-1PJ" firstAttribute="centerY" secondItem="iwr-L2-lqD" secondAttribute="centerY" id="A2G-59-JS5"/>
+                                    <constraint firstItem="ZeP-KH-gUa" firstAttribute="firstBaseline" secondItem="e1x-6Y-1PJ" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="KEb-rS-kVB"/>
+                                    <constraint firstItem="KIm-0x-l8b" firstAttribute="centerX" secondItem="ZeP-KH-gUa" secondAttribute="centerX" id="PtB-UE-NrI"/>
+                                    <constraint firstItem="XT1-MF-x6T" firstAttribute="centerX" secondItem="iwr-L2-lqD" secondAttribute="centerX" id="cZ2-Zq-Lii"/>
+                                    <constraint firstItem="KIm-0x-l8b" firstAttribute="firstBaseline" secondItem="ZeP-KH-gUa" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="dMM-IQ-jM1"/>
+                                    <constraint firstItem="XT1-MF-x6T" firstAttribute="top" secondItem="KIm-0x-l8b" secondAttribute="bottom" constant="40" id="iZC-Ym-YO9"/>
+                                    <constraint firstItem="e1x-6Y-1PJ" firstAttribute="centerX" secondItem="iwr-L2-lqD" secondAttribute="centerX" id="mL9-dH-9Sr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="THb-VF-LPc" firstAttribute="bottom" secondItem="Z4g-E0-uUm" secondAttribute="bottom" constant="16" id="Cqk-FL-GWy"/>
-                            <constraint firstItem="THb-VF-LPc" firstAttribute="bottom" secondItem="1mG-bc-fCj" secondAttribute="bottom" constant="16" id="E84-Lv-hxF"/>
                             <constraint firstItem="ePN-2C-7aK" firstAttribute="centerY" secondItem="THb-VF-LPc" secondAttribute="centerY" id="Jzv-Rn-wSx"/>
-                            <constraint firstItem="1mG-bc-fCj" firstAttribute="leading" secondItem="THb-VF-LPc" secondAttribute="leading" constant="48" id="LQv-f4-Eg4"/>
+                            <constraint firstItem="THb-VF-LPc" firstAttribute="trailing" secondItem="iwr-L2-lqD" secondAttribute="trailing" id="P8H-7M-jTc"/>
+                            <constraint firstItem="THb-VF-LPc" firstAttribute="bottom" secondItem="iwr-L2-lqD" secondAttribute="bottom" id="SW1-80-Cdm"/>
+                            <constraint firstItem="iwr-L2-lqD" firstAttribute="leading" secondItem="THb-VF-LPc" secondAttribute="leading" id="TbT-qv-QAf"/>
                             <constraint firstItem="ePN-2C-7aK" firstAttribute="centerX" secondItem="THb-VF-LPc" secondAttribute="centerX" id="Tmg-4S-4RO"/>
-                            <constraint firstItem="2pD-tA-rwQ" firstAttribute="top" secondItem="1mG-bc-fCj" secondAttribute="top" id="dCt-Tm-D2p"/>
-                            <constraint firstItem="2pD-tA-rwQ" firstAttribute="centerX" secondItem="THb-VF-LPc" secondAttribute="centerX" id="gFJ-t7-Gqz"/>
-                            <constraint firstItem="1mG-bc-fCj" firstAttribute="top" secondItem="zal-kO-xcm" secondAttribute="bottom" constant="16" id="kcp-EY-NWO"/>
-                            <constraint firstItem="THb-VF-LPc" firstAttribute="trailing" secondItem="Z4g-E0-uUm" secondAttribute="trailing" constant="48" id="pes-5w-lYY"/>
+                            <constraint firstItem="iwr-L2-lqD" firstAttribute="top" secondItem="THb-VF-LPc" secondAttribute="top" id="Uip-KD-aAg"/>
+                            <constraint firstItem="0H1-nF-tP2" firstAttribute="centerX" secondItem="THb-VF-LPc" secondAttribute="centerX" id="dc1-eM-z1P"/>
+                            <constraint firstItem="THb-VF-LPc" firstAttribute="bottom" secondItem="zal-kO-xcm" secondAttribute="bottom" constant="16" id="fJY-Mq-Fa6"/>
                             <constraint firstItem="zal-kO-xcm" firstAttribute="leading" secondItem="THb-VF-LPc" secondAttribute="leading" constant="16" id="tg9-Pr-ihd"/>
                             <constraint firstItem="THb-VF-LPc" firstAttribute="trailing" secondItem="zal-kO-xcm" secondAttribute="trailing" constant="16" id="x5K-vW-qh5"/>
                             <constraint firstItem="zal-kO-xcm" firstAttribute="top" secondItem="THb-VF-LPc" secondAttribute="top" constant="16" id="xCd-Zr-Gjb"/>
+                            <constraint firstItem="0H1-nF-tP2" firstAttribute="centerY" secondItem="THb-VF-LPc" secondAttribute="centerY" id="yiP-Me-K1b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="THb-VF-LPc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Discover" image="discover" selectedImage="discover" id="Mdd-qn-Fkg"/>
                     <navigationItem key="navigationItem" title="Title" id="d2S-Yk-YbY"/>
                     <connections>
-                        <outlet property="dislikeButton" destination="1mG-bc-fCj" id="5DW-HO-Hkg"/>
+                        <outlet property="activityIndicator" destination="0H1-nF-tP2" id="knd-MA-0Kp"/>
                         <outlet property="emptyLabel" destination="ePN-2C-7aK" id="5vj-YI-aSp"/>
-                        <outlet property="likeButton" destination="Z4g-E0-uUm" id="KEC-Pj-6vP"/>
                         <outlet property="swipeableView" destination="zal-kO-xcm" id="rxQ-cJ-lGp"/>
-                        <outlet property="undoButton" destination="2pD-tA-rwQ" id="JCT-oZ-4yj"/>
+                        <outlet property="tutorialView" destination="iwr-L2-lqD" id="ZPH-Ng-xdp"/>
                         <segue destination="MKR-nv-BgA" kind="showDetail" identifier="showDiscoveryDetail" id="puU-v9-8bf"/>
                     </connections>
                 </viewController>
@@ -794,7 +820,6 @@
         <image name="location" width="36" height="36"/>
         <image name="map" width="18" height="18"/>
         <image name="saved" width="18" height="18"/>
-        <image name="undo" width="36" height="36"/>
         <image name="yelp" width="1000" height="640"/>
     </resources>
     <inferredMetricsTieBreakers>
