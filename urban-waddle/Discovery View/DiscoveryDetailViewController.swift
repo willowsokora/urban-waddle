@@ -32,6 +32,8 @@ class DiscoveryDetailViewController: UIViewController {
         
         likeButton.imageView?.tintColor = statusColors[0]
         dislikeButton.imageView?.tintColor = .red
+        addressButton.contentHorizontalAlignment = .left
+        addressButton.titleLabel?.textAlignment = .left
         
         let gestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(dismissView))
         gestureRecognizer.direction = .down
