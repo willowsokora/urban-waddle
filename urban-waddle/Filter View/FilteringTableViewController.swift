@@ -20,11 +20,24 @@ class FilteringTableViewController: UIViewController {
     var selectedContent: [[String]] = [[], [], []]
     let searchController = UISearchController(searchResultsController: nil)
     
+    var priceBackgroundView = UIView()
+    var cityBackgroundView = UIView()
+    var tagBackgroundView = UIView()
+    var priceLabel = UILabel()
+    var cityLabel = UILabel()
+    var tagLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        priceLabel.text = "No Price Filters Yet, Get Waddling!"
+        cityLabel.text = "No City Filters Yet, Get Waddling!"
+        tagLabel.text = "No Tag Filters Yet, Get Waddling!"
+        
+        tagBackgroundView.addSubview(tagLabel)
+        tableView.backgroundView = tagBackgroundView
         
         
         navBar.delegate = self
@@ -96,13 +109,25 @@ class FilteringTableViewController: UIViewController {
 
 extension FilteringTableViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.backgroundView = nil
+        //tableView.backgroundView = nil
+        
+        if sectionContent[2].count == 0 {
+            let noTagLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noTagLabel.text = "You don't have any tags yet, get Waddling!"
+            noTagLabel.textColor = UIColor.lightGray
+            noTagLabel.numberOfLines = 0
+            noTagLabel.textAlignment = .center
+            tableView.backgroundView = noTagLabel
+            tableView.separatorStyle = .none
+        }
         return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sectionContent[section].count
     }
+    
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
