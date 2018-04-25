@@ -83,6 +83,7 @@ class ReviewViewController: UIViewController {
             } else {
                 siteButton.isEnabled = false
             }
+            addressButton.titleLabel?.textAlignment = .left
             
             //Page View Setup
             let pageView = self.childViewControllers[0] as! UIPageViewController
