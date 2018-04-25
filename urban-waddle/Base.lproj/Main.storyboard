@@ -553,7 +553,7 @@
                                                 </segments>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifw-CQ-bZk">
-                                                <rect key="frame" x="8" y="449" width="252" height="33"/>
+                                                <rect key="frame" x="8" y="449" width="51" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33" id="xQK-Zo-j11"/>
                                                 </constraints>
@@ -592,7 +592,7 @@
                                             <constraint firstItem="KtA-56-DJA" firstAttribute="top" secondItem="Win-32-N1e" secondAttribute="bottom" constant="8" id="BQ9-HJ-9o7"/>
                                             <constraint firstItem="Win-32-N1e" firstAttribute="top" secondItem="aaa-F9-3oh" secondAttribute="bottom" id="DJf-cV-9my"/>
                                             <constraint firstItem="TFa-3X-7UO" firstAttribute="top" secondItem="Ifw-CQ-bZk" secondAttribute="bottom" constant="4" id="Ecn-VU-RJL"/>
-                                            <constraint firstItem="Fi0-if-tah" firstAttribute="leading" secondItem="Ifw-CQ-bZk" secondAttribute="trailing" constant="15" id="GJ6-Vm-Egr"/>
+                                            <constraint firstItem="Fi0-if-tah" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ifw-CQ-bZk" secondAttribute="trailing" constant="15" id="GJ6-Vm-Egr"/>
                                             <constraint firstItem="Fi0-if-tah" firstAttribute="trailing" secondItem="WDE-1Y-MgN" secondAttribute="trailing" id="JrK-Li-gJa"/>
                                             <constraint firstItem="Ifw-CQ-bZk" firstAttribute="top" secondItem="KtA-56-DJA" secondAttribute="bottom" constant="4" id="KR4-kk-7up"/>
                                             <constraint firstItem="KtA-56-DJA" firstAttribute="leading" secondItem="UNH-PL-9H1" secondAttribute="leading" constant="8" id="KoA-BC-ENg"/>
