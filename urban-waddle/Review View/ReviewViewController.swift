@@ -83,6 +83,7 @@ class ReviewViewController: UIViewController {
             } else {
                 siteButton.isEnabled = false
             }
+            addressButton.contentHorizontalAlignment = .left
             addressButton.titleLabel?.textAlignment = .left
             
             //Page View Setup
