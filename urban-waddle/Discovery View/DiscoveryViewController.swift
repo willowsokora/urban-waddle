@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import StoreKit
 
-class DiscoveryViewController: UIViewController {
+class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -57,6 +57,9 @@ class DiscoveryViewController: UIViewController {
         
         
         tutorialView.isHidden = UserDefaults.standard.bool(forKey: "TutorialCompleted")
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleReloadTap))
+        activityIndicator.addGestureRecognizer(tap)
         
 //        likeButton.imageView?.tintColor = statusColors[0]
 //        //likeButton.clipsToBounds = true
@@ -200,6 +203,10 @@ class DiscoveryViewController: UIViewController {
             }
         }
     }
+    @objc func handleReloadTap() {
+        getNextPageFromYelp()
+        reloadRestaurants()
+    }
     
      // MARK: - Navigation
      
@@ -271,3 +278,4 @@ extension UIColor {
         )
     }
 }
+

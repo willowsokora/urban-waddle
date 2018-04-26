@@ -26,8 +26,8 @@ class DiscoveryCardView: UIView {
         gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.3).cgColor]
         previewImage.layer.addSublayer(gradient)
         if let restaurant = restaurant {
-            let imageUrl = URL(string: restaurant.imageUrl)
-            if let data = try? Data(contentsOf: imageUrl!) {
+            guard let imageUrl = URL(string: restaurant.imageUrl) else {return}
+            if let data = try? Data(contentsOf: imageUrl) {
                 previewImage.image = UIImage(data: data)
             }
             nameLabel.text = restaurant.name
