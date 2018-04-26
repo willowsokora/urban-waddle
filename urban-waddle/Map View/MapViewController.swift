@@ -182,7 +182,7 @@ extension MapViewController : MKMapViewDelegate {
                     mapView.view(for: annotation)?.isEnabled = true
                 }else {
                     if let notSelfAnnotation = annotationDeselect as? RestaurantAnnotation {
-                        mapView.view(for: annotationDeselect)?.isHidden = true
+                        mapView.view(for: notSelfAnnotation)?.isHidden = true
                     }
                 }
             }
