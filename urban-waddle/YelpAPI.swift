@@ -41,7 +41,12 @@ struct YelpAPI {
         let latitudeItem = URLQueryItem(name: "latitude", value: "\(location.coordinate.latitude)")
         let categoriesItem = URLQueryItem(name: "categories", value: "restaurants")
         let offsetItem = URLQueryItem(name: "offset", value: "\(page * 50 + 1)")
-        let radiusItem = URLQueryItem(name: "radius", value: "\(40000)")
+        var radius = UserDefaults.standard.float(forKey: "MaxDistance")
+        if radius == 0 {
+            radius = 25
+        }
+        radius = radius * 1609.344
+        let radiusItem = URLQueryItem(name: "radius", value: "\(Int(min(radius, 40000)))")
         let limitItem = URLQueryItem(name: "limit", value: "\(50)")
         urlComponents.queryItems = [longitudeItem, latitudeItem, categoriesItem, offsetItem, radiusItem, limitItem]
         guard let url = urlComponents.url else {

@@ -86,7 +86,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        //reloadRestaurants()
+        reloadRestaurants()
     }
 
     func reloadRestaurants() {
@@ -189,7 +189,9 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
+    
     @objc func handleReloadTap() {
+        reloadRestaurants()
         //TODO: reload the cards. Jacob do this IDK how also please in viewWillAppear maybe
     }
     

@@ -15,7 +15,7 @@ class FilteringTableViewController: UIViewController {
     
     let store = UserDefaults.standard
     
-    let sectionTitles = ["Prices", "Cities", "Tags"]
+    let sectionTitles = ["Distance", "Prices", "Cities", "Tags"]
     var sectionContent: [[String]] = [[], [], []]
     var selectedContent: [[String]] = [[], [], []]
     let searchController = UISearchController(searchResultsController: nil)
@@ -26,6 +26,8 @@ class FilteringTableViewController: UIViewController {
     var priceLabel = UILabel()
     var cityLabel = UILabel()
     var tagLabel = UILabel()
+    
+    var maxDistance: Float = 40000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +41,8 @@ class FilteringTableViewController: UIViewController {
         tagBackgroundView.addSubview(tagLabel)
         tableView.backgroundView = tagBackgroundView
         
-        
         navBar.delegate = self
-        
-        
-        
+
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
         request.returnsObjectsAsFaults = false
         request.returnsDistinctResults = true
@@ -96,6 +95,7 @@ class FilteringTableViewController: UIViewController {
         store.set(selectedContent[0], forKey: "SavedPricesArray")
         store.set(selectedContent[1], forKey: "SavedCitiesArray")
         store.set(selectedContent[2], forKey: "SavedTagArray")
+        store.set(maxDistance, forKey: "MaxDistance")
         dismiss(animated: true)
     }
     
@@ -120,22 +120,35 @@ extension FilteringTableViewController: UITableViewDataSource {
             tableView.backgroundView = noTagLabel
             tableView.separatorStyle = .none
         }
-        return 3
+        return sectionTitles.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sectionContent[section].count
+        if section == 0 {
+            return 1
+        }
+        return sectionContent[section - 1].count
     }
     
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "filterRow", for: indexPath)
-        let title = sectionContent[indexPath.section][indexPath.row]
-        cell.textLabel?.text = title
-        cell.accessoryType = selectedContent[indexPath.section].contains(title) ? .checkmark : .none
-        return cell
+       if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sliderRow", for: indexPath) as! SliderTableViewCell
+            var distance = UserDefaults.standard.float(forKey: "MaxDistance")
+            if distance == 0 {
+                distance = 25
+            }
+            cell.slider.value = distance
+            cell.sliderChanged(cell.slider)
+            cell.delegate = self
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "filterRow", for: indexPath)
+            let title = sectionContent[indexPath.section - 1][indexPath.row]
+            cell.textLabel?.text = title
+            cell.accessoryType = selectedContent[indexPath.section - 1].contains(title) ? .checkmark : .none
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -146,10 +159,13 @@ extension FilteringTableViewController: UITableViewDataSource {
 extension FilteringTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if selectedContent[indexPath.section].contains(sectionContent[indexPath.section][indexPath.row]) {
-            selectedContent[indexPath.section] = selectedContent[indexPath.section].filter{$0 != sectionContent[indexPath.section][indexPath.row]}
+        if indexPath.section  == 0 {
+            return
+        }
+        if selectedContent[indexPath.section - 1].contains(sectionContent[indexPath.section - 1][indexPath.row]) {
+            selectedContent[indexPath.section - 1] = selectedContent[indexPath.section - 1].filter{$0 != sectionContent[indexPath.section - 1][indexPath.row]}
         } else {
-            selectedContent[indexPath.section].append(sectionContent[indexPath.section][indexPath.row])
+            selectedContent[indexPath.section - 1].append(sectionContent[indexPath.section - 1][indexPath.row])
         }
         tableView.reloadData()
     }
@@ -158,5 +174,11 @@ extension FilteringTableViewController: UITableViewDelegate {
 extension FilteringTableViewController: UINavigationBarDelegate {
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
+    }
+}
+
+extension FilteringTableViewController: DistanceSliderDelegate {
+    func sliderUpdated(distance: Float) {
+        maxDistance = distance
     }
 }

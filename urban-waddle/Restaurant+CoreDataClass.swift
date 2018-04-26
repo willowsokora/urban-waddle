@@ -216,6 +216,8 @@ public class Restaurant: NSManagedObject {
         let priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
         let cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
         
+        let radius = UserDefaults.standard.float(forKey: "MaxDistance")
+        
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -237,6 +239,11 @@ public class Restaurant: NSManagedObject {
                     }
                     if priceFilters.count > 0  {
                         include = include && priceFilters.contains(restaurant.yelpPrice)
+                    }
+                    if let location = YelpAPI.currentLocation, radius > 0 {
+                        if restaurant.distance(to: location) > Double(radius * 1609.344) {
+                            include = false
+                        }
                     }
                     if include {
                         restaurants.append(restaurant)
@@ -259,6 +266,8 @@ public class Restaurant: NSManagedObject {
         let priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
         let cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
         
+        let radius = UserDefaults.standard.float(forKey: "MaxDistance")
+        
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -280,6 +289,11 @@ public class Restaurant: NSManagedObject {
                     }
                     if priceFilters.count > 0  {
                         include = include && priceFilters.contains(restaurant.yelpPrice)
+                    }
+                    if let location = YelpAPI.currentLocation, radius > 0 {
+                        if restaurant.distance(to: location) > Double(radius * 1609.344) {
+                            include = false
+                        }
                     }
                     if include {
                         restaurants[Int(restaurant.rawStatus)].append(restaurant)
@@ -337,15 +351,8 @@ public class Restaurant: NSManagedObject {
             let context = appDelegate.persistentContainer.viewContext
             let results = try context.fetch(request)
             for restaurant in results as! [Restaurant] {
-                if restaurant.name.contains(term) {
+                if restaurant.name.lowercased().contains(term.lowercased()) {
                     restaurants.append(restaurant)
-                } else {
-//                    for category in restaurant.tags.components(separatedBy: ",") {
-//                        if category.contains(term) {
-//                            restaurants.append(restaurant)
-//                            break
-//                        }
-//                    }
                 }
             }
         } catch {
