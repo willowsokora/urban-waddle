@@ -105,7 +105,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        reloadRestaurants()
+        //reloadRestaurants()
     }
 
     func reloadRestaurants() {
@@ -117,7 +117,6 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                 YelpAPI.getRestaurants(near: currentLocation) { (results) in
                     switch results {
                     case .success(let searchResults):
-                        self.activityIndicator.stopAnimating()
                         let savedIds = Restaurant.getAllSavedIds()
                         var newRestaurantsFound = false
                         for restaurant in searchResults.businesses {
@@ -133,6 +132,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                         DispatchQueue.global().async {
                             DispatchQueue.main.sync {
                                 print("Retrieved data from yelp, reloading table")
+                                self.activityIndicator.stopAnimating()
                                 self.swipeableView.loadViews()
                                 self.topCard = 0
                             }
@@ -143,6 +143,8 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                     }
                 }
             }
+        }else {
+            self.activityIndicator.startAnimating()
         }
     }
     
@@ -152,7 +154,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                 YelpAPI.getRestaurants(near: currentLocation) { (results) in
                     switch results {
                     case .success(let searchResults):
-                        self.activityIndicator.stopAnimating()
+                        
                         let savedIds = Restaurant.getAllSavedIds()
                         for restaurant in searchResults.businesses {
                             if !savedIds.contains(restaurant.id) {
@@ -162,6 +164,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                         DispatchQueue.global().async {
                             DispatchQueue.main.sync {
                                 print("Retrieved data from yelp, reloading table")
+                                self.activityIndicator.stopAnimating()
                                 self.swipeableView.loadViews()
                             }
                         }
@@ -171,6 +174,8 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                     }
                 }
             }
+        }else {
+            self.activityIndicator.startAnimating()
         }
     }
     
@@ -204,8 +209,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     @objc func handleReloadTap() {
-        getNextPageFromYelp()
-        reloadRestaurants()
+        //TODO: reload the cards. Jacob do this IDK how also please in viewWillAppear maybe
     }
     
      // MARK: - Navigation
