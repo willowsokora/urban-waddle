@@ -176,7 +176,22 @@ extension MapViewController : MKMapViewDelegate {
     
     //Handle Selection of Pin
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        
+        for annotationDeselect in mapView.annotations {
+            if let annotation = view.annotation {
+                if annotationDeselect.isEqual(annotation){
+                    mapView.view(for: annotation)?.isEnabled = true
+                }else {
+                    if let notSelfAnnotation = annotationDeselect as? RestaurantAnnotation {
+                        mapView.view(for: notSelfAnnotation)?.isHidden = true
+                    }
+                }
+            }
+        }
+        
         if let annotation = view.annotation as? RestaurantAnnotation {
+           
             selectedRestaurant = annotation.restaurant
             mapView.setCenter(CLLocationCoordinate2D(latitude: (selectedRestaurant?.latitude)!, longitude: (selectedRestaurant?.longitude)!), animated: true)
 
@@ -187,12 +202,23 @@ extension MapViewController : MKMapViewDelegate {
                 mapView.setRegion(region, animated: true)
             }
             
+            
+            
         }
     }
     
     //Handle Deselection of Pin
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         selectedRestaurant = nil
+        for annotationSelect in mapView.annotations {
+            if let annotation = view.annotation {
+                mapView.view(for: annotationSelect)?.isEnabled = true
+                mapView.view(for: annotationSelect)?.isHidden = false
+                mapView.view(for: annotation)?.isEnabled = true
+                mapView.view(for: annotation)?.isHidden = false
+            }
+            
+        }
     }
     
     //Creation of Restaurant Callout View

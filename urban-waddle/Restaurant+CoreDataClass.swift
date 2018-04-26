@@ -369,11 +369,11 @@ public class Restaurant: NSManagedObject {
         var sourceIndex = 0
         
         // Leading 1
-//        var leadingOne = ""
-//        if hasLeadingOne {
-//            leadingOne = "1 "
-//            sourceIndex += 1
-//        }
+        var leadingOne = ""
+        if hasLeadingOne {
+            leadingOne = "1 "
+            sourceIndex += 1
+        }
         
         // Area code
         var areaCode = ""
