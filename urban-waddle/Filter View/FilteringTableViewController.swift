@@ -111,9 +111,9 @@ extension FilteringTableViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         //tableView.backgroundView = nil
         
-        if sectionContent[2].count == 0 {
+        if sectionContent[0].count == 0 && sectionContent[1].count == 0 && sectionContent[2].count == 0{
             let noTagLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-            noTagLabel.text = "You don't have any tags yet, get Waddling!"
+            noTagLabel.text = "You don't have any Filters yet, get Waddling!"
             noTagLabel.textColor = UIColor.lightGray
             noTagLabel.numberOfLines = 0
             noTagLabel.textAlignment = .center
