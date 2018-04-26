@@ -399,7 +399,7 @@ public class Restaurant: NSManagedObject {
             return nil
         }
         
-        return areaCode + prefix + "-" + suffix
+        return leadingOne + areaCode + prefix + "-" + suffix
     }
 }
 
