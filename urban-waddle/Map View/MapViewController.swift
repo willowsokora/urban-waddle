@@ -161,7 +161,9 @@ extension MapViewController: HandleMapSearch {
                     let data = Restaurant.add(restaurant: details, status: .interested)
                     let annotation = RestaurantAnnotation(restaurant: data)
                     self.mapView.addAnnotation(annotation)
-                    self.mapView.selectAnnotation(annotation, animated: true)
+                    self.selectedRestaurant = data
+                    self.performSegue(withIdentifier: "reviewFromMapSegue", sender: self)
+//                    self.mapView.selectAnnotation(annotation, animated: true)
                 case .failure(let error):
                     print("error: \(error.localizedDescription)")
                 }
