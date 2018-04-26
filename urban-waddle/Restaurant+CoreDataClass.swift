@@ -74,7 +74,7 @@ public class Restaurant: NSManagedObject {
         self.name = yelpRestaurant.name
         self.note = note
         self.yelpId = yelpRestaurant.id
-        self.yelpPrice = yelpRestaurant.price ?? ""
+        self.yelpPrice = yelpRestaurant.price ?? "$"
         self.yelpRating = yelpRestaurant.rating
         self.latitude = yelpRestaurant.coordinates.latitude
         self.longitude = yelpRestaurant.coordinates.longitude
@@ -94,7 +94,7 @@ public class Restaurant: NSManagedObject {
         self.name = yelpRestaurant.name
         self.note = note
         self.yelpId = yelpRestaurant.id
-        self.yelpPrice = yelpRestaurant.price
+        self.yelpPrice = yelpRestaurant.price ?? "$"
         self.yelpRating = yelpRestaurant.rating
         self.latitude = yelpRestaurant.coordinates.latitude
         self.longitude = yelpRestaurant.coordinates.longitude

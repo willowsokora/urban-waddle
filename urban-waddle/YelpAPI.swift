@@ -78,17 +78,6 @@ struct YelpAPI {
     }
     
     static func search(near location: CLLocation, term: String, completion: ((Result<YelpSearch>) -> Void)?) {
-//        if let current = currentLocation {
-//            if current.distance(from: location) > 2000 {
-//                currentLocation = location
-//                page = 0
-//            } else {
-//                page += 1
-//            }
-//        } else {
-//            currentLocation = location
-//            page = 0
-//        }
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.yelp.com"
@@ -181,7 +170,7 @@ struct YelpRestaurantDetails: Codable {
     let isClaimed: Bool
     let isClosed: Bool
     let url: String
-    let price: String
+    let price: String?
     let rating: Double
     let reviewCount: Int
     let phone: String
