@@ -33,6 +33,7 @@
 		16E27E0F20891290000F9A1F /* UIPageViewControllerWithOverlayIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E27E0E20891290000F9A1F /* UIPageViewControllerWithOverlayIndicator.swift */; };
 		16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E36792206434DD009E6153 /* DiscoveryViewController.swift */; };
 		16E3679520643517009E6153 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E3679420643517009E6153 /* SavedViewController.swift */; };
+		839AE946209268F9002D7FF1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839AE945209268F9002D7FF1 /* Reachability.swift */; };
 		83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		16E27E0E20891290000F9A1F /* UIPageViewControllerWithOverlayIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageViewControllerWithOverlayIndicator.swift; sourceTree = "<group>"; };
 		16E36792206434DD009E6153 /* DiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewController.swift; sourceTree = "<group>"; };
 		16E3679420643517009E6153 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
+		839AE945209268F9002D7FF1 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		83C80F30205AEAD7008BFABC /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 				8370E4A22086A9B3009983FC /* Map View */,
 				83B5AE59206EE6A2009D1789 /* Other View Controllers */,
 				162C6B4C2064AC450067D986 /* YelpAPI.swift */,
+				839AE945209268F9002D7FF1 /* Reachability.swift */,
 				16D8D606206A93D7001901BA /* Restaurant+CoreDataClass.swift */,
 				16A59A26204F185E00931D42 /* AppDelegate.swift */,
 				16A59A30204F185F00931D42 /* Assets.xcassets */,
@@ -391,6 +394,7 @@
 				169E6CF220697A0400DF07D3 /* Direction.swift in Sources */,
 				169E6CEE206979E200DF07D3 /* ViewManager.swift in Sources */,
 				162B1AAE2050AF9700779003 /* MapViewController.swift in Sources */,
+				839AE946209268F9002D7FF1 /* Reachability.swift in Sources */,
 				16B188ED208D7C0F00D9D065 /* FilteringTableViewController.swift in Sources */,
 				16A59A27204F185E00931D42 /* AppDelegate.swift in Sources */,
 				83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */,

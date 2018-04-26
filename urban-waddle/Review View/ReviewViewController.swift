@@ -88,21 +88,23 @@ class ReviewViewController: UIViewController {
             
             //Page View Setup
             let pageView = self.childViewControllers[0] as! UIPageViewController
-            YelpAPI.getDetails(for: restaurant.yelpId) { (results) in
-                switch results {
-                case .success(let details):
-                    for imageUrl in details.photos.dropFirst() {
-                        if let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                            self.images.append(image)
+            if Reachability.isConnectedToNetwork() {
+                YelpAPI.getDetails(for: restaurant.yelpId) { (results) in
+                    switch results {
+                    case .success(let details):
+                        for imageUrl in details.photos.dropFirst() {
+                            if let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                                self.images.append(image)
+                            }
                         }
+                        if self.images.count > 0 {
+                            let firstController = self.getPageController(for: 0)!
+                            let startingViewControllers = [firstController]
+                            pageView.setViewControllers(startingViewControllers, direction: .forward, animated: false, completion: nil)
+                        }
+                    case .failure(let error):
+                        fatalError("error: \(error.localizedDescription)")
                     }
-                    if self.images.count > 0 {
-                        let firstController = self.getPageController(for: 0)!
-                        let startingViewControllers = [firstController]
-                        pageView.setViewControllers(startingViewControllers, direction: .forward, animated: false, completion: nil)
-                    }
-                case .failure(let error):
-                    fatalError("error: \(error.localizedDescription)")
                 }
             }
             pageView.dataSource = self

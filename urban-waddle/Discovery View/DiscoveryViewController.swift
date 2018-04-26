@@ -23,6 +23,7 @@ class DiscoveryViewController: UIViewController {
 //    @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tutorialView: UIView!
+    @IBOutlet var detailGestureRecognizer: UITapGestureRecognizer!
     
     var cardIndex = 0
     var topCard = 0 {
@@ -54,8 +55,8 @@ class DiscoveryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tutorialView.isHidden = UserDefaults.standard.bool(forKey: "TutorialCompleted")
         
+        tutorialView.isHidden = UserDefaults.standard.bool(forKey: "TutorialCompleted")
         
 //        likeButton.imageView?.tintColor = statusColors[0]
 //        //likeButton.clipsToBounds = true
@@ -100,60 +101,71 @@ class DiscoveryViewController: UIViewController {
             card.notInterestedLabel.isHidden = true
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        reloadRestaurants()
+    }
 
     func reloadRestaurants() {
-        cardIndex = 0
-        emptyLabel.isHidden = true
-        yelpRestaurants.removeAll()
-        if let currentLocation = currentLocation {
-            YelpAPI.getRestaurants(near: currentLocation) { (results) in
-                switch results {
-                case .success(let searchResults):
-                    let savedIds = Restaurant.getAllSavedIds()
-                    var newRestaurantsFound = false
-                    for restaurant in searchResults.businesses {
-                        if !savedIds.contains(restaurant.id) {
-                            self.yelpRestaurants.append(restaurant)
-                            newRestaurantsFound = true
+        if Reachability.isConnectedToNetwork() {
+            cardIndex = 0
+            emptyLabel.isHidden = true
+            yelpRestaurants.removeAll()
+            if let currentLocation = currentLocation {
+                YelpAPI.getRestaurants(near: currentLocation) { (results) in
+                    switch results {
+                    case .success(let searchResults):
+                        self.activityIndicator.stopAnimating()
+                        let savedIds = Restaurant.getAllSavedIds()
+                        var newRestaurantsFound = false
+                        for restaurant in searchResults.businesses {
+                            if !savedIds.contains(restaurant.id) {
+                                self.yelpRestaurants.append(restaurant)
+                                newRestaurantsFound = true
+                            }
                         }
-                    }
-                    if !newRestaurantsFound {
-                        self.topCard = self.yelpRestaurants.count
-                        return
-                    }
-                    DispatchQueue.global().async {
-                        DispatchQueue.main.sync {
-                            print("Retrieved data from yelp, reloading table")
-                            self.swipeableView.loadViews()
-                            self.topCard = 0
+                        if !newRestaurantsFound {
+                            self.topCard = self.yelpRestaurants.count
+                            return
                         }
+                        DispatchQueue.global().async {
+                            DispatchQueue.main.sync {
+                                print("Retrieved data from yelp, reloading table")
+                                self.swipeableView.loadViews()
+                                self.topCard = 0
+                            }
+                        }
+                    case .failure(let error):
+                        fatalError("error: \(error.localizedDescription)")
+                        self.activityIndicator.startAnimating()
                     }
-                case .failure(let error):
-                    fatalError("error: \(error.localizedDescription)")
                 }
             }
         }
     }
     
     func getNextPageFromYelp() {
-        if let currentLocation = currentLocation {
-            YelpAPI.getRestaurants(near: currentLocation) { (results) in
-                switch results {
-                case .success(let searchResults):
-                    let savedIds = Restaurant.getAllSavedIds()
-                    for restaurant in searchResults.businesses {
-                        if !savedIds.contains(restaurant.id) {
-                            self.yelpRestaurants.append(restaurant)
+        if Reachability.isConnectedToNetwork() {
+            if let currentLocation = currentLocation {
+                YelpAPI.getRestaurants(near: currentLocation) { (results) in
+                    switch results {
+                    case .success(let searchResults):
+                        self.activityIndicator.stopAnimating()
+                        let savedIds = Restaurant.getAllSavedIds()
+                        for restaurant in searchResults.businesses {
+                            if !savedIds.contains(restaurant.id) {
+                                self.yelpRestaurants.append(restaurant)
+                            }
                         }
-                    }
-                    DispatchQueue.global().async {
-                        DispatchQueue.main.sync {
-                            print("Retrieved data from yelp, reloading table")
-                            self.swipeableView.loadViews()
+                        DispatchQueue.global().async {
+                            DispatchQueue.main.sync {
+                                print("Retrieved data from yelp, reloading table")
+                                self.swipeableView.loadViews()
+                            }
                         }
+                    case .failure(let error):
+                        fatalError("error: \(error.localizedDescription)")
+                        self.activityIndicator.startAnimating()
                     }
-                case .failure(let error):
-                    fatalError("error: \(error.localizedDescription)")
                 }
             }
         }

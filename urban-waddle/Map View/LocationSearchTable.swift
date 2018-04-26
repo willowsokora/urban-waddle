@@ -19,17 +19,19 @@ class LocationSearchTable : UITableViewController {
 
 extension LocationSearchTable : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let mapView = mapView,
-            let searchBarText = searchController.searchBar.text,
-            let location = mapView.userLocation.location else { return }
-        savedResults = Restaurant.search(term: searchBarText)
-        YelpAPI.search(near: location, term: searchBarText) { (results) in
-            switch results {
-            case .success(let result):
-                self.yelpResults = result.businesses
-                self.tableView.reloadData()
-            case .failure(let error):
-                fatalError("error: \(error.localizedDescription)")
+        if Reachability.isConnectedToNetwork() {
+            guard let mapView = mapView,
+                let searchBarText = searchController.searchBar.text,
+                let location = mapView.userLocation.location else { return }
+            savedResults = Restaurant.search(term: searchBarText)
+            YelpAPI.search(near: location, term: searchBarText) { (results) in
+                switch results {
+                case .success(let result):
+                    self.yelpResults = result.businesses
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    fatalError("error: \(error.localizedDescription)")
+                }
             }
         }
     }
