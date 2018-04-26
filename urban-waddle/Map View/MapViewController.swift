@@ -113,7 +113,7 @@ class MapViewController: UIViewController {
         case .follow :
             mapView.setUserTrackingMode(MKUserTrackingMode.none, animated: true)
         case .none :
-            mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
+            mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
         default :
             mapView.setUserTrackingMode(MKUserTrackingMode.none, animated: true)
         }
