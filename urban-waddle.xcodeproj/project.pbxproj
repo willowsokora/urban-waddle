@@ -13,6 +13,7 @@
 		162C6B4D2064AC450067D986 /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162C6B4C2064AC450067D986 /* YelpAPI.swift */; };
 		16345014206E8ACE00F8E4DF /* RestaurantCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */; };
 		16345016206E8ADD00F8E4DF /* RestaurantCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */; };
+		167E387C209293C700703F4F /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167E387B209293C700703F4F /* SliderTableViewCell.swift */; };
 		169E6CEE206979E200DF07D3 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CED206979E200DF07D3 /* ViewManager.swift */; };
 		169E6CF0206979F100DF07D3 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */; };
 		169E6CF220697A0400DF07D3 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169E6CF120697A0400DF07D3 /* Direction.swift */; };
@@ -61,6 +62,7 @@
 		162C6B4C2064AC450067D986 /* YelpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
 		16345013206E8ACE00F8E4DF /* RestaurantCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCalloutView.swift; sourceTree = "<group>"; };
 		16345015206E8ADD00F8E4DF /* RestaurantCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantCalloutView.xib; sourceTree = "<group>"; };
+		167E387B209293C700703F4F /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
 		169E6CED206979E200DF07D3 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		169E6CEF206979F100DF07D3 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
 		169E6CF120697A0400DF07D3 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				16B188EC208D7C0F00D9D065 /* FilteringTableViewController.swift */,
+				167E387B209293C700703F4F /* SliderTableViewCell.swift */,
 			);
 			path = "Filter View";
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				83C80F31205AEAD7008BFABC /* LocationSearchTable.swift in Sources */,
 				16E36793206434DD009E6153 /* DiscoveryViewController.swift in Sources */,
 				16345014206E8ACE00F8E4DF /* RestaurantCalloutView.swift in Sources */,
+				167E387C209293C700703F4F /* SliderTableViewCell.swift in Sources */,
 				169E6CF820697C1800DF07D3 /* DiscoveryCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

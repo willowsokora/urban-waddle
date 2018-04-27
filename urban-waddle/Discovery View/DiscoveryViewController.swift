@@ -18,9 +18,6 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
     var yelpRestaurants = [YelpRestaurant]()
     
     @IBOutlet weak var swipeableView: ZLSwipeableView!
-//    @IBOutlet weak var dislikeButton: UIButton!
-//    @IBOutlet weak var likeButton: UIButton!
-//    @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tutorialView: UIView!
     @IBOutlet var detailGestureRecognizer: UITapGestureRecognizer!
@@ -28,9 +25,6 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
     var cardIndex = 0
     var topCard = 0 {
         didSet {
-//            undoButton.isEnabled = topCard != 0
-//            likeButton.isEnabled = topCard < yelpRestaurants.count
-//            dislikeButton.isEnabled = topCard < yelpRestaurants.count
             if topCard == yelpRestaurants.count - 2 {
                 getNextPageFromYelp()
                 emptyLabel.isHidden = true
@@ -60,19 +54,6 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleReloadTap))
         activityIndicator.addGestureRecognizer(tap)
-        
-//        likeButton.imageView?.tintColor = statusColors[0]
-//        //likeButton.clipsToBounds = true
-////        likeButton.layer.cornerRadius = 0.4 * likeButton.bounds.size.width
-////        likeButton.backgroundColor = .white
-//        //likeButton.layer.borderColor = UIColor.gray.cgColor
-//        //likeButton.imageView?.layer.borderColor = UIColor.gray.cgColor
-////        likeButton.layer.shadowColor = UIColor.black.cgColor
-////        likeButton.layer.shadowOffset = .zero
-////        likeButton.layer.shadowRadius = 3
-////        likeButton.layer.shadowOpacity = 1.0
-//
-//        dislikeButton.imageView?.tintColor = .red
         
         // Do any additional setup after loading the view.
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -105,7 +86,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        //reloadRestaurants()
+        reloadRestaurants()
     }
 
     func reloadRestaurants() {
@@ -208,7 +189,9 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
+    
     @objc func handleReloadTap() {
+        reloadRestaurants()
         //TODO: reload the cards. Jacob do this IDK how also please in viewWillAppear maybe
     }
     
@@ -223,21 +206,6 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
             destination.cardView = swipeableView
         }
      }
- 
- 
-//    @IBAction func swipeRight(_ sender: UIButton) {
-//        swipeableView.swipeTopView(inDirection: .Right)
-//    }
-//
-//    @IBAction func swipeLeft(_ sender: UIButton) {
-//        swipeableView.swipeTopView(inDirection: .Left)
-//    }
-//
-//    @IBAction func undoSwipe(_ sender: UIButton) {
-//        swipeableView.rewind()
-//        topCard -= 1
-//        Restaurant.remove(restaurant: yelpRestaurants[topCard])
-//    }
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake && topCard != 0 {
