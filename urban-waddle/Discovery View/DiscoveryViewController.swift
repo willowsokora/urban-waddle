@@ -178,13 +178,15 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func handleSwipe(_ view: DiscoveryCardView, _ direction: Direction) {
-        let restaurant = view.restaurant!
-        Restaurant.add(restaurant: restaurant, status: direction == .Right ? .interested : .uninterested)
-        
-        if direction == .Right {
-            if 52 == Int(arc4random_uniform(100)) {
-                if #available( iOS 10.3,*){
-                    SKStoreReviewController.requestReview()
+        DispatchQueue.main.async {
+            let restaurant = view.restaurant!
+            Restaurant.add(restaurant: restaurant, status: direction == .Right ? .interested : .uninterested)
+            
+            if direction == .Right {
+                if 52 == Int(arc4random_uniform(100)) {
+                    if #available( iOS 10.3,*){
+                        SKStoreReviewController.requestReview()
+                    }
                 }
             }
         }
