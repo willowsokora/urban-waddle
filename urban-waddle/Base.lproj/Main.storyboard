@@ -704,22 +704,40 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterRow" textLabel="vel-hv-ehl" style="IBUITableViewCellStyleDefault" id="Eby-DT-jXA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterRow" id="Eby-DT-jXA" customClass="FilterTableViewCell" customModule="urban_waddle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eby-DT-jXA" id="9QX-hK-7d1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vel-hv-ehl">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u23-fv-lr1">
+                                                    <rect key="frame" x="16" y="8" width="307.5" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dPu-S9-ZFJ">
+                                                    <rect key="frame" x="331.5" y="8" width="27.5" height="27.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="dPu-S9-ZFJ" secondAttribute="height" id="9GR-lk-Vq7"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="u23-fv-lr1" firstAttribute="top" secondItem="9QX-hK-7d1" secondAttribute="top" constant="8" id="PLT-V1-4Y2"/>
+                                                <constraint firstItem="dPu-S9-ZFJ" firstAttribute="top" secondItem="9QX-hK-7d1" secondAttribute="top" constant="8" id="WnO-Fv-wbJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="dPu-S9-ZFJ" secondAttribute="bottom" constant="8" id="bGl-mI-zkI"/>
+                                                <constraint firstItem="u23-fv-lr1" firstAttribute="leading" secondItem="9QX-hK-7d1" secondAttribute="leading" constant="16" id="qkU-Tt-fe3"/>
+                                                <constraint firstAttribute="bottom" secondItem="u23-fv-lr1" secondAttribute="bottom" constant="8" id="s9K-z8-jAY"/>
+                                                <constraint firstAttribute="trailing" secondItem="dPu-S9-ZFJ" secondAttribute="trailing" constant="16" id="tX2-Nh-V74"/>
+                                                <constraint firstItem="dPu-S9-ZFJ" firstAttribute="leading" secondItem="u23-fv-lr1" secondAttribute="trailing" constant="8" id="zsS-E0-9H6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="filterLabel" destination="u23-fv-lr1" id="Ocu-5r-XVb"/>
+                                            <outlet property="statusImage" destination="dPu-S9-ZFJ" id="lLv-qZ-mDA"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sliderRow" rowHeight="74" id="MRN-HN-qrO" customClass="SliderTableViewCell" customModule="urban_waddle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="99.5" width="375" height="74"/>
