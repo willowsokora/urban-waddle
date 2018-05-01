@@ -290,7 +290,7 @@ public class Restaurant: NSManagedObject {
                     if priceFilters.count > 0  {
                         include = include && priceFilters.contains(restaurant.yelpPrice)
                     }
-                    if let location = YelpAPI.currentLocation, radius > 0 {
+                    if let location = YelpAPI.currentLocation, radius > 0, radius <= 24 {
                         if restaurant.distance(to: location) > Double(radius * 1609.344) {
                             include = false
                         }
