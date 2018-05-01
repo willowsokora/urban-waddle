@@ -139,6 +139,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                         let savedIds = Restaurant.getAllSavedIds()
                         for restaurant in searchResults.businesses {
                             if !savedIds.contains(restaurant.id) {
+                                
                                 self.yelpRestaurants.append(restaurant)
                             }
                         }
@@ -158,6 +159,45 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         }else {
             self.activityIndicator.startAnimating()
         }
+    }
+    
+    func shouldInclude(yelp restaurant: YelpRestaurant) -> Bool {
+        let store = UserDefaults.standard
+        let tagFilters = store.stringArray(forKey: "SavedTagArray") ?? []
+        let priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
+        let cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
+        
+        let deselectedTags = store.stringArray(forKey: "DeselectedTagArray") ?? []
+        let deselectedPrices = store.stringArray(forKey: "DeselectedPricesArray") ?? []
+        let deselectedCities = store.stringArray(forKey: "DeseletedCitiesArray") ?? []
+        
+        var filtered = false
+        for tag in restaurant.categories {
+            if deselectedTags.contains(tag.title) {
+                filtered = true
+            }
+        }
+        filtered = filtered || deselectedPrices.contains(restaurant.price ?? "$") || deselectedCities.contains(restaurant.location.city)
+        
+        var include = false
+        if tagFilters.count > 0 {
+            for tag in restaurant.categories {
+                if tagFilters.contains(tag.title) {
+                    include = true
+                }
+            }
+        } else {
+            include = true
+        }
+        
+        if cityFilters.count > 0 {
+            include = include && cityFilters.contains(restaurant.location.city)
+        }
+        
+        if priceFilters.count > 0 {
+            include = include && priceFilters.contains(restaurant.price ?? "$")
+        }
+        return include && !filtered
     }
     
     func nextCardView() -> UIView? {
