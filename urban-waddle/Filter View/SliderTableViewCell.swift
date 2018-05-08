@@ -27,7 +27,7 @@ class SliderTableViewCell: UITableViewCell {
     }
 
     @IBAction func sliderChanged(_ sender: UISlider) {
-        detailLabel.text = "\(Int(sender.value))\(sender.value > 24 ? "+" : "") mile\(sender.value >= 2 ? "s" : "")"
+        detailLabel.text = "\(Int(sender.value))\(Int(sender.value) == 25 ? "+" : "") mile\(sender.value >= 2 ? "s" : "")"
         if let delegate = delegate {
             delegate.sliderUpdated(distance: slider.value)
         }
