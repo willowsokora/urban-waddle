@@ -739,33 +739,34 @@
                                             <outlet property="statusImage" destination="dPu-S9-ZFJ" id="lLv-qZ-mDA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sliderRow" rowHeight="74" id="MRN-HN-qrO" customClass="SliderTableViewCell" customModule="urban_waddle" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="74"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sliderRow" rowHeight="43" id="MRN-HN-qrO" customClass="SliderTableViewCell" customModule="urban_waddle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MRN-HN-qrO" id="h64-4g-iRg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="42.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzO-QQ-VAG">
-                                                    <rect key="frame" x="16" y="8" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="1" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="TNG-A5-XLa">
-                                                    <rect key="frame" x="14" y="35.5" width="347" height="31"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="1" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="TNG-A5-XLa">
+                                                    <rect key="frame" x="14" y="8" width="297" height="27.5"/>
                                                     <connections>
                                                         <action selector="sliderChanged:" destination="MRN-HN-qrO" eventType="valueChanged" id="u0W-9x-0Sp"/>
                                                     </connections>
                                                 </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzO-QQ-VAG">
+                                                    <rect key="frame" x="317" y="8" width="42" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="vzO-QQ-VAG" firstAttribute="top" secondItem="h64-4g-iRg" secondAttribute="top" constant="8" id="01z-6B-48L"/>
-                                                <constraint firstAttribute="trailing" secondItem="TNG-A5-XLa" secondAttribute="trailing" constant="16" id="IJ7-dN-lDD"/>
+                                                <constraint firstAttribute="trailing" secondItem="vzO-QQ-VAG" secondAttribute="trailing" constant="16" id="C8g-mY-trd"/>
+                                                <constraint firstItem="vzO-QQ-VAG" firstAttribute="leading" secondItem="TNG-A5-XLa" secondAttribute="trailing" constant="8" id="Dtc-fu-oIv"/>
+                                                <constraint firstItem="vzO-QQ-VAG" firstAttribute="top" secondItem="h64-4g-iRg" secondAttribute="top" constant="8" id="SsV-OT-eVW"/>
                                                 <constraint firstItem="TNG-A5-XLa" firstAttribute="leading" secondItem="h64-4g-iRg" secondAttribute="leading" constant="16" id="Zi8-qS-Ous"/>
                                                 <constraint firstAttribute="bottom" secondItem="TNG-A5-XLa" secondAttribute="bottom" constant="8" id="cBE-Lw-UtB"/>
-                                                <constraint firstItem="vzO-QQ-VAG" firstAttribute="leading" secondItem="TNG-A5-XLa" secondAttribute="leading" id="i3G-ek-p79"/>
-                                                <constraint firstItem="TNG-A5-XLa" firstAttribute="top" secondItem="vzO-QQ-VAG" secondAttribute="bottom" constant="8" id="tdR-fv-gUg"/>
+                                                <constraint firstAttribute="bottom" secondItem="vzO-QQ-VAG" secondAttribute="bottom" constant="8" id="pwI-cd-MRb"/>
+                                                <constraint firstItem="TNG-A5-XLa" firstAttribute="top" secondItem="h64-4g-iRg" secondAttribute="top" constant="8" id="q1A-xO-p31"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
