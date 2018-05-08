@@ -18,6 +18,7 @@ class FilteringTableViewController: UIViewController {
     let sectionTitles = ["Distance", "Prices", "Cities", "Tags"]
     var sectionContent: [[String]] = [[], [], []]
     var selectedContent: [[String]] = [[], [], []]
+    var deselectedContent: [[String]] = [[], [], []]
     let searchController = UISearchController(searchResultsController: nil)
     
     var priceBackgroundView = UIView()
@@ -75,15 +76,19 @@ class FilteringTableViewController: UIViewController {
         selectedContent[1] = store.stringArray(forKey: "SavedCitiesArray") ?? []
         selectedContent[2] = store.stringArray(forKey: "SavedTagArray") ?? []
         
-        for section in 0...2 {
-            var indexes = [IndexPath]()
-            for i in 0..<sectionContent[section].count {
-                indexes.append(IndexPath(row: i, section: section))
-            }
-            tableView.beginUpdates()
-            tableView.deleteRows(at: indexes, with: .automatic)
-            tableView.endUpdates()
-        }
+        deselectedContent[0] = store.stringArray(forKey: "DeselectedPricesArray") ?? []
+        deselectedContent[1] = store.stringArray(forKey: "DeselectedCitiesArray") ?? []
+        deselectedContent[2] = store.stringArray(forKey: "DeselectedTagArray") ?? []
+        
+//        for section in 0...2 {
+//            var indexes = [IndexPath]()
+//            for i in 0..<sectionContent[section].count {
+//                indexes.append(IndexPath(row: i, section: section))
+//            }
+//            tableView.beginUpdates()
+//            tableView.deleteRows(at: indexes, with: .automatic)
+//            tableView.endUpdates()
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +100,9 @@ class FilteringTableViewController: UIViewController {
         store.set(selectedContent[0], forKey: "SavedPricesArray")
         store.set(selectedContent[1], forKey: "SavedCitiesArray")
         store.set(selectedContent[2], forKey: "SavedTagArray")
+        store.set(deselectedContent[0], forKey: "DeselectedPricesArray")
+        store.set(deselectedContent[1], forKey: "DeselectedCitiesArray")
+        store.set(deselectedContent[2], forKey: "DeselectedTagArray")
         store.set(maxDistance, forKey: "MaxDistance")
         dismiss(animated: true)
     }
@@ -102,6 +110,7 @@ class FilteringTableViewController: UIViewController {
     @IBAction func clearSelections(_ sender: UIButton) {
         for i in 0..<selectedContent.count {
             selectedContent[i].removeAll()
+            deselectedContent[i].removeAll()
             tableView.reloadData()
         }
     }
@@ -143,10 +152,19 @@ extension FilteringTableViewController: UITableViewDataSource {
             cell.delegate = self
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "filterRow", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "filterRow", for: indexPath) as! FilterTableViewCell
             let title = sectionContent[indexPath.section - 1][indexPath.row]
-            cell.textLabel?.text = title
-            cell.accessoryType = selectedContent[indexPath.section - 1].contains(title) ? .checkmark : .none
+            cell.filterLabel.text = title
+//            cell.accessoryType = selectedContent[indexPath.section - 1].contains(title) ? .checkmark : .none
+            if selectedContent[indexPath.section - 1].contains(title) {
+                cell.statusImage.image = UIImage(named: "smallCheck")
+                cell.statusImage.tintColor = statusColors[0]
+            } else if deselectedContent[indexPath.section - 1].contains(title) {
+                cell.statusImage.image = UIImage(named: "smallX")
+                cell.statusImage.tintColor = .red
+            } else {
+                cell.statusImage.image = nil
+            }
             return cell
         }
     }
@@ -162,8 +180,12 @@ extension FilteringTableViewController: UITableViewDelegate {
         if indexPath.section  == 0 {
             return
         }
-        if selectedContent[indexPath.section - 1].contains(sectionContent[indexPath.section - 1][indexPath.row]) {
-            selectedContent[indexPath.section - 1] = selectedContent[indexPath.section - 1].filter{$0 != sectionContent[indexPath.section - 1][indexPath.row]}
+        let title = sectionContent[indexPath.section - 1][indexPath.row]
+        if selectedContent[indexPath.section - 1].contains(title) {
+            selectedContent[indexPath.section - 1] = selectedContent[indexPath.section - 1].filter{$0 != title}
+            deselectedContent[indexPath.section - 1].append(title)
+        } else if deselectedContent[indexPath.section - 1].contains(title) {
+            deselectedContent[indexPath.section - 1] = deselectedContent[indexPath.section - 1].filter{$0 != title}
         } else {
             selectedContent[indexPath.section - 1].append(sectionContent[indexPath.section - 1][indexPath.row])
         }

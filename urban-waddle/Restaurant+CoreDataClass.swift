@@ -216,6 +216,10 @@ public class Restaurant: NSManagedObject {
         let priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
         let cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
         
+        let deselectedTags = store.stringArray(forKey: "DeselectedTagArray") ?? []
+        let deselectedPrices = store.stringArray(forKey: "DeselectedPricesArray") ?? []
+        let deselectedCities = store.stringArray(forKey: "DeseletedCitiesArray") ?? []
+        
         let radius = UserDefaults.standard.float(forKey: "MaxDistance")
         
         do {
@@ -224,6 +228,16 @@ public class Restaurant: NSManagedObject {
             let results = try context.fetch(request)
             for restaurant in results as! [Restaurant] {
                 if restaurant.status != .uninterested {
+                    var filtered = false
+                    for tag in restaurant.tags?.allObjects as! [Tag] {
+                        if deselectedTags.contains(tag.title!) {
+                            filtered = true
+                        }
+                    }
+                    filtered = filtered || deselectedPrices.contains(restaurant.yelpPrice) || deselectedCities.contains(restaurant.city)
+                    if filtered {
+                        continue
+                    }
                     var include = false
                     if tagFilters.count > 0 {
                         for tag in restaurant.tags?.allObjects as! [Tag] {
@@ -240,7 +254,7 @@ public class Restaurant: NSManagedObject {
                     if priceFilters.count > 0  {
                         include = include && priceFilters.contains(restaurant.yelpPrice)
                     }
-                    if let location = YelpAPI.currentLocation, radius > 0 {
+                    if let location = YelpAPI.currentLocation, radius > 0, radius <= 24 {
                         if restaurant.distance(to: location) > Double(radius * 1609.344) {
                             include = false
                         }
@@ -266,6 +280,10 @@ public class Restaurant: NSManagedObject {
         let priceFilters = store.stringArray(forKey: "SavedPricesArray") ?? []
         let cityFilters = store.stringArray(forKey: "SavedCitiesArray") ?? []
         
+        let deselectedTags = store.stringArray(forKey: "DeselectedTagArray") ?? []
+        let deselectedPrices = store.stringArray(forKey: "DeselectedPricesArray") ?? []
+        let deselectedCities = store.stringArray(forKey: "DeseletedCitiesArray") ?? []
+        
         let radius = UserDefaults.standard.float(forKey: "MaxDistance")
         
         do {
@@ -274,6 +292,16 @@ public class Restaurant: NSManagedObject {
             let results = try context.fetch(request)
             for restaurant in results as! [Restaurant] {
                 if restaurant.status != .uninterested {
+                    var filtered = false
+                    for tag in restaurant.tags?.allObjects as! [Tag] {
+                        if deselectedTags.contains(tag.title!) {
+                            filtered = true
+                        }
+                    }
+                    filtered = filtered || deselectedPrices.contains(restaurant.yelpPrice) || deselectedCities.contains(restaurant.city)
+                    if filtered {
+                        continue
+                    }
                     var include = false
                     if tagFilters.count > 0 {
                         for tag in restaurant.tags?.allObjects as! [Tag] {
@@ -290,7 +318,7 @@ public class Restaurant: NSManagedObject {
                     if priceFilters.count > 0  {
                         include = include && priceFilters.contains(restaurant.yelpPrice)
                     }
-                    if let location = YelpAPI.currentLocation, radius > 0 {
+                    if let location = YelpAPI.currentLocation, radius > 0, radius <= 24 {
                         if restaurant.distance(to: location) > Double(radius * 1609.344) {
                             include = false
                         }
