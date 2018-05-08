@@ -189,7 +189,7 @@ extension FilteringTableViewController: UITableViewDelegate {
         } else {
             selectedContent[indexPath.section - 1].append(sectionContent[indexPath.section - 1][indexPath.row])
         }
-        tableView.reloadData()
+        tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .none)
     }
 }
 
