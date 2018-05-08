@@ -223,7 +223,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
             Restaurant.add(restaurant: restaurant, status: direction == .Right ? .interested : .uninterested)
             
             if direction == .Right {
-                if 52 == Int(arc4random_uniform(100)) {
+                if 52 == Int(arc4random_uniform(500)) {
                     if #available( iOS 10.3,*){
                         SKStoreReviewController.requestReview()
                     }
