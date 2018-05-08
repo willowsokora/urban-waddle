@@ -747,13 +747,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="1" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="TNG-A5-XLa">
-                                                    <rect key="frame" x="14" y="8" width="297" height="27.5"/>
+                                                    <rect key="frame" x="14" y="8" width="264" height="27.5"/>
                                                     <connections>
                                                         <action selector="sliderChanged:" destination="MRN-HN-qrO" eventType="valueChanged" id="u0W-9x-0Sp"/>
                                                     </connections>
                                                 </slider>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzO-QQ-VAG">
-                                                    <rect key="frame" x="317" y="8" width="42" height="26.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25+ miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzO-QQ-VAG">
+                                                    <rect key="frame" x="284" y="8" width="75" height="26.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="Lpf-M9-P7z"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
