@@ -57,7 +57,11 @@ class SavedViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let destination = segue.destination as? ReviewViewController {
-            destination.restaurant = savedRestaurants[(savedTable.indexPathForSelectedRow?.section)!][(savedTable.indexPathForSelectedRow?.row)!]
+            if isFiltering() {
+                destination.restaurant = filteredRestaurants[(savedTable.indexPathForSelectedRow?.section)!][(savedTable.indexPathForSelectedRow?.row)!]
+            }else {
+                destination.restaurant = savedRestaurants[(savedTable.indexPathForSelectedRow?.section)!][(savedTable.indexPathForSelectedRow?.row)!]
+            }
         }
     }
 

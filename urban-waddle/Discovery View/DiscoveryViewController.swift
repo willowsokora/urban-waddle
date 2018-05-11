@@ -119,8 +119,8 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                             }
                         }
                     case .failure(let error):
-                        fatalError("error: \(error.localizedDescription)")
                         self.activityIndicator.startAnimating()
+                        fatalError("error: \(error.localizedDescription)")
                     }
                 }
             }
@@ -151,8 +151,8 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                             }
                         }
                     case .failure(let error):
-                        fatalError("error: \(error.localizedDescription)")
                         self.activityIndicator.startAnimating()
+                        fatalError("error: \(error.localizedDescription)")
                     }
                 }
             }
