@@ -52,7 +52,6 @@ class DiscoveryCardView: UIView {
                         }
                     }
                     if self.images.count > 0 {
-                        print("Setting up image pages for \(restaurant.name)")
                         self.setupImagePages()
                     }
                 }
