@@ -92,7 +92,7 @@ class ReviewViewController: UIViewController {
                 YelpAPI.getDetails(for: restaurant.yelpId) { (results) in
                     switch results {
                     case .success(let details):
-                        for imageUrl in details.photos.dropFirst() {
+                        for imageUrl in details.photos {
                             if let url = URL(string: imageUrl), let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
                                 self.images.append(image)
                             }
