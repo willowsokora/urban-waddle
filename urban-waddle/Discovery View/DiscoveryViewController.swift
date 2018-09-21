@@ -20,7 +20,6 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var swipeableView: ZLSwipeableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tutorialView: UIView!
-    @IBOutlet var detailGestureRecognizer: UITapGestureRecognizer!
     
     var cardIndex = 0
     var topCard = 0 {
@@ -39,11 +38,6 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    @IBAction func openDetail(_ sender: UITapGestureRecognizer) {
-        if sender.state == .ended && topCard < yelpRestaurants.count {
-            performSegue(withIdentifier: "showDiscoveryDetail", sender: self)
-        }
-    }
     @IBOutlet weak var emptyLabel: UILabel!
     
     override func viewDidLoad() {

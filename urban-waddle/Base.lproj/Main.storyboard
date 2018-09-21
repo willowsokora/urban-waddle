@@ -159,9 +159,6 @@
                                 <rect key="frame" x="16" y="36" width="343" height="566"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Oic-hY-lad" appends="YES" id="t1I-SJ-XFe"/>
-                                </connections>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0H1-nF-tP2">
                                 <rect key="frame" x="167.5" y="299" width="40" height="40"/>
@@ -234,18 +231,12 @@
                     <navigationItem key="navigationItem" title="Title" id="d2S-Yk-YbY"/>
                     <connections>
                         <outlet property="activityIndicator" destination="0H1-nF-tP2" id="knd-MA-0Kp"/>
-                        <outlet property="detailGestureRecognizer" destination="Oic-hY-lad" id="7MM-Eb-MWL"/>
                         <outlet property="emptyLabel" destination="ePN-2C-7aK" id="5vj-YI-aSp"/>
                         <outlet property="swipeableView" destination="zal-kO-xcm" id="rxQ-cJ-lGp"/>
                         <outlet property="tutorialView" destination="iwr-L2-lqD" id="ZPH-Ng-xdp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0os-83-5op" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Oic-hY-lad">
-                    <connections>
-                        <action selector="openDetail:" destination="isL-zO-Wp8" id="GzM-4Q-XTp"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-647" y="1427"/>
         </scene>
