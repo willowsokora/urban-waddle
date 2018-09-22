@@ -277,19 +277,20 @@ extension ZLSwipeableView {
         }
         
         return { (view: UIView, index: Int, views: [UIView], swipeableView: ZLSwipeableView) in
-            let degree = CGFloat(1)
+//            let degree = CGFloat(1)
             let duration = 0.4
             let offset = CGPoint(x: 0, y: swipeableView.bounds.height * 0.3)
-            switch index {
-            case 0:
-                rotateView(view, forDegree: 0, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
-            case 1:
-                rotateView(view, forDegree: degree, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
-            case 2:
-                rotateView(view, forDegree: -degree, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
-            default:
-                rotateView(view, forDegree: 0, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
-            }
+            rotateView(view, forDegree: 0, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
+//            switch index {
+//            case 0:
+//                rotateView(view, forDegree: 0, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
+//            case 1:
+//                rotateView(view, forDegree: degree, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
+//            case 2:
+//                rotateView(view, forDegree: -degree, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
+//            default:
+//                rotateView(view, forDegree: 0, duration: duration, offsetFromCenter: offset, swipeableView: swipeableView)
+//            }
         }
     }
     

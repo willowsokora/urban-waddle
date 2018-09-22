@@ -56,6 +56,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         locationManager.startUpdatingLocation()
         currentLocation = nil
         
+        swipeableView.onlySwipeTopCard = true
         swipeableView.numberOfActiveView = UInt(2)
         swipeableView.nextView = {
             return self.nextCardView()
