@@ -19,12 +19,12 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var buttonContainer: UIView!
     
-    let defaultButtonColor = UIButton(type: UIButtonType.system).titleColor(for: .normal)!
+    let defaultButtonColor = UIButton(type: UIButton.ButtonType.system).titleColor(for: .normal)!
     var resultSearchController:UISearchController? = nil
     let locationManager: CLLocationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var selectedRestaurant: Restaurant?
-    let locationButton = UIButton(type: UIButtonType.custom) as UIButton
+    let locationButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,7 +129,7 @@ extension MapViewController: CLLocationManagerDelegate {
                     for restaurant in Restaurant.getAllInterestedRestaurants() {
                         mapView.addAnnotation(RestaurantAnnotation(restaurant: restaurant))
                     }
-                    let span = MKCoordinateSpanMake(0.05, 0.05)
+                    let span = MKCoordinateSpan.init(latitudeDelta: 0.05, longitudeDelta: 0.05)
                     let region = MKCoordinateRegion(center: location.coordinate, span: span)
                     mapView.setRegion(region, animated: true)
                 }
@@ -142,8 +142,8 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: HandleMapSearch {
     // Handle Pin for Restaurants from Search
     func dropPinZoomIn(for restaurant: String, placemark:MKPlacemark){
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion.init(center: placemark.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         var annotationFound = false
         for annotation in mapView.annotations {
@@ -195,7 +195,7 @@ extension MapViewController : MKMapViewDelegate {
             selectedRestaurant = annotation.restaurant
             mapView.setCenter(CLLocationCoordinate2D(latitude: (selectedRestaurant?.latitude)!, longitude: (selectedRestaurant?.longitude)!), animated: true)
 
-            let span = MKCoordinateSpanMake(0.01, 0.01)
+            let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
             //Only zoom in, not zoom out
             if span.latitudeDelta < mapView.region.span.latitudeDelta {
                 let region = MKCoordinateRegion(center: annotation.coordinate, span: span)

@@ -14,7 +14,7 @@ class UIPageViewControllerWithOverlayIndicator: UIPageViewController {
             if subView is UIScrollView {
                 subView.frame = self.view.bounds
             } else if subView is UIPageControl {
-                self.view.bringSubview(toFront: subView)
+                self.view.bringSubviewToFront(subView)
             }
         }
         super.viewDidLayoutSubviews()

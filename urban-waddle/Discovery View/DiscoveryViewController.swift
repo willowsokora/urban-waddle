@@ -240,7 +240,7 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
         // Pass the selected object to the new view controller.
      }
     
-    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake && topCard != 0 {
             swipeableView.rewind()
             topCard -= 1

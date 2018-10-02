@@ -52,8 +52,8 @@ class ReviewViewController: UIViewController {
         noteField.delegate = self
         
         // Keyboard observers
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // Add Tap Gesture for contentView
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(returnTextView(gesture:))))
@@ -87,7 +87,7 @@ class ReviewViewController: UIViewController {
             addressButton.titleLabel?.textAlignment = .left
             
             //Page View Setup
-            let pageView = self.childViewControllers[0] as! UIPageViewController
+            let pageView = self.children[0] as! UIPageViewController
             if Reachability.isConnectedToNetwork() {
                 YelpAPI.getDetails(for: restaurant.yelpId) { (results) in
                     switch results {
@@ -205,7 +205,7 @@ extension ReviewViewController {
             return
         }
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
             
             //Increase contentView's height by keyboard height
