@@ -129,7 +129,7 @@ open class ZLSwipeableView: UIView {
         return allViews().filter() {
             view in
             guard let viewManager = viewManagers[view] else { return false }
-            if case .swiping(_) = viewManager.state {
+            if case .swiping = viewManager.state {
                 return false
             }
             return true
@@ -351,7 +351,7 @@ extension ZLSwipeableView {
 // MARK: - Deprecated APIs
 extension ZLSwipeableView {
     
-    @available(*, deprecated: 1, message: "Use numberOfActiveView")
+    @available(*, deprecated, message: "Use numberOfActiveView")
     public var numPrefetchedViews: UInt {
         get {
             return numberOfActiveView
@@ -361,7 +361,7 @@ extension ZLSwipeableView {
         }
     }
     
-    @available(*, deprecated: 1, message: "Use allowedDirection")
+    @available(*, deprecated, message: "Use allowedDirection")
     public var direction: Direction {
         get {
             return allowedDirection
@@ -371,7 +371,7 @@ extension ZLSwipeableView {
         }
     }
     
-    @available(*, deprecated: 1, message: "Use minTranslationInPercent")
+    @available(*, deprecated, message: "Use minTranslationInPercent")
     public var translationThreshold: CGFloat {
         get {
             return minTranslationInPercent
@@ -381,7 +381,7 @@ extension ZLSwipeableView {
         }
     }
     
-    @available(*, deprecated: 1, message: "Use minVelocityInPointPerSecond")
+    @available(*, deprecated, message: "Use minVelocityInPointPerSecond")
     public var velocityThreshold: CGFloat {
         get {
             return minVelocityInPointPerSecond

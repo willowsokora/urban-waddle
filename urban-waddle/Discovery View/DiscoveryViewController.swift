@@ -113,9 +113,8 @@ class DiscoveryViewController: UIViewController, UIGestureRecognizerDelegate {
                                 self.topCard = 0
                             }
                         }
-                    case .failure(let error):
+                    case .failure(_):
                         self.activityIndicator.startAnimating()
-                        fatalError("error: \(error.localizedDescription)")
                     }
                 }
             }
